@@ -6,7 +6,8 @@ dependencies:
     sdk: flutter
   cupertino_icons: ^0.1.2
   cloud_firestore: ^0.8.2+3
-  rxdart: 
+  rxdart: ^0.20.0
+  collection: ^1.14.11
 
 dev_dependencies:
   flutter_test:
@@ -14,6 +15,8 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/json/people.json
   # assets:
   #  - images/a_dot_burr.jpeg
   #  - images/a_dot_ham.jpeg
