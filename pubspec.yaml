@@ -8,6 +8,8 @@ dependencies:
   cloud_firestore: ^0.8.2+3
   rxdart: ^0.20.0
   collection: ^1.14.11
+  tuple: ^1.0.2
+
 
 dev_dependencies:
   flutter_test:

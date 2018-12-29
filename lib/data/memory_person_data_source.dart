@@ -48,9 +48,7 @@ class MemoryPersonDataSource implements PeopleDataSource {
     ));
 
     //wait to test
-    if (_page > 0) {
-      await Future.delayed(Duration(seconds: 2));
-    }
+    await Future.delayed(Duration(seconds: 2));
 
     if (startAfter == null) {
       return list.take(limit).toList();

@@ -26,14 +26,16 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     super.initState();
 
-    _bloc = PeopleBloc(MemoryPersonDataSource(context: context))
-      ..loadMore.add(null); // load first page
+    _bloc = PeopleBloc(MemoryPersonDataSource(context: context));
     // listen error, reach max items
     _subscriptionReachMaxItems = _bloc.loadedAllPeople.listen(_onReachMaxItem);
     _subscriptionError = _bloc.error.listen(_onError);
 
     // add listener to scroll controller
     _scrollController.addListener(_onScroll);
+
+    // load first page
+    _bloc.loadFirstPage.add(null);
   }
 
   @override
@@ -101,14 +103,24 @@ class _MyHomePageState extends State<MyHomePage> {
               foregroundColor: Colors.white,
               backgroundColor: Colors.purple,
             ),
+            trailing: CircleAvatar(
+              child: Text(
+                '${index + 1}/${people.length}',
+                style: Theme.of(context).textTheme.overline,
+              ),
+              foregroundColor: Colors.white,
+              backgroundColor: Colors.teal,
+            ),
           );
         }
 
         if (isLoading) {
-          return Center(
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: CircularProgressIndicator(),
+          return Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Center(
+              child: CircularProgressIndicator(
+                strokeWidth: 2.0,
+              ),
             ),
           );
         }
@@ -149,6 +161,7 @@ class _MyHomePageState extends State<MyHomePage> {
     // if scroll to bottom of list, then load next page
     if (_scrollController.offset + offsetVisibleThreshold >=
         _scrollController.position.maxScrollExtent) {
+      print('_bloc.loadMore.add(null)');
       _bloc.loadMore.add(null);
     }
   }
@@ -166,6 +179,11 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void _onError(Object error) async {
+    await _scrollController.animateTo(
+      _scrollController.position.maxScrollExtent,
+      curve: Curves.easeOut,
+      duration: Duration(milliseconds: 500),
+    );
     await (_scaffoldKey.currentState
         ?.showSnackBar(
           SnackBar(
