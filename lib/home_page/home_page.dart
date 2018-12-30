@@ -114,16 +114,6 @@ class _MyHomePageState extends State<MyHomePage> {
           );
         }
 
-        if (isLoading) {
-          return Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: Center(
-              child: CircularProgressIndicator(
-                strokeWidth: 2.0,
-              ),
-            ),
-          );
-        }
         if (error != null) {
           return ListTile(
             title: Text(
@@ -138,7 +128,18 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           );
         }
-        return Container();
+
+        return Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: Center(
+            child: Opacity(
+              child: CircularProgressIndicator(
+                strokeWidth: 2.0,
+              ),
+              opacity: isLoading ? 1 : 0,
+            ),
+          ),
+        );
       },
       itemCount: people.length + 1,
       separatorBuilder: (BuildContext context, int index) => Divider(),
@@ -179,15 +180,10 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void _onError(Object error) async {
-    await _scrollController.animateTo(
-      _scrollController.position.maxScrollExtent,
-      curve: Curves.easeOut,
-      duration: Duration(milliseconds: 500),
-    );
     await (_scaffoldKey.currentState
         ?.showSnackBar(
           SnackBar(
-            content: Text('Error occurred $error'),
+            content: Text('Error occurred: $error'),
           ),
         )
         ?.closed);
