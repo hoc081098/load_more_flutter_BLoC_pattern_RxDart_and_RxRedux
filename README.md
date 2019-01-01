@@ -9,7 +9,10 @@ Star :) if it is helpful
 
 ## Demo
 
-[Demo gif image](https://i.ibb.co/Cztm9Y4/ezgif-com-video-to-gif.gif)
+Screenshot: <br/>
+![Screenshot](https://i.ibb.co/KyYxv4K/Screenshot-2019-01-01-20-37-13.png) <br/>
+Gif: <br/>
+![Demo gif image](https://i.ibb.co/Cztm9Y4/ezgif-com-video-to-gif.gif)
 
 ## Develop
 
