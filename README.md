@@ -9,8 +9,7 @@ Star :) if it is helpful
 
 ## Demo
 
-<img src="https://i.ibb.co/KyYxv4K/Screenshot-2019-01-01-20-37-13.png" height="480px" alt=":("/>
-<img src="demo.gif" height="480px" alt=":("/>
+<img src="https://i.ibb.co/KyYxv4K/Screenshot-2019-01-01-20-37-13.png" height="480px" alt=":("> <img src="demo.gif" height="480px" alt=":("/>
 
 ## Develop
 
