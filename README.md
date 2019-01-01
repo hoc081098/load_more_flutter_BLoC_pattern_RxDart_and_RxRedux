@@ -9,10 +9,8 @@ Star :) if it is helpful
 
 ## Demo
 
-Screenshot: <br/>
-![Screenshot](https://i.ibb.co/KyYxv4K/Screenshot-2019-01-01-20-37-13.png) <br/>
-Gif: <br/>
-![Demo gif image](demo.gif)
+<img scr="https://i.ibb.co/KyYxv4K/Screenshot-2019-01-01-20-37-13.png" height="480px" alt=":("/>
+<img scr="demo.gif" height="480px" alt=":("/>
 
 ## Develop
 
