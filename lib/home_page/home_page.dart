@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:load_more_flutter/data/memory_person_data_source.dart';
 import 'package:load_more_flutter/data/people_api.dart';
 import 'package:load_more_flutter/home_page/people_bloc.dart';
+import 'package:load_more_flutter/home_page/peoples_state.dart';
 
 class MyHomePage extends StatefulWidget {
   @override
