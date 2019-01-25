@@ -1,5 +1,7 @@
 import 'dart:convert';
+import 'dart:math';
 
+import 'package:built_collection/built_collection.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:load_more_flutter/data/people_data_source.dart';
@@ -11,31 +13,46 @@ import 'package:load_more_flutter/model/person.dart';
 
 class MemoryPersonDataSource implements PeopleDataSource {
   final BuildContext _context;
+
+  ///
+  ///
+  ///
   int _page = 0;
+  bool _hasError = false;
+  bool _done = false;
+
+  ///
+  ///
+  ///
 
   MemoryPersonDataSource({@required context})
       : assert(context != null),
         _context = context;
 
   @override
-  Future<List<Person>> getPeople({
+  Future<BuiltList<Person>> getPeople({
     @required int limit,
     @required String field,
     Person startAfter,
   }) async {
-    // test error
-    if (startAfter == null) {
-      _page = 0;
-    } else {
-      ++_page;
+    await Future.delayed(Duration(seconds: 2));
+
+    _increasePageAndRandomErrorOrDone(startAfter);
+    if (_done) {
+      return BuiltList.of([]);
+    }
+    if (_hasError) {
+      throw StateError('[DEBUG] Random error :)');
     }
 
-    if (_page == 3) {
-      // test error
-      await Future.delayed(Duration(seconds: 2));
-      throw StateError('Random error :)');
-    }
+    return _actual(field, startAfter, limit);
+  }
 
+  Future<BuiltList<Person>> _actual(
+    String field,
+    Person startAfter,
+    int limit,
+  ) async {
     final list = await (DefaultAssetBundle.of(_context).loadStructuredData(
       'assets/json/people.json',
       (value) => compute(
@@ -47,13 +64,28 @@ class MemoryPersonDataSource implements PeopleDataSource {
           ),
     ));
 
-    //wait to test
-    await Future.delayed(Duration(seconds: 2));
-
     if (startAfter == null) {
-      return list.take(limit).toList();
+      return BuiltList.of(list.take(limit).toList());
     } else {
-      return list.skipWhile((p) => p == startAfter).take(limit).toList();
+      return BuiltList.of(
+        list.skipWhile((p) => p == startAfter).take(limit).toList(),
+      );
+    }
+  }
+
+  void _increasePageAndRandomErrorOrDone(Person startAfter) {
+    if (startAfter == null) {
+      _page = 0;
+      _done = _hasError = false;
+    } else {
+      ++_page;
+    }
+    if (_page == 3) {
+      if (Random().nextBool()) {
+        _done = true;
+      } else {
+        _hasError = true;
+      }
     }
   }
 }

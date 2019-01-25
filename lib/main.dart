@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:load_more_flutter/home_page/home_page.dart';
+import 'package:load_more_flutter/simple/simple_page.dart';
 
 void main() async {
   await Firestore.instance.settings(timestampsInSnapshotsEnabled: true);
@@ -14,7 +15,53 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData.dark(),
-      home: MyHomePage(),
+      debugShowCheckedModeBanner: false,
+      home: Builder(
+        builder: (context) {
+          return Scaffold(
+            appBar: AppBar(
+              title: Text('Flutter demo'),
+            ),
+            body: Center(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.max,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: <Widget>[
+                    MaterialButton(
+                      padding: const EdgeInsets.all(24),
+                      child: Text('Home page'),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => MyHomePage(),
+                          ),
+                        );
+                      },
+                    ),
+                    SizedBox(height: 8),
+                    MaterialButton(
+                      padding: const EdgeInsets.all(24),
+                      child: Text('Simple page'),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => SimplePage(),
+                          ),
+                        );
+                      },
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          );
+        },
+      ),
     );
   }
 }

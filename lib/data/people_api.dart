@@ -1,3 +1,4 @@
+import 'package:built_collection/built_collection.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
 import 'package:load_more_flutter/data/people_data_source.dart';
@@ -12,7 +13,7 @@ class PeopleApi implements PeopleDataSource {
   final _firestore = Firestore.instance;
 
   @override
-  Future<List<Person>> getPeople({
+  Future<BuiltList<Person>> getPeople({
     @required int limit,
     @required String field,
     Person startAfter,
@@ -22,22 +23,19 @@ class PeopleApi implements PeopleDataSource {
       query = query.startAfter([startAfter.name]);
     }
     final documents = (await query.limit(limit).getDocuments()).documents;
-    print(documents);
 
     //wait to test
     await Future.delayed(Duration(seconds: 2));
 
-    return documents
-        .map(
-          (snapshot) => Person.fromJson(
-                CombinedMapView(
-                  [
-                    {'id': snapshot.documentID},
-                    snapshot.data,
-                  ],
-                ),
-              ),
-        )
-        .toList();
+    final people = documents.map((snapshot) {
+      final json = CombinedMapView(
+        [
+          {'id': snapshot.documentID},
+          snapshot.data,
+        ],
+      );
+      return Person.fromJson(json);
+    }).toList();
+    return BuiltList.of(people);
   }
 }

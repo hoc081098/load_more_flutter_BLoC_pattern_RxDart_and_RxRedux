@@ -1,44 +1,28 @@
-import 'package:meta/meta.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
+import 'package:built_value/standard_json_plugin.dart';
+import 'package:load_more_flutter/model/serializers.dart';
 
-@immutable
-class Person {
-  final String id;
-  final String emoji;
-  final String name;
-  final String bio;
+part 'person.g.dart';
 
-  const Person({
-    @required this.id,
-    @required this.emoji,
-    @required this.name,
-    @required this.bio,
-  });
+abstract class Person implements Built<Person, PersonBuilder> {
+  String get id;
 
-  factory Person.fromJson(Map<String, dynamic> json) => Person(
-        bio: json['bio'],
-        emoji: json['emoji'],
-        name: json['name'],
-        id: json['id'].toString(),
-      );
+  String get emoji;
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is Person &&
-          runtimeType == other.runtimeType &&
-          id == other.id &&
-          emoji == other.emoji &&
-          name == other.name &&
-          bio == other.bio;
+  String get name;
 
-  @override
-  int get hashCode =>
-      id.hashCode ^ emoji.hashCode ^ name.hashCode ^ bio.hashCode;
+  String get bio;
 
-  Map<String, dynamic> toJson() => {
-        'id': id,
-        'emoji': emoji,
-        'name': name,
-        'bio': bio,
-      };
+  static Serializer<Person> get serializer => _$personSerializer;
+
+  Person._();
+
+  factory Person([updates(PersonBuilder b)]) = _$Person;
+
+  factory Person.fromJson(Map<String, dynamic> json) {
+    final standardSerializers =
+        (serializers.toBuilder()..addPlugin(StandardJsonPlugin())).build();
+    return standardSerializers.deserializeWith<Person>(Person.serializer, json);
+  }
 }

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:load_more_flutter/data/memory_person_data_source.dart';
 import 'package:load_more_flutter/data/people_api.dart';
 import 'package:load_more_flutter/home_page/people_bloc.dart';
-import 'package:load_more_flutter/home_page/peoples_state.dart';
+import 'package:load_more_flutter/home_page/people_state.dart';
 
 class MyHomePage extends StatefulWidget {
   @override
@@ -27,7 +27,7 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     super.initState();
 
-    _bloc = PeopleBloc(MemoryPersonDataSource(context: context));
+    _bloc = PeopleBloc(PeopleApi());
     // listen error, reach max items
     _subscriptionReachMaxItems = _bloc.loadedAllPeople.listen(_onReachMaxItem);
     _subscriptionError = _bloc.error.listen(_onError);
@@ -40,13 +40,12 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   @override
-  void dispose() async {
+  void dispose()  {
     _scrollController.dispose();
-    await Future.wait([
-      _bloc.dispose(),
-      _subscriptionError.cancel(),
-      _subscriptionReachMaxItems.cancel(),
-    ]);
+
+    _subscriptionError.cancel();
+    _subscriptionReachMaxItems.cancel();
+    _bloc.dispose();
 
     super.dispose();
   }

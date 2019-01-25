@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:load_more_flutter/data/people_data_source.dart';
-import 'package:load_more_flutter/home_page/peoples_state.dart';
+import 'package:load_more_flutter/home_page/people_state.dart';
 import 'package:load_more_flutter/model/person.dart';
 import 'package:rxdart/rxdart.dart';
 
@@ -53,13 +53,16 @@ class PeopleBloc {
   /// Sinks
   ///
   Sink<void> get loadMore => _loadMoreController.sink;
+
   Sink<void> get loadFirstPage => _loadFirstPageController.sink;
 
   ///
   /// Streams
   ///
   Stream<PeopleListState> get peopleList => _peopleList$;
+
   Stream<void> get loadedAllPeople => _loadAllController.stream;
+
   Stream<Object> get error => _errorNotNull$;
 
   PeopleBloc(this._peopleDataSource) : assert(_peopleDataSource != null) {
@@ -142,7 +145,7 @@ class PeopleBloc {
         _loadAllController.add(null);
       }
 
-      // if fecth success, emit null
+      // if fetch success, emit null
       _errorController.add(null);
 
       final people = <Person>[];
@@ -173,12 +176,14 @@ class PeopleBloc {
     }
   }
 
-  Future<void> dispose() => Future.wait([
-        _streamSubscription.cancel(),
-        _loadAllController.close(),
-        _loadMoreController.close(),
-        _loadFirstPageController.close(),
-        _errorController.close(),
-        _isLoadingFirstPageController.close(),
-      ]);
+  dispose() async {
+    await _streamSubscription.cancel();
+    await Future.wait([
+      _loadAllController.close(),
+      _loadMoreController.close(),
+      _loadFirstPageController.close(),
+      _errorController.close(),
+      _isLoadingFirstPageController.close(),
+    ]);
+  }
 }
