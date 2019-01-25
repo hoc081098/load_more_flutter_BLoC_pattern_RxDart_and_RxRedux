@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
                   mainAxisSize: MainAxisSize.max,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[
-                    MaterialButton(
+                    RaisedButton(
                       padding: const EdgeInsets.all(24),
                       child: Text('Home page'),
                       onPressed: () {
@@ -41,9 +41,13 @@ class MyApp extends StatelessWidget {
                           ),
                         );
                       },
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      elevation: 12,
                     ),
                     SizedBox(height: 8),
-                    MaterialButton(
+                    RaisedButton(
                       padding: const EdgeInsets.all(24),
                       child: Text('Simple page'),
                       onPressed: () {
@@ -54,6 +58,10 @@ class MyApp extends StatelessWidget {
                           ),
                         );
                       },
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      elevation: 12,
                     ),
                   ],
                 ),

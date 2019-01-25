@@ -72,54 +72,61 @@ class _SimplePageState extends State<SimplePage> {
       ),
       body: RefreshIndicator(
         onRefresh: _simplePeopleBloc.refresh,
-        child: StreamBuilder<PeopleListState>(
-          stream: _simplePeopleBloc.peopleList$,
-          initialData: _simplePeopleBloc.peopleList$.value,
-          builder: (context, snapshot) {
-            final data = snapshot.data;
-            final people = data.people;
-            final error = data.error;
-            final isLoading = data.isLoading;
+        child: Container(
+          constraints: BoxConstraints.expand(),
+          child: StreamBuilder<PeopleListState>(
+            stream: _simplePeopleBloc.peopleList$,
+            initialData: _simplePeopleBloc.peopleList$.value,
+            builder: (context, snapshot) {
+              final data = snapshot.data;
+              final people = data.people;
+              final error = data.error;
+              final isLoading = data.isLoading;
 
-            print('[DEBUG] StreamBuilder length=${people.length}');
+              print('[DEBUG] StreamBuilder length=${people.length}');
 
-            return ListView.builder(
-              physics: BouncingScrollPhysics(),
-              controller: _scrollController,
-              itemBuilder: (context, index) {
-                if (index < people.length) {
-                  return PersonListItem(
-                    index: index,
-                    length: people.length,
-                    item: people[index],
-                    key: ObjectKey(people[index]),
-                  );
-                }
+              return ListView.builder(
+                physics: BouncingScrollPhysics(),
+                controller: _scrollController,
+                itemBuilder: (context, index) {
+                  if (index < people.length) {
+                    return PersonListItem(
+                      index: index,
+                      length: people.length,
+                      item: people[index],
+                      key: ObjectKey(people[index]),
+                    );
+                  }
 
-                if (error != null) {
-                  return ListTile(
-                    title: Text(
-                      'An error occurred while loading data... Try refresh!',
-                    ),
-                    isThreeLine: false,
-                    leading: CircleAvatar(
-                      child: Icon(
-                        Icons.mood_bad,
-                        color: Colors.white,
+                  if (error != null) {
+                    return Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: ListTile(
+                        title: Text(
+                          'An error occurred while loading data... Try refresh!',
+                          style: Theme.of(context).textTheme.subtitle,
+                        ),
+                        isThreeLine: false,
+                        leading: CircleAvatar(
+                          child: Icon(
+                            Icons.mood_bad,
+                            color: Colors.white,
+                          ),
+                          backgroundColor: Colors.redAccent,
+                        ),
                       ),
-                      backgroundColor: Colors.redAccent,
-                    ),
-                  );
-                }
+                    );
+                  }
 
-                return LoadingIndicator(
-                  isLoading: isLoading,
-                  key: ValueKey(isLoading),
-                );
-              },
-              itemCount: people.length + 1,
-            );
-          },
+                  return LoadingIndicator(
+                    isLoading: isLoading,
+                    key: ValueKey(isLoading),
+                  );
+                },
+                itemCount: people.length + 1,
+              );
+            },
+          ),
         ),
       ),
     );
@@ -171,7 +178,7 @@ class _LoadingIndicatorState extends State<LoadingIndicator>
     _animation = Tween(begin: 0.0, end: 1.0).animate(
       CurvedAnimation(
         parent: _animationController,
-        curve: Curves.fastOutSlowIn,
+        curve: Curves.easeOut,
       ),
     );
     if (widget.isLoading) {
@@ -278,21 +285,34 @@ class _PersonListItemState extends State<PersonListItem>
 
     return ScaleTransition(
       child: SlideTransition(
-        child: ListTile(
-          title: Text(item.name),
-          subtitle: Text(item.bio),
-          leading: CircleAvatar(
-            child: Text(item.emoji),
-            foregroundColor: Colors.white,
-            backgroundColor: Colors.purple,
-          ),
-          trailing: CircleAvatar(
-            child: Text(
-              '${index + 1}/$length',
-              style: Theme.of(context).textTheme.overline,
+        child: Container(
+          margin: const EdgeInsets.all(8),
+          decoration: BoxDecoration(boxShadow: [
+            BoxShadow(
+              color: Colors.grey.shade800,
+              spreadRadius: 2,
+              blurRadius: 10,
+            )
+          ]),
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: ListTile(
+              title: Text(item.name),
+              subtitle: Text(item.bio),
+              leading: CircleAvatar(
+                child: Text(item.emoji),
+                foregroundColor: Colors.white,
+                backgroundColor: Colors.purple,
+              ),
+              trailing: CircleAvatar(
+                child: Text(
+                  '${index + 1}/$length',
+                  style: Theme.of(context).textTheme.overline,
+                ),
+                foregroundColor: Colors.white,
+                backgroundColor: Colors.teal,
+              ),
             ),
-            foregroundColor: Colors.white,
-            backgroundColor: Colors.teal,
           ),
         ),
         position: _position,
