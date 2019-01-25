@@ -2,29 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="40aeef07-9134-47b3-aa0b-7c00baa573f0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/lib/model/person.g.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/model/serializers.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/model/serializers.g.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/simple/people_state.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/simple/people_state.g.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/simple/simple_page.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/simple/simple_people_bloc.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/res/values/strings_en.arb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/main_dart.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/main_dart.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/json/people.json" beforeDir="false" afterPath="$PROJECT_DIR$/assets/json/people.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/data/memory_person_data_source.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/data/memory_person_data_source.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/data/people_api.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/data/people_api.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/data/people_data_source.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/data/people_data_source.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/home_page/home_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/home_page/home_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/home_page/people_bloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/home_page/people_bloc.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/home_page/peoples_state.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/home_page/people_state.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/home_page/simple_people_bloc.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/model/person.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/model/person.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.dart_tool/" />
     <ignored path="$PROJECT_DIR$/.idea/" />
@@ -37,7 +16,17 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="210">
+              <caret line="10" column="31" selection-start-line="10" selection-start-column="31" selection-end-line="10" selection-end-column="31" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -100,6 +89,7 @@
         <option value="$PROJECT_DIR$/lib/data/people_api.dart" />
         <option value="$PROJECT_DIR$/lib/simple/simple_people_bloc.dart" />
         <option value="$PROJECT_DIR$/lib/simple/simple_page.dart" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -186,7 +176,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1548433669923" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1548437726128" />
     <property name="dart.analysis.tool.window.force.activate" value="false" />
     <property name="io.flutter.reload.alreadyRun" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -257,7 +247,14 @@
       <option name="project" value="LOCAL" />
       <updated>1545989068838</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="completed `simple version BLoC`">
+      <created>1548437302696</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1548437302696</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -267,8 +264,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25037822" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2246596" />
       <window_info id="Capture Tool" order="1" />
       <window_info id="Structure" order="2" side_tool="true" />
       <window_info id="Build Variants" order="3" side_tool="true" />
@@ -337,16 +335,10 @@
     <option name="CHECK_NEW_TODO" value="false" />
     <MESSAGE value="use `bloc pattern`" />
     <MESSAGE value="update..." />
-    <option name="LAST_COMMIT_MESSAGE" value="update..." />
+    <MESSAGE value="completed `simple version BLoC`" />
+    <option name="LAST_COMMIT_MESSAGE" value="completed `simple version BLoC`" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://C:/flutter/flutter/.pub-cache/hosted/pub.dartlang.org/cloud_firestore-0.8.2+3/lib/src/blob.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="14" column="25" selection-start-line="14" selection-start-column="25" selection-end-line="14" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://C:/flutter/flutter/bin/cache/pkg/sky_engine/lib/math/random.dart">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="38">
@@ -789,6 +781,13 @@
           <folding>
             <element signature="e#0#20#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="10" column="31" selection-start-line="10" selection-start-column="31" selection-end-line="10" selection-end-column="31" />
         </state>
       </provider>
     </entry>
