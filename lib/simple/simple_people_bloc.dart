@@ -23,6 +23,7 @@ class SimplePeopleBloc {
   ///
   final Future<void> Function() refresh;
   final void Function() load;
+  final void Function() retry;
 
   ///
   /// Output [Stream]s
@@ -41,6 +42,7 @@ class SimplePeopleBloc {
     @required this.peopleList$,
     @required this.message$,
     @required this.dispose,
+    @required this.retry,
   });
 
   ///
@@ -54,6 +56,7 @@ class SimplePeopleBloc {
     ///
     final loadController = PublishSubject<void>();
     final refreshController = PublishSubject<void>();
+    final retryController = PublishSubject<void>();
 
     ///
     /// Completer emit done event when refresh list
@@ -77,13 +80,18 @@ class SimplePeopleBloc {
           .throttle(Duration(milliseconds: 500))
           .map((_) => state$.value)
           .where((state) => state.error == null && !state.isLoading)
-          .map((state) => Tuple2(state, false)),
-      refreshController.stream.map((_) => Tuple2(state$.value, true)),
+          .map((state) => Tuple2(state, false))
+          .doOnData((_) => print('[ACTION] Load')),
+      refreshController.stream
+          .map((_) => Tuple2(state$.value, true))
+          .doOnData((_) => print('[ACTION] Refresh')),
+      retryController.stream
+          .map((_) => Tuple2(state$.value, false))
+          .doOnData((_) => print('[ACTION] Retry')),
     ]);
 
-
     ///
-    /// Transform actions stream to state streams
+    /// Transform actions stream to state stream
     ///
     state$ = DistinctValueConnectableObservable.seeded(
       allActions$
@@ -107,6 +115,11 @@ class SimplePeopleBloc {
     ///
 
     final subscriptions = <StreamSubscription>[
+      state$.listen((state) {
+        print(
+            '[STATE] state={loading: ${state.isLoading}, error: ${state.error},'
+            ' done: ${state.getAllPeople}, length: ${state.people.length}}');
+      }),
       state$.connect(),
     ];
 
@@ -130,6 +143,7 @@ class SimplePeopleBloc {
         refreshController.add(null);
         return completer.future;
       },
+      retry: () => retryController.add(null),
     );
   }
 

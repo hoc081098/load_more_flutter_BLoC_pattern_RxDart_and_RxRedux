@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:math';
 
 import 'package:built_collection/built_collection.dart';
 import 'package:flutter/foundation.dart';
@@ -17,9 +16,10 @@ class MemoryPersonDataSource implements PeopleDataSource {
   ///
   ///
   ///
-  int _page = 0;
   bool _hasError = false;
   bool _done = false;
+  int _count = 0;
+  bool _doneOrError = true;
 
   ///
   ///
@@ -38,6 +38,7 @@ class MemoryPersonDataSource implements PeopleDataSource {
     await Future.delayed(Duration(seconds: 2));
 
     _increasePageAndRandomErrorOrDone(startAfter);
+
     if (_done) {
       return BuiltList.of([]);
     }
@@ -75,18 +76,26 @@ class MemoryPersonDataSource implements PeopleDataSource {
 
   void _increasePageAndRandomErrorOrDone(Person startAfter) {
     if (startAfter == null) {
-      _page = 0;
+      _count = 0;
       _done = _hasError = false;
     } else {
-      ++_page;
+      ++_count;
     }
-    if (_page == 3) {
-      if (Random().nextBool()) {
+
+    if (_count == 3) {
+      if (_doneOrError) {
         _done = true;
+        _hasError = false;
       } else {
         _hasError = true;
+        _done = false;
       }
+      _doneOrError = !_doneOrError;
+    } else {
+      _done = _hasError = false;
     }
+
+    print('[DEBUG] count=$_count, hasError=$_hasError, done=$_done');
   }
 }
 

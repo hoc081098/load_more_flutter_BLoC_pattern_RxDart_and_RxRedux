@@ -34,7 +34,6 @@ class _SimplePageState extends State<SimplePage> {
       }
       if (message is ErrorMessage) {
         final error = message.error;
-        print('[DEBUG] error=$error');
         _showSnackBar('Error occurred $error');
       }
     });
@@ -83,8 +82,6 @@ class _SimplePageState extends State<SimplePage> {
               final error = data.error;
               final isLoading = data.isLoading;
 
-              print('[DEBUG] StreamBuilder length=${people.length}');
-
               return ListView.builder(
                 physics: BouncingScrollPhysics(),
                 controller: _scrollController,
@@ -101,19 +98,34 @@ class _SimplePageState extends State<SimplePage> {
                   if (error != null) {
                     return Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: ListTile(
-                        title: Text(
-                          'An error occurred while loading data... Try refresh!',
-                          style: Theme.of(context).textTheme.subtitle,
-                        ),
-                        isThreeLine: false,
-                        leading: CircleAvatar(
-                          child: Icon(
-                            Icons.mood_bad,
-                            color: Colors.white,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        mainAxisSize: MainAxisSize.min,
+                        children: <Widget>[
+                          ListTile(
+                            title: Text(
+                              'An error occurred while loading data... Try refresh!',
+                              style: Theme.of(context).textTheme.subtitle,
+                            ),
+                            isThreeLine: false,
+                            leading: CircleAvatar(
+                              child: Icon(
+                                Icons.mood_bad,
+                                color: Colors.white,
+                              ),
+                              backgroundColor: Colors.redAccent,
+                            ),
                           ),
-                          backgroundColor: Colors.redAccent,
-                        ),
+                          FlatButton.icon(
+                            padding: const EdgeInsets.all(16),
+                            icon: Icon(Icons.refresh),
+                            label: Text('Retry'),
+                            onPressed: _simplePeopleBloc.retry,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(4),
+                            ),
+                          )
+                        ],
                       ),
                     );
                   }
@@ -169,7 +181,6 @@ class _LoadingIndicatorState extends State<LoadingIndicator>
   @override
   void initState() {
     super.initState();
-    print('[DEBUG] _LoadingIndicatorState initState ${widget.isLoading}');
 
     _animationController = AnimationController(
       vsync: this,
@@ -190,14 +201,12 @@ class _LoadingIndicatorState extends State<LoadingIndicator>
 
   @override
   void dispose() {
-    print('[DEBUG] _LoadingIndicatorState dispose ${widget.isLoading}');
     _animationController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    print('[DEBUG] _LoadingIndicatorState build ${widget.isLoading}');
 
     return Padding(
       padding: const EdgeInsets.all(12.0),
@@ -236,8 +245,6 @@ class _PersonListItemState extends State<PersonListItem>
   @override
   void initState() {
     super.initState();
-    print(
-        '[DEBUG] _PersonListItemState initState item_name=${widget.item.name}, index=${widget.index}, length=${widget.length}');
 
     _scaleController = AnimationController(
       vsync: this,
@@ -269,8 +276,6 @@ class _PersonListItemState extends State<PersonListItem>
   void dispose() {
     _positionController.dispose();
     _scaleController.dispose();
-    print(
-        '[DEBUG] _PersonListItemState dispose item_name=${widget.item.name}, index=${widget.index}, length=${widget.length}');
 
     super.dispose();
   }
@@ -280,8 +285,6 @@ class _PersonListItemState extends State<PersonListItem>
     final item = widget.item;
     final index = widget.index;
     final length = widget.length;
-    print(
-        '[DEBUG] _PersonListItemState build item_name=${widget.item.name}, index=$index, length=$length');
 
     return ScaleTransition(
       child: SlideTransition(
