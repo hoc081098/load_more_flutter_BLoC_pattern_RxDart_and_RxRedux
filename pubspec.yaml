@@ -6,7 +6,7 @@ dependencies:
     sdk: flutter
   cupertino_icons: ^0.1.2
   cloud_firestore: ^0.8.2+3
-  rxdart: ^0.20.0
+  distinct_value_connectable_observable: ^1.0.0+3
   collection: ^1.14.11
   tuple: ^1.0.2
   built_value: ^6.3.0

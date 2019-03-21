@@ -22,7 +22,7 @@ class PeopleBloc {
   ///
   /// BehaviorSubject of errors, emit null when have no error
   ///
-  final _errorController = BehaviorSubject<Object>(seedValue: null, sync: true);
+  final _errorController = BehaviorSubject<Object>.seeded(null, sync: true);
   ValueObservable<Object> _errorNullable$;
   Stream<Object> _errorNotNull$; // stream of errors exposed to UI
 
@@ -30,7 +30,7 @@ class PeopleBloc {
   /// BehaviorSubject and Stream handle first page is loading
   ///
   final _isLoadingFirstPageController =
-      BehaviorSubject<bool>(seedValue: false, sync: true);
+      BehaviorSubject<bool>.seeded(false, sync: true);
   ValueObservable<bool> _isLoadingFirstPage$;
 
   ///
@@ -100,7 +100,7 @@ class PeopleBloc {
     _peopleList$ = Observable.switchLatest(streams)
         .distinct()
         .doOnData((state) => print('state = $state'))
-        .publishValue(seedValue: PeopleListState.initial());
+        .publishValueSeeded(PeopleListState.initial());
 
     _streamSubscription = _peopleList$.connect();
   }

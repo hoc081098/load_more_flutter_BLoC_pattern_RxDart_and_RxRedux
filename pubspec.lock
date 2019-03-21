@@ -162,6 +162,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.2.2"
+  distinct_value_connectable_observable:
+    dependency: "direct main"
+    description:
+      name: distinct_value_connectable_observable
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.0+3"
   firebase_core:
     dependency: transitive
     description:
@@ -318,7 +325,7 @@ packages:
       name: pedantic
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.4.0"
+    version: "1.5.0"
   plugin:
     dependency: transitive
     description:
@@ -353,14 +360,14 @@ packages:
       name: quiver
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.1"
+    version: "2.0.2"
   rxdart:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: rxdart
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.20.0"
+    version: "0.21.0"
   shelf:
     dependency: transitive
     description:
@@ -393,7 +400,7 @@ packages:
       name: source_span
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.4.1"
+    version: "1.5.5"
   stack_trace:
     dependency: transitive
     description:
@@ -428,14 +435,14 @@ packages:
       name: term_glyph
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.1"
+    version: "1.1.0"
   test_api:
     dependency: transitive
     description:
       name: test_api
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.2.1"
+    version: "0.2.2"
   timing:
     dependency: transitive
     description:
@@ -493,5 +500,5 @@ packages:
     source: hosted
     version: "2.1.15"
 sdks:
-  dart: ">=2.1.0 <3.0.0"
+  dart: ">=2.1.1-dev.0.0 <3.0.0"
   flutter: ">=0.2.4 <2.0.0"

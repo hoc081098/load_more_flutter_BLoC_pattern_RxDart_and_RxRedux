@@ -1,12 +1,15 @@
 import 'dart:async';
 
 import 'package:built_collection/built_collection.dart';
+import 'package:distinct_value_connectable_observable/distinct_value_connectable_observable.dart';
 import 'package:load_more_flutter/data/people_data_source.dart';
 import 'package:load_more_flutter/model/person.dart';
 import 'package:load_more_flutter/simple/people_state.dart';
 import 'package:meta/meta.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:tuple/tuple.dart';
+
+// ignore_for_file: close_sinks
 
 const int pageSize = 10;
 
@@ -49,13 +52,7 @@ class SimplePeopleBloc {
     ///
     /// Controllers
     ///
-
-    // ignore: close_sinks
     final loadController = PublishSubject<void>();
-    // ignore: close_sinks
-    final peopleListController =
-        BehaviorSubject(seedValue: PeopleListState.initial());
-    // ignore: close_sinks
     final refreshController = PublishSubject<void>();
 
     ///
@@ -67,20 +64,32 @@ class SimplePeopleBloc {
     /// Streams
     ///
 
-    final loadNextPageAndRefresh$ = <Stream<Tuple2<PeopleListState, bool>>>[
+    ///
+    /// State stream
+    ///
+    DistinctValueConnectableObservable<PeopleListState> state$;
+
+    ///
+    /// All actions stream
+    ///
+    final allActions$ = Observable.merge([
       loadController.stream
           .throttle(Duration(milliseconds: 500))
-          .withLatestFrom(peopleListController.stream,
-              (_, PeopleListState currentState) => currentState)
+          .map((_) => state$.value)
           .where((state) => state.error == null && !state.isLoading)
           .map((state) => Tuple2(state, false)),
-      refreshController.stream
-          .map((_) => Tuple2(peopleListController.value, true)),
-    ];
+      refreshController.stream.map((_) => Tuple2(state$.value, true)),
+    ]);
 
-    final state$ = Observable.merge(loadNextPageAndRefresh$)
-        .switchMap((tuple) => _fetchData(tuple, peopleDataSource, completer))
-        .share();
+
+    ///
+    /// Transform actions stream to state streams
+    ///
+    state$ = DistinctValueConnectableObservable.seeded(
+      allActions$
+          .switchMap((tuple) => _fetchData(tuple, peopleDataSource, completer)),
+      seedValue: PeopleListState.initial(),
+    );
 
     final message$ = Observable.merge([
       state$
@@ -98,23 +107,11 @@ class SimplePeopleBloc {
     ///
 
     final subscriptions = <StreamSubscription>[
-      state$.listen(
-        (state) {
-          if (peopleListController.value != state) {
-            peopleListController.add(state);
-          }
-        },
-        onError: (error) {
-          peopleListController.add(
-            peopleListController.value.rebuild((b) => b..error = error),
-          );
-        },
-      ),
+      state$.connect(),
     ];
 
     final controllers = <StreamController>[
       loadController,
-      peopleListController,
       refreshController,
     ];
 
@@ -125,7 +122,7 @@ class SimplePeopleBloc {
       },
       load: () => loadController.add(null),
       message$: message$,
-      peopleList$: peopleListController.stream,
+      peopleList$: state$,
       refresh: () {
         _completeCompleter(completer);
 
