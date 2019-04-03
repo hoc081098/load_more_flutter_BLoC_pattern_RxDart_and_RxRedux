@@ -55,17 +55,8 @@ class SimplePeopleBloc {
     /// Controllers
     ///
     final loadController = PublishSubject<void>();
-    final refreshController = PublishSubject<void>();
+    final refreshController = PublishSubject<Completer<void>>();
     final retryController = PublishSubject<void>();
-
-    ///
-    /// Completer emit done event when refresh list
-    ///
-    Completer<void> completer;
-
-    ///
-    /// Streams
-    ///
 
     ///
     /// State stream
@@ -80,22 +71,21 @@ class SimplePeopleBloc {
           .throttle(Duration(milliseconds: 500))
           .map((_) => state$.value)
           .where((state) => state.error == null && !state.isLoading)
-          .map((state) => Tuple2(state, false))
+          .map((state) => Tuple3(state, false, null))
           .doOnData((_) => print('[ACTION] Load')),
       refreshController.stream
-          .map((_) => Tuple2(state$.value, true))
+          .map((completer) => Tuple3(state$.value, true, completer))
           .doOnData((_) => print('[ACTION] Refresh')),
       retryController.stream
-          .map((_) => Tuple2(state$.value, false))
+          .map((_) => Tuple3(state$.value, false, null))
           .doOnData((_) => print('[ACTION] Retry')),
     ]);
 
     ///
     /// Transform actions stream to state stream
     ///
-    state$ = DistinctValueConnectableObservable.seeded(
-      allActions$
-          .switchMap((tuple) => _fetchData(tuple, peopleDataSource, completer)),
+    state$ = publishValueSeededDistinct(
+      allActions$.switchMap((tuple) => _fetchData(tuple, peopleDataSource)),
       seedValue: PeopleListState.initial(),
     );
 
@@ -113,16 +103,10 @@ class SimplePeopleBloc {
     ///
     /// Subscriptions and controllers
     ///
-
     final subscriptions = <StreamSubscription>[
-      state$.listen((state) {
-        print(
-            '[STATE] state={loading: ${state.isLoading}, error: ${state.error},'
-            ' done: ${state.getAllPeople}, length: ${state.people.length}}');
-      }),
+      state$.listen((state) => print('[STATE] $state')),
       state$.connect(),
     ];
-
     final controllers = <StreamController>[
       loadController,
       refreshController,
@@ -137,10 +121,8 @@ class SimplePeopleBloc {
       message$: message$,
       peopleList$: state$,
       refresh: () {
-        _completeCompleter(completer);
-
-        completer = Completer();
-        refreshController.add(null);
+        final completer = Completer<void>();
+        refreshController.add(completer);
         return completer.future;
       },
       retry: () => retryController.add(null),
@@ -148,23 +130,27 @@ class SimplePeopleBloc {
   }
 
   static Observable<PeopleListState> _fetchData(
-    Tuple2<PeopleListState, bool> tuple,
+    Tuple3<PeopleListState, bool, Completer<void>> tuple,
     PeopleDataSource peopleDataSource,
-    Completer<void> completer,
   ) {
     final currentState = tuple.item1;
-    final refresh = tuple.item2;
+    final refreshList = tuple.item2;
+    final completer = tuple.item3;
+
+    ///
+    ///
+    ///
 
     final getPeople = peopleDataSource.getPeople(
       field: 'name',
       limit: pageSize,
-      startAfter: refresh ? null : lastOrNull(currentState.people),
+      startAfter: refreshList ? null : lastOrNull(currentState.people),
     );
 
     PeopleListState toListState(BuiltList<Person> people) {
       final listBuilder = currentState.people.toBuilder()
         ..update((b) {
-          if (refresh) {
+          if (refreshList) {
             b.clear();
           }
           b.addAll(people);
@@ -189,29 +175,19 @@ class SimplePeopleBloc {
       ..getAllPeople = false
       ..error = null);
 
+    ///
+    ///
+    ///
+
     return Observable.fromFuture(getPeople)
-        .doOnEach((void _) {
-          if (refresh) {
-            _completeCompleter(completer);
-          }
-        })
         .map(toListState)
         .startWith(loadingState)
-        .onErrorReturnWith(toErrorState);
+        .onErrorReturnWith(toErrorState)
+        .doOnDone(() => completer?.complete());
   }
 }
 
-T lastOrNull<T>(Iterable<T> list) {
-  if (list.isEmpty) return null;
-  return list.last;
-}
-
-void _completeCompleter(Completer<void> completer) {
-  try {
-    if (completer != null && !completer.isCompleted) {
-      completer?.complete();
-    }
-  } on StateError catch (e) {
-    print(e);
-  }
-}
+///
+/// Returns the last element if [list] is not empty, otherwise return null
+///
+T lastOrNull<T>(Iterable<T> list) => list.isNotEmpty ? list.last : null;

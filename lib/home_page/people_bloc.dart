@@ -8,9 +8,10 @@ import 'package:rxdart/rxdart.dart';
 const int pageSize = 10;
 
 ///
-///
+/// [Deprecated], using [SimplePeopleBloc] instead of.
 ///
 
+@deprecated
 class PeopleBloc {
   final PeopleDataSource _peopleDataSource;
 

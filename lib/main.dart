@@ -1,9 +1,45 @@
+import 'package:built_value/built_value.dart' hide Builder;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:load_more_flutter/home_page/home_page.dart';
 import 'package:load_more_flutter/simple/simple_page.dart';
 
+int _indentingBuiltValueToStringHelperIndent = 0;
+
+class CustomIndentingBuiltValueToStringHelper
+    implements BuiltValueToStringHelper {
+  StringBuffer _result = new StringBuffer();
+
+  CustomIndentingBuiltValueToStringHelper(String className) {
+    _result..write(className)..write(' {\n');
+    _indentingBuiltValueToStringHelperIndent += 2;
+  }
+
+  @override
+  void add(String field, Object value) {
+    if (value != null) {
+      _result
+        ..write(' ' * _indentingBuiltValueToStringHelperIndent)
+        ..write(value is Iterable ? '$field.length' : field)
+        ..write('=')
+        ..write(value is Iterable ? value.length : value)
+        ..write(',\n');
+    }
+  }
+
+  @override
+  String toString() {
+    _indentingBuiltValueToStringHelperIndent -= 2;
+    _result..write(' ' * _indentingBuiltValueToStringHelperIndent)..write('}');
+    final stringResult = _result.toString();
+    _result = null;
+    return stringResult;
+  }
+}
+
 void main() async {
+  newBuiltValueToStringHelper =
+      (className) => CustomIndentingBuiltValueToStringHelper(className);
   await Firestore.instance.settings(timestampsInSnapshotsEnabled: true);
   runApp(MyApp());
 }

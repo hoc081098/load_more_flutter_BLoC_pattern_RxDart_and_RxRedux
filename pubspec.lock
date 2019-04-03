@@ -168,7 +168,7 @@ packages:
       name: distinct_value_connectable_observable
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.0+3"
+    version: "2.0.0"
   firebase_core:
     dependency: transitive
     description:
@@ -360,7 +360,7 @@ packages:
       name: quiver
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.2"
+    version: "2.0.1"
   rxdart:
     dependency: transitive
     description:
@@ -500,5 +500,5 @@ packages:
     source: hosted
     version: "2.1.15"
 sdks:
-  dart: ">=2.1.1-dev.0.0 <3.0.0"
+  dart: ">=2.2.0 <3.0.0"
   flutter: ">=0.2.4 <2.0.0"
