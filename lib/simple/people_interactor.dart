@@ -66,7 +66,7 @@ class PeopleInteractor {
     ///
     /// Perform side affects:
     ///
-    /// - Add [LoadAllPeopleMessage] or [ErrorMessage] to [messageController]
+    /// - Add [LoadAllPeopleMessage] or [ErrorMessage] to [messageSink]
     /// - Complete [completer] if [completer] is not null
     ///
     addLoadAllPeopleMessageIfLoadedAll(PeopleListState state) {
