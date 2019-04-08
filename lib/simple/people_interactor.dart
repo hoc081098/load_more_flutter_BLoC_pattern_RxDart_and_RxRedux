@@ -75,7 +75,8 @@ class PeopleInteractor {
       }
     }
 
-    addErrorMessage(error) => messageSink.add(ErrorMessage(error));
+    addErrorMessage(dynamic error, StackTrace _) =>
+        messageSink.add(ErrorMessage(error));
 
     completeCompleter() => completer?.complete();
 
