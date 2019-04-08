@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:load_more_flutter/data/memory_person_data_source.dart';
 import 'package:load_more_flutter/model/person.dart';
+import 'package:load_more_flutter/simple/people_interactor.dart';
 import 'package:load_more_flutter/simple/people_state.dart';
 import 'package:load_more_flutter/simple/simple_people_bloc.dart';
 
@@ -26,8 +27,17 @@ class _SimplePageState extends State<SimplePage> {
 
     _scaffoldKey = GlobalKey();
 
-    _simplePeopleBloc =
-        SimplePeopleBloc(MemoryPersonDataSource(context: context));
+    ///
+    /// Setup [SimplePeopleBloc]
+    ///
+    final dataSource = MemoryPersonDataSource(context: context);
+    final interactor = PeopleInteractor(dataSource);
+    _simplePeopleBloc = SimplePeopleBloc(interactor);
+
+    ///
+    /// Listen [_simplePeopleBloc.message$]
+    /// And load first page
+    ///
     _subscription = _simplePeopleBloc.message$.listen((message) {
       if (message is LoadAllPeopleMessage) {
         _showSnackBar('Loaded all people!');
@@ -39,6 +49,9 @@ class _SimplePageState extends State<SimplePage> {
     });
     _simplePeopleBloc.load();
 
+    ///
+    ///
+    ///
     _scrollController = ScrollController()..addListener(_onScroll);
   }
 
@@ -207,7 +220,6 @@ class _LoadingIndicatorState extends State<LoadingIndicator>
 
   @override
   Widget build(BuildContext context) {
-
     return Padding(
       padding: const EdgeInsets.all(12.0),
       child: Center(
