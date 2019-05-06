@@ -72,7 +72,7 @@ class PeopleBloc {
     _isLoadingFirstPage$ = _isLoadingFirstPageController.stream;
 
     final Observable<PeopleListState> loadMore = _loadMoreController
-        .throttle(Duration(milliseconds: 500))
+        .throttleTime(Duration(milliseconds: 500))
         .doOnData((_) => print('_loadMoreController emitted...'))
         .where((_) {
           final error = _errorNullable$.value;
@@ -149,12 +149,12 @@ class PeopleBloc {
       // if fetch success, emit null
       _errorController.add(null);
 
-      final people = <Person>[];
-      if (!loadFirstPage) {
+      final people = <Person>[
         // if not load first page, append current list
-        people.addAll(currentList);
-      }
-      people.addAll(page);
+        if (!loadFirstPage)
+          ...currentList,
+        ...page,
+      ];
 
       // emit list state
       yield latestState.copyWith(

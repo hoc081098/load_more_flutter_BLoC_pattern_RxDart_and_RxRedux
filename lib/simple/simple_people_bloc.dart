@@ -64,7 +64,7 @@ class SimplePeopleBloc {
     ///
     final allActions$ = Observable.merge([
       loadController.stream
-          .throttle(Duration(milliseconds: 500))
+          .throttleTime(Duration(milliseconds: 500))
           .map((_) => state$.value)
           .where((state) => state.error == null && !state.isLoading)
           .map((state) => Tuple3(state, false, null))
