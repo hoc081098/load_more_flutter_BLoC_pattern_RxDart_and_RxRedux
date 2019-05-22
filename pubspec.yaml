@@ -10,6 +10,7 @@ dependencies:
   collection: ^1.14.11
   tuple: ^1.0.2
   built_value: ^6.3.0
+  rx_redux: ^0.0.9
 
 #flutter packages pub run build_runner build
 
