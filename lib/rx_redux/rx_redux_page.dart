@@ -3,19 +3,19 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:load_more_flutter/data/memory_person_data_source.dart';
 import 'package:load_more_flutter/model/person.dart';
-import 'package:load_more_flutter/simple/people_interactor.dart';
-import 'package:load_more_flutter/simple/people_state.dart';
-import 'package:load_more_flutter/simple/simple_people_bloc.dart';
+import 'package:load_more_flutter/rx_redux/people_interactor.dart';
+import 'package:load_more_flutter/rx_redux/people_rx_redux_bloc.dart';
+import 'package:load_more_flutter/rx_redux/people_state_action.dart';
 
-class SimplePage extends StatefulWidget {
+class RxReduxPage extends StatefulWidget {
   @override
-  _SimplePageState createState() => _SimplePageState();
+  _RxReduxPageState createState() => _RxReduxPageState();
 }
 
-class _SimplePageState extends State<SimplePage> {
+class _RxReduxPageState extends State<RxReduxPage> {
   static const offsetVisibleThreshold = 50.0;
 
-  SimplePeopleBloc _simplePeopleBloc;
+  PeopleRxReduxBloc _rxReduxBloc;
   StreamSubscription<Message> _subscription;
 
   ScrollController _scrollController;
@@ -32,13 +32,13 @@ class _SimplePageState extends State<SimplePage> {
     ///
     final dataSource = MemoryPersonDataSource(context: context);
     final interactor = PeopleInteractor(dataSource);
-    _simplePeopleBloc = SimplePeopleBloc(interactor);
+    _rxReduxBloc = PeopleRxReduxBloc(interactor);
 
     ///
     /// Listen [_simplePeopleBloc.message$]
     /// And load first page
     ///
-    _subscription = _simplePeopleBloc.message$.listen((message) {
+    _subscription = _rxReduxBloc.message$.listen((message) {
       if (message is LoadAllPeopleMessage) {
         _showSnackBar('Loaded all people!');
       }
@@ -47,7 +47,7 @@ class _SimplePageState extends State<SimplePage> {
         _showSnackBar('Error occurred $error');
       }
     });
-    _simplePeopleBloc.load();
+    _rxReduxBloc.loadFirstPage();
 
     ///
     ///
@@ -70,7 +70,7 @@ class _SimplePageState extends State<SimplePage> {
   void dispose() {
     _scrollController.dispose();
     _subscription.cancel();
-    _simplePeopleBloc.dispose();
+    _rxReduxBloc.dispose();
 
     super.dispose();
   }
@@ -83,21 +83,58 @@ class _SimplePageState extends State<SimplePage> {
         title: Text('Simple page'),
       ),
       body: RefreshIndicator(
-        onRefresh: _simplePeopleBloc.refresh,
+        onRefresh: _rxReduxBloc.refresh,
         child: Container(
           constraints: BoxConstraints.expand(),
           child: StreamBuilder<PeopleListState>(
-            stream: _simplePeopleBloc.peopleList$,
-            initialData: _simplePeopleBloc.peopleList$.value,
+            stream: _rxReduxBloc.peopleList$,
+            initialData: _rxReduxBloc.peopleList$.value,
             builder: (context, snapshot) {
-              final data = snapshot.data;
-              final people = data.people;
-              final error = data.error;
-              final isLoading = data.isLoading;
+              final state = snapshot.data;
+              if (state.isFirstPageLoading) {
+                return Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
 
+              if (state.firstPageError != null) {
+                return Center(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      ListTile(
+                        title: Text(
+                          'An error occurred while loading data!',
+                          style: Theme.of(context).textTheme.subtitle,
+                        ),
+                        isThreeLine: false,
+                        leading: CircleAvatar(
+                          child: Icon(
+                            Icons.mood_bad,
+                            color: Colors.white,
+                          ),
+                          backgroundColor: Colors.redAccent,
+                        ),
+                      ),
+                      RaisedButton.icon(
+                        icon: Icon(Icons.refresh),
+                        label: Text('Retry'),
+                        onPressed: _rxReduxBloc.retryFirstPage,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(4),
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+              }
+
+              final people = state.people;
               return ListView.builder(
                 physics: BouncingScrollPhysics(),
                 controller: _scrollController,
+                itemCount: people.length + 1,
                 itemBuilder: (context, index) {
                   if (index < people.length) {
                     return PersonListItem(
@@ -108,7 +145,13 @@ class _SimplePageState extends State<SimplePage> {
                     );
                   }
 
-                  if (error != null) {
+                  if (state.isNextPageLoading) {
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+
+                  if (state.nextPageError != null) {
                     return Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Column(
@@ -117,7 +160,7 @@ class _SimplePageState extends State<SimplePage> {
                         children: <Widget>[
                           ListTile(
                             title: Text(
-                              'An error occurred while loading data... Try refresh!',
+                              'An error occurred while loading data!',
                               style: Theme.of(context).textTheme.subtitle,
                             ),
                             isThreeLine: false,
@@ -133,22 +176,16 @@ class _SimplePageState extends State<SimplePage> {
                             padding: const EdgeInsets.all(16),
                             icon: Icon(Icons.refresh),
                             label: Text('Retry'),
-                            onPressed: _simplePeopleBloc.retry,
+                            onPressed: _rxReduxBloc.retryNextPage,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(4),
                             ),
-                          )
+                          ),
                         ],
                       ),
                     );
                   }
-
-                  return LoadingIndicator(
-                    isLoading: isLoading,
-                    key: ValueKey(isLoading),
-                  );
                 },
-                itemCount: people.length + 1,
               );
             },
           ),
@@ -162,7 +199,7 @@ class _SimplePageState extends State<SimplePage> {
     final offset = _scrollController.offset;
 
     if (offset + offsetVisibleThreshold >= max) {
-      _simplePeopleBloc.load();
+      _rxReduxBloc.loadNextPage();
     }
   }
 
@@ -173,63 +210,6 @@ class _SimplePageState extends State<SimplePage> {
       max - offsetVisibleThreshold,
       duration: Duration(milliseconds: 2000),
       curve: Curves.easeOut,
-    );
-  }
-}
-
-class LoadingIndicator extends StatefulWidget {
-  final bool isLoading;
-
-  const LoadingIndicator({Key key, this.isLoading}) : super(key: key);
-
-  @override
-  _LoadingIndicatorState createState() => _LoadingIndicatorState();
-}
-
-class _LoadingIndicatorState extends State<LoadingIndicator>
-    with SingleTickerProviderStateMixin<LoadingIndicator> {
-  Animation<double> _animation;
-  AnimationController _animationController;
-
-  @override
-  void initState() {
-    super.initState();
-
-    _animationController = AnimationController(
-      vsync: this,
-      duration: Duration(milliseconds: 600),
-    );
-    _animation = Tween(begin: 0.0, end: 1.0).animate(
-      CurvedAnimation(
-        parent: _animationController,
-        curve: Curves.easeOut,
-      ),
-    );
-    if (widget.isLoading) {
-      _animationController.forward();
-    } else {
-      _animationController.reverse();
-    }
-  }
-
-  @override
-  void dispose() {
-    _animationController.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(12.0),
-      child: Center(
-        child: FadeTransition(
-          opacity: _animation,
-          child: CircularProgressIndicator(
-            strokeWidth: 2.0,
-          ),
-        ),
-      ),
     );
   }
 }

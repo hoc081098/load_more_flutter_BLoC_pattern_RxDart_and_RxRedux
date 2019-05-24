@@ -5,7 +5,7 @@ import 'package:built_value/built_value.dart';
 import 'package:load_more_flutter/model/person.dart';
 import 'package:meta/meta.dart';
 
-part 'people_state.g.dart';
+part 'people_state_action.g.dart';
 
 abstract class PeopleListState
     implements Built<PeopleListState, PeopleListStateBuilder> {
@@ -26,7 +26,17 @@ abstract class PeopleListState
   factory PeopleListState([updates(PeopleListStateBuilder b)]) =
       _$PeopleListState;
 
-  factory PeopleListState.initial() {}
+  factory PeopleListState.initial() {
+    return PeopleListState(
+      (b) => b
+        ..people = ListBuilder<Person>()
+        ..isFirstPageLoading = true
+        ..firstPageError = null
+        ..isNextPageLoading = false
+        ..nextPageError = null
+        ..getAllPeople = false,
+    );
+  }
 }
 
 @immutable

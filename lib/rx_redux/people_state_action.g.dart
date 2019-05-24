@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'people_state.dart';
+part of 'people_state_action.dart';
 
 // **************************************************************************
 // BuiltValueGenerator
