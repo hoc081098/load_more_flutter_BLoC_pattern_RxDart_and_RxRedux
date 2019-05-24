@@ -93,39 +93,44 @@ class _RxReduxPageState extends State<RxReduxPage> {
               final state = snapshot.data;
               if (state.isFirstPageLoading) {
                 return Center(
-                  child: CircularProgressIndicator(),
+                  child: CircularProgressIndicator(
+                    strokeWidth: 2,
+                  ),
                 );
               }
 
               if (state.firstPageError != null) {
-                return Center(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[
-                      ListTile(
-                        title: Text(
-                          'An error occurred while loading data!',
-                          style: Theme.of(context).textTheme.subtitle,
-                        ),
-                        isThreeLine: false,
-                        leading: CircleAvatar(
-                          child: Icon(
-                            Icons.mood_bad,
-                            color: Colors.white,
+                return Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 8),
+                  child: Center(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        ListTile(
+                          title: Text(
+                            'An error occurred while loading data: ${state.firstPageError}',
+                            style: Theme.of(context).textTheme.subtitle,
                           ),
-                          backgroundColor: Colors.redAccent,
+                          isThreeLine: false,
+                          leading: CircleAvatar(
+                            child: Icon(
+                              Icons.mood_bad,
+                              color: Colors.white,
+                            ),
+                            backgroundColor: Colors.redAccent,
+                          ),
                         ),
-                      ),
-                      RaisedButton.icon(
-                        icon: Icon(Icons.refresh),
-                        label: Text('Retry'),
-                        onPressed: _rxReduxBloc.retryFirstPage,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(4),
+                        RaisedButton(
+                          child: Text('Retry'),
+                          padding: const EdgeInsets.all(16),
+                          onPressed: _rxReduxBloc.retryFirstPage,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(4),
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 );
               }
@@ -146,8 +151,13 @@ class _RxReduxPageState extends State<RxReduxPage> {
                   }
 
                   if (state.isNextPageLoading) {
-                    return Center(
-                      child: CircularProgressIndicator(),
+                    return Padding(
+                      padding: const EdgeInsets.all(24),
+                      child: Center(
+                        child: CircularProgressIndicator(
+                          strokeWidth: 2,
+                        ),
+                      ),
                     );
                   }
 
@@ -160,7 +170,7 @@ class _RxReduxPageState extends State<RxReduxPage> {
                         children: <Widget>[
                           ListTile(
                             title: Text(
-                              'An error occurred while loading data!',
+                              'An error occurred while loading data: ${state.nextPageError}',
                               style: Theme.of(context).textTheme.subtitle,
                             ),
                             isThreeLine: false,

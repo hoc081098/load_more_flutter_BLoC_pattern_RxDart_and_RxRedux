@@ -20,6 +20,7 @@ class MemoryPersonDataSource implements PeopleDataSource {
   bool _done = false;
   int _count = 0;
   bool _doneOrError = true;
+  bool f = true;
 
   ///
   ///
@@ -36,6 +37,11 @@ class MemoryPersonDataSource implements PeopleDataSource {
     Person startAfter,
   }) async {
     await Future.delayed(Duration(seconds: 2));
+
+    if (startAfter == null && f) {
+      f = !f;
+      throw StateError('[DEBUG] Random error :)');
+    }
 
     _increasePageAndRandomErrorOrDone(startAfter);
 

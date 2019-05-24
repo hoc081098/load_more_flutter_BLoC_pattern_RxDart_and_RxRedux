@@ -53,6 +53,7 @@ class PeopleRxReduxBloc {
     ///
     final actionSubject = PublishSubject<Action>();
     final messageSubject = PublishSubject<Message>();
+    interactor.messageSink = messageSubject;
 
     ///
     /// Use package rx_redux to transform actions stream to state stream
@@ -68,20 +69,6 @@ class PeopleRxReduxBloc {
         interactor.refreshListEffect,
         interactor.retryLoadFirstPageEffect,
         interactor.retryLoadNextPageEffect,
-        (actions, _) {
-          return actions.doOnData((action) {
-            print('$tag Side effect: action = $action');
-
-            if (action is PageLoadedAction) {
-              if (action.people.isEmpty) {
-                messageSubject.add(const LoadAllPeopleMessage());
-              }
-            }
-            if (action is ErrorLoadingPageAction) {
-              messageSubject.add(ErrorMessage(action.error));
-            }
-          }).doOnError((error) => messageSubject.add(ErrorMessage(error)));
-        }
       ],
     ).doOnData((state) => print('$tag state from redux store = $state'));
 
@@ -95,6 +82,7 @@ class PeopleRxReduxBloc {
     final subscriptions = <StreamSubscription>[
       stateDistinct$.listen((state) => print('$tag final state = $state')),
       stateDistinct$.connect(),
+      messageSubject.listen((message) => print('$tag message = $message')),
     ];
 
     return PeopleRxReduxBloc._(
@@ -109,7 +97,7 @@ class PeopleRxReduxBloc {
       loadFirstPage: () => actionSubject.add(const LoadFirstPageAction()),
       loadNextPage: () => actionSubject.add(const LoadNextPageAction()),
       retryNextPage: () => actionSubject.add(const RetryNextPageAction()),
-      peopleList$: state$,
+      peopleList$: stateDistinct$,
       refresh: () {
         final completer = Completer<void>();
         actionSubject.add(RefreshListAction(completer));

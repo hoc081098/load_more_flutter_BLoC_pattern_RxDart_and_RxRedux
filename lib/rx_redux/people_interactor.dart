@@ -1,5 +1,6 @@
 import 'package:load_more_flutter/data/people_data_source.dart';
 import 'package:load_more_flutter/model/person.dart';
+import 'package:load_more_flutter/rx_redux/people_rx_redux_bloc.dart';
 import 'package:load_more_flutter/rx_redux/people_state_action.dart';
 import 'package:load_more_flutter/util.dart';
 import 'package:rx_redux/rx_redux.dart';
@@ -8,9 +9,12 @@ import 'package:rxdart/rxdart.dart';
 class PeopleInteractor {
   static const pageSize = 20;
 
-  final PeopleDataSource peopleDataSource;
+  final PeopleDataSource _peopleDataSource;
+  Sink<Message> _messageSink;
 
-  const PeopleInteractor(this.peopleDataSource);
+  set messageSink(Sink<Message> sink) => _messageSink = sink;
+
+  PeopleInteractor(this._peopleDataSource);
 
   Observable<Action> loadFirstPageEffect(
     Observable<Action> actions,
@@ -40,7 +44,7 @@ class PeopleInteractor {
 
   Observable<Action> _nextPage(bool isFirstPage, [Person startAfter]) =>
       Observable.defer(() => Stream.fromFuture(
-                peopleDataSource.getPeople(
+                _peopleDataSource.getPeople(
                   field: 'name',
                   limit: pageSize,
                   startAfter: startAfter,
@@ -54,7 +58,19 @@ class PeopleInteractor {
           })
           .onErrorReturnWith(
               (error) => ErrorLoadingPageAction(error, isFirstPage))
-          .startWith(PageLoadingAction(isFirstPage));
+          .startWith(PageLoadingAction(isFirstPage))
+          .doOnData((action) {
+            print('${PeopleRxReduxBloc.tag} Side effect: action = $action');
+
+            if (action is PageLoadedAction) {
+              if (action.people.isEmpty) {
+                _messageSink?.add(const LoadAllPeopleMessage());
+              }
+            }
+            if (action is ErrorLoadingPageAction) {
+              _messageSink?.add(ErrorMessage(action.error));
+            }
+          });
 
   Observable<Action> refreshListEffect(
     Observable<Action> actions,
