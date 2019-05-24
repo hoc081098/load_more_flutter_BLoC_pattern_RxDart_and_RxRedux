@@ -2,6 +2,7 @@ import 'package:built_value/built_value.dart' hide Builder;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:load_more_flutter/home_page/home_page.dart';
+import 'package:load_more_flutter/rx_redux/rx_redux_page.dart';
 import 'package:load_more_flutter/simple/simple_page.dart';
 
 int _indentingBuiltValueToStringHelperIndent = 0;
@@ -91,6 +92,23 @@ class MyApp extends StatelessWidget {
                           context,
                           MaterialPageRoute(
                             builder: (context) => SimplePage(),
+                          ),
+                        );
+                      },
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      elevation: 12,
+                    ),
+                    SizedBox(height: 8),
+                    RaisedButton(
+                      padding: const EdgeInsets.all(24),
+                      child: Text('RxRedux page'),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => RxReduxPage(),
                           ),
                         );
                       },
