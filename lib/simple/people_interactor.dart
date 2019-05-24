@@ -4,6 +4,7 @@ import 'package:built_collection/built_collection.dart';
 import 'package:load_more_flutter/data/people_data_source.dart';
 import 'package:load_more_flutter/model/person.dart';
 import 'package:load_more_flutter/simple/people_state.dart';
+import 'package:load_more_flutter/util.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:tuple/tuple.dart';
 
@@ -92,8 +93,3 @@ class PeopleInteractor {
         .doOnDone(completeCompleter);
   }
 }
-
-///
-/// Returns the last element if [list] is not empty, otherwise return null
-///
-T lastOrNull<T>(Iterable<T> list) => list.isNotEmpty ? list.last : null;

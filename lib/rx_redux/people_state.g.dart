@@ -10,23 +10,37 @@ class _$PeopleListState extends PeopleListState {
   @override
   final BuiltList<Person> people;
   @override
-  final bool isLoading;
+  final bool isFirstPageLoading;
+  @override
+  final Object firstPageError;
+  @override
+  final bool isNextPageLoading;
+  @override
+  final Object nextPageError;
   @override
   final bool getAllPeople;
-  @override
-  final Object error;
 
   factory _$PeopleListState([void updates(PeopleListStateBuilder b)]) =>
       (new PeopleListStateBuilder()..update(updates)).build();
 
   _$PeopleListState._(
-      {this.people, this.isLoading, this.getAllPeople, this.error})
+      {this.people,
+      this.isFirstPageLoading,
+      this.firstPageError,
+      this.isNextPageLoading,
+      this.nextPageError,
+      this.getAllPeople})
       : super._() {
     if (people == null) {
       throw new BuiltValueNullFieldError('PeopleListState', 'people');
     }
-    if (isLoading == null) {
-      throw new BuiltValueNullFieldError('PeopleListState', 'isLoading');
+    if (isFirstPageLoading == null) {
+      throw new BuiltValueNullFieldError(
+          'PeopleListState', 'isFirstPageLoading');
+    }
+    if (isNextPageLoading == null) {
+      throw new BuiltValueNullFieldError(
+          'PeopleListState', 'isNextPageLoading');
     }
     if (getAllPeople == null) {
       throw new BuiltValueNullFieldError('PeopleListState', 'getAllPeople');
@@ -46,26 +60,34 @@ class _$PeopleListState extends PeopleListState {
     if (identical(other, this)) return true;
     return other is PeopleListState &&
         people == other.people &&
-        isLoading == other.isLoading &&
-        getAllPeople == other.getAllPeople &&
-        error == other.error;
+        isFirstPageLoading == other.isFirstPageLoading &&
+        firstPageError == other.firstPageError &&
+        isNextPageLoading == other.isNextPageLoading &&
+        nextPageError == other.nextPageError &&
+        getAllPeople == other.getAllPeople;
   }
 
   @override
   int get hashCode {
     return $jf($jc(
-        $jc($jc($jc(0, people.hashCode), isLoading.hashCode),
-            getAllPeople.hashCode),
-        error.hashCode));
+        $jc(
+            $jc(
+                $jc($jc($jc(0, people.hashCode), isFirstPageLoading.hashCode),
+                    firstPageError.hashCode),
+                isNextPageLoading.hashCode),
+            nextPageError.hashCode),
+        getAllPeople.hashCode));
   }
 
   @override
   String toString() {
     return (newBuiltValueToStringHelper('PeopleListState')
           ..add('people', people)
-          ..add('isLoading', isLoading)
-          ..add('getAllPeople', getAllPeople)
-          ..add('error', error))
+          ..add('isFirstPageLoading', isFirstPageLoading)
+          ..add('firstPageError', firstPageError)
+          ..add('isNextPageLoading', isNextPageLoading)
+          ..add('nextPageError', nextPageError)
+          ..add('getAllPeople', getAllPeople))
         .toString();
   }
 }
@@ -79,26 +101,40 @@ class PeopleListStateBuilder
       _$this._people ??= new ListBuilder<Person>();
   set people(ListBuilder<Person> people) => _$this._people = people;
 
-  bool _isLoading;
-  bool get isLoading => _$this._isLoading;
-  set isLoading(bool isLoading) => _$this._isLoading = isLoading;
+  bool _isFirstPageLoading;
+  bool get isFirstPageLoading => _$this._isFirstPageLoading;
+  set isFirstPageLoading(bool isFirstPageLoading) =>
+      _$this._isFirstPageLoading = isFirstPageLoading;
+
+  Object _firstPageError;
+  Object get firstPageError => _$this._firstPageError;
+  set firstPageError(Object firstPageError) =>
+      _$this._firstPageError = firstPageError;
+
+  bool _isNextPageLoading;
+  bool get isNextPageLoading => _$this._isNextPageLoading;
+  set isNextPageLoading(bool isNextPageLoading) =>
+      _$this._isNextPageLoading = isNextPageLoading;
+
+  Object _nextPageError;
+  Object get nextPageError => _$this._nextPageError;
+  set nextPageError(Object nextPageError) =>
+      _$this._nextPageError = nextPageError;
 
   bool _getAllPeople;
   bool get getAllPeople => _$this._getAllPeople;
   set getAllPeople(bool getAllPeople) => _$this._getAllPeople = getAllPeople;
-
-  Object _error;
-  Object get error => _$this._error;
-  set error(Object error) => _$this._error = error;
 
   PeopleListStateBuilder();
 
   PeopleListStateBuilder get _$this {
     if (_$v != null) {
       _people = _$v.people?.toBuilder();
-      _isLoading = _$v.isLoading;
+      _isFirstPageLoading = _$v.isFirstPageLoading;
+      _firstPageError = _$v.firstPageError;
+      _isNextPageLoading = _$v.isNextPageLoading;
+      _nextPageError = _$v.nextPageError;
       _getAllPeople = _$v.getAllPeople;
-      _error = _$v.error;
       _$v = null;
     }
     return this;
@@ -124,9 +160,11 @@ class PeopleListStateBuilder
       _$result = _$v ??
           new _$PeopleListState._(
               people: people.build(),
-              isLoading: isLoading,
-              getAllPeople: getAllPeople,
-              error: error);
+              isFirstPageLoading: isFirstPageLoading,
+              firstPageError: firstPageError,
+              isNextPageLoading: isNextPageLoading,
+              nextPageError: nextPageError,
+              getAllPeople: getAllPeople);
     } catch (_) {
       String _$failedField;
       try {
