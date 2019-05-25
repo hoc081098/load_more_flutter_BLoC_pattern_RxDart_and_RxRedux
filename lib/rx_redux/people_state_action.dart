@@ -12,10 +12,12 @@ abstract class PeopleListState
   BuiltList<Person> get people;
 
   bool get isFirstPageLoading;
+
   @nullable
   Object get firstPageError;
 
   bool get isNextPageLoading;
+
   @nullable
   Object get nextPageError;
 

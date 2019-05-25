@@ -40,7 +40,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   @override
-  void dispose()  {
+  void dispose() {
     _scrollController.dispose();
 
     _subscriptionError.cancel();
