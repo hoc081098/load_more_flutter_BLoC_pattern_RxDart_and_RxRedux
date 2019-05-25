@@ -80,7 +80,7 @@ class _RxReduxPageState extends State<RxReduxPage> {
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(
-        title: Text('Simple page'),
+        title: Text('RxRedux page'),
       ),
       body: RefreshIndicator(
         onRefresh: _rxReduxBloc.refresh,
