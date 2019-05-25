@@ -85,6 +85,11 @@ class PeopleRxReduxBloc {
       messageSubject.listen((message) => print('$tag message = $message')),
     ];
 
+    ///
+    /// Dispatch an [action]
+    ///
+    dispatch(Action action) => () => actionSubject.add(action);
+
     return PeopleRxReduxBloc._(
       dispose: () async {
         await Future.wait(subscriptions.map((s) => s.cancel()));
@@ -94,17 +99,17 @@ class PeopleRxReduxBloc {
         ].map((s) => s.close()));
         print('$tag disposed');
       },
-      loadFirstPage: () => actionSubject.add(const LoadFirstPageAction()),
-      loadNextPage: () => actionSubject.add(const LoadNextPageAction()),
-      retryNextPage: () => actionSubject.add(const RetryNextPageAction()),
+      loadFirstPage: dispatch(const LoadFirstPageAction()),
+      loadNextPage: dispatch(const LoadNextPageAction()),
+      retryNextPage: dispatch(const RetryNextPageAction()),
       peopleList$: stateDistinct$,
       refresh: () {
         final completer = Completer<void>();
-        actionSubject.add(RefreshListAction(completer));
+        dispatch(RefreshListAction(completer))();
         return completer.future;
       },
       message$: messageSubject,
-      retryFirstPage: () => actionSubject.add(const RetryFirstPageAction()),
+      retryFirstPage: dispatch(const RetryFirstPageAction()),
     );
   }
 
