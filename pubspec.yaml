@@ -9,16 +9,16 @@ dependencies:
   distinct_value_connectable_observable: ^2.0.1
   collection: ^1.14.11
   tuple: ^1.0.2
-  built_value: ^6.3.0
-  rx_redux: ^0.0.9
+  built_value: ^6.6.0
+  rx_redux: ^1.0.0
 
 #flutter packages pub run build_runner build
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  build_runner:
-  built_value_generator:
+  build_runner: ^1.5.2
+  built_value_generator: ^6.6.0
 
 flutter:
   uses-material-design: true

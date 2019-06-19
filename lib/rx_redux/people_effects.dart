@@ -6,15 +6,16 @@ import 'package:load_more_flutter/util.dart';
 import 'package:rx_redux/rx_redux.dart';
 import 'package:rxdart/rxdart.dart';
 
-class PeopleInteractor {
+class PeopleEffects {
   static const pageSize = 20;
 
   final PeopleDataSource _peopleDataSource;
-  Sink<Message> _messageSink;
+  // ignore: close_sinks
+  final _messageSubject = PublishSubject<Message>();
 
-  set messageSink(Sink<Message> sink) => _messageSink = sink;
+  PeopleEffects(this._peopleDataSource);
 
-  PeopleInteractor(this._peopleDataSource);
+  Observable<Message> get message$ => _messageSubject;
 
   Observable<Action> loadFirstPageEffect(
     Observable<Action> actions,
@@ -64,11 +65,11 @@ class PeopleInteractor {
 
             if (action is PageLoadedAction) {
               if (action.people.isEmpty) {
-                _messageSink?.add(const LoadAllPeopleMessage());
+                _messageSubject?.add(const LoadAllPeopleMessage());
               }
             }
             if (action is ErrorLoadingPageAction) {
-              _messageSink?.add(ErrorMessage(action.error));
+              _messageSubject?.add(ErrorMessage(action.error));
             }
           });
 

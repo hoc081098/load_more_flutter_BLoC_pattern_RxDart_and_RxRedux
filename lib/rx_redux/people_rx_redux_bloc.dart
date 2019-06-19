@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:distinct_value_connectable_observable/distinct_value_connectable_observable.dart';
-import 'package:load_more_flutter/rx_redux/people_interactor.dart';
+import 'package:load_more_flutter/rx_redux/people_effects.dart';
 import 'package:load_more_flutter/rx_redux/people_state_action.dart';
 import 'package:meta/meta.dart';
 import 'package:rx_redux/rx_redux.dart';
@@ -47,13 +47,12 @@ class PeopleRxReduxBloc {
     @required this.retryNextPage,
   });
 
-  factory PeopleRxReduxBloc(PeopleInteractor interactor) {
+  factory PeopleRxReduxBloc(PeopleEffects effects) {
     ///
     /// Subjects
     ///
     final actionSubject = PublishSubject<Action>();
     final messageSubject = PublishSubject<Message>();
-    interactor.messageSink = messageSubject;
 
     ///
     /// Use package rx_redux to transform actions stream to state stream
@@ -64,11 +63,11 @@ class PeopleRxReduxBloc {
       initialStateSupplier: () => PeopleListState.initial(),
       reducer: _reducer,
       sideEffects: [
-        interactor.loadFirstPageEffect,
-        interactor.loadNextPageEffect,
-        interactor.refreshListEffect,
-        interactor.retryLoadFirstPageEffect,
-        interactor.retryLoadNextPageEffect,
+        effects.loadFirstPageEffect,
+        effects.loadNextPageEffect,
+        effects.refreshListEffect,
+        effects.retryLoadFirstPageEffect,
+        effects.retryLoadNextPageEffect,
       ],
     ).doOnData((state) => print('$tag state from redux store = $state'));
 
@@ -83,6 +82,7 @@ class PeopleRxReduxBloc {
       stateDistinct$.listen((state) => print('$tag final state = $state')),
       stateDistinct$.connect(),
       messageSubject.listen((message) => print('$tag message = $message')),
+      effects.message$.listen(messageSubject.add),
     ];
 
     ///

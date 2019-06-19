@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:load_more_flutter/data/memory_person_data_source.dart';
 import 'package:load_more_flutter/model/person.dart';
-import 'package:load_more_flutter/rx_redux/people_interactor.dart';
+import 'package:load_more_flutter/rx_redux/people_effects.dart';
 import 'package:load_more_flutter/rx_redux/people_rx_redux_bloc.dart';
 import 'package:load_more_flutter/rx_redux/people_state_action.dart';
 
@@ -31,8 +31,8 @@ class _RxReduxPageState extends State<RxReduxPage> {
     /// Setup [SimplePeopleBloc]
     ///
     final dataSource = MemoryPersonDataSource(context: context);
-    final interactor = PeopleInteractor(dataSource);
-    _rxReduxBloc = PeopleRxReduxBloc(interactor);
+    final effects = PeopleEffects(dataSource);
+    _rxReduxBloc = PeopleRxReduxBloc(effects);
 
     ///
     /// Listen [_simplePeopleBloc.message$]
