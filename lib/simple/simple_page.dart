@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:load_more_flutter/data/memory_person_data_source.dart';
+import 'package:load_more_flutter/generated/i18n.dart';
 import 'package:load_more_flutter/model/person.dart';
 import 'package:load_more_flutter/simple/people_interactor.dart';
 import 'package:load_more_flutter/simple/people_state.dart';
@@ -40,11 +41,12 @@ class _SimplePageState extends State<SimplePage> {
     ///
     _subscription = _simplePeopleBloc.message$.listen((message) {
       if (message is LoadAllPeopleMessage) {
-        _showSnackBar('Loaded all people!');
+        _showSnackBar(S.of(context).loaded_all_people);
+        makeAnimation();
       }
       if (message is ErrorMessage) {
         final error = message.error;
-        _showSnackBar('Error occurred $error');
+        _showSnackBar(S.of(context).error_occurred(error.toString()));
       }
     });
     _simplePeopleBloc.load();
@@ -117,7 +119,8 @@ class _SimplePageState extends State<SimplePage> {
                         children: <Widget>[
                           ListTile(
                             title: Text(
-                              'An error occurred while loading data... Try refresh!',
+                              S.of(context).error_occurred_loading_next_page(
+                                  error.toString()),
                               style: Theme.of(context).textTheme.subtitle,
                             ),
                             isThreeLine: false,
@@ -132,7 +135,7 @@ class _SimplePageState extends State<SimplePage> {
                           FlatButton.icon(
                             padding: const EdgeInsets.all(16),
                             icon: Icon(Icons.refresh),
-                            label: Text('Retry'),
+                            label: Text(S.of(context).retry),
                             onPressed: _simplePeopleBloc.retry,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(4),
@@ -170,7 +173,7 @@ class _SimplePageState extends State<SimplePage> {
     final max = _scrollController.position.maxScrollExtent;
 
     await _scrollController.animateTo(
-      max - offsetVisibleThreshold,
+      max - offsetVisibleThreshold * 1.5,
       duration: Duration(milliseconds: 2000),
       curve: Curves.easeOut,
     );

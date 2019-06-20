@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:load_more_flutter/data/memory_person_data_source.dart';
 import 'package:load_more_flutter/data/people_api.dart';
+import 'package:load_more_flutter/generated/i18n.dart';
 import 'package:load_more_flutter/home_page/people_bloc.dart';
 import 'package:load_more_flutter/home_page/people_state.dart';
 
@@ -66,7 +67,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 AsyncSnapshot<PeopleListState> snapshot) {
               if (snapshot.hasError) {
                 return Center(
-                  child: Text('Error ${snapshot.error}'),
+                  child: Text(
+                      S.of(context).error_occurred(snapshot.error.toString())),
                 );
               }
 
@@ -117,7 +119,7 @@ class _MyHomePageState extends State<MyHomePage> {
         if (error != null) {
           return ListTile(
             title: Text(
-              'Error while loading data...',
+              S.of(context).error_occurred_loading_next_page(error.toString()),
               style: Theme.of(context).textTheme.body1.copyWith(fontSize: 16.0),
             ),
             isThreeLine: false,
@@ -173,7 +175,7 @@ class _MyHomePageState extends State<MyHomePage> {
     await (_scaffoldKey.currentState
         ?.showSnackBar(
           SnackBar(
-            content: Text('Got all data!'),
+            content: Text(S.of(context).loaded_all_people),
           ),
         )
         ?.closed);
@@ -183,7 +185,7 @@ class _MyHomePageState extends State<MyHomePage> {
     await (_scaffoldKey.currentState
         ?.showSnackBar(
           SnackBar(
-            content: Text('Error occurred: $error'),
+            content: Text(S.of(context).error_occurred(error.toString())),
           ),
         )
         ?.closed);

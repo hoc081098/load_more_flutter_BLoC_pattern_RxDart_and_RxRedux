@@ -52,37 +52,42 @@ class PeopleRxReduxBloc {
     /// Subjects
     ///
     final actionSubject = PublishSubject<Action>();
-    final messageSubject = PublishSubject<Message>();
 
     ///
     /// Use package rx_redux to transform actions stream to state stream
     ///
-    final state$ = reduxStore<PeopleListState, Action>(
-      actions: actionSubject
-          .doOnData((action) => print('$tag Input action = $action')),
-      initialStateSupplier: () => PeopleListState.initial(),
-      reducer: _reducer,
-      sideEffects: [
-        effects.loadFirstPageEffect,
-        effects.loadNextPageEffect,
-        effects.refreshListEffect,
-        effects.retryLoadFirstPageEffect,
-        effects.retryLoadNextPageEffect,
-      ],
-    ).doOnData((state) => print('$tag state from redux store = $state'));
+    final initialState = PeopleListState.initial();
+
+    final state$ = actionSubject
+        .doOnData((action) => print('$tag [INPUT_ACTION] = $action'))
+        .transform(
+          ReduxStoreStreamTransformer<Action, PeopleListState>(
+            reducer: (state, action) => action.reducer(state),
+            initialStateSupplier: () => initialState,
+            sideEffects: [
+              effects.loadFirstPageEffect,
+              effects.loadNextPageEffect,
+              effects.refreshListEffect,
+              effects.retryLoadFirstPageEffect,
+              effects.retryLoadNextPageEffect,
+            ],
+          ),
+        )
+        .doOnData((state) => print('$tag [REDUX_STORE_STATE] = $state'));
 
     ///
     /// Broadcast, distinct until changed, value observable
     ///
-    final stateDistinct$ = publishValueSeededDistinct(
-      state$,
-      seedValue: PeopleListState.initial(),
-    );
+    final stateDistinct$ =
+        publishValueSeededDistinct(state$, seedValue: initialState);
+
     final subscriptions = <StreamSubscription>[
-      stateDistinct$.listen((state) => print('$tag final state = $state')),
+      /// Listen streams
+      stateDistinct$.listen((state) => print('$tag [FINAL_STATE] = $state')),
+      effects.message$.listen((message) => print('$tag [MESSAGE] = $message')),
+
+      /// Connect [ConnectableObservable]
       stateDistinct$.connect(),
-      messageSubject.listen((message) => print('$tag message = $message')),
-      effects.message$.listen(messageSubject.add),
     ];
 
     ///
@@ -93,11 +98,9 @@ class PeopleRxReduxBloc {
     return PeopleRxReduxBloc._(
       dispose: () async {
         await Future.wait(subscriptions.map((s) => s.cancel()));
-        await Future.wait([
-          actionSubject,
-          messageSubject,
-        ].map((s) => s.close()));
-        print('$tag disposed');
+        await actionSubject.close();
+        await effects.dispose();
+        print('$tag [DISPOSED]');
       },
       loadFirstPage: dispatch(const LoadFirstPageAction()),
       loadNextPage: dispatch(const LoadNextPageAction()),
@@ -108,64 +111,8 @@ class PeopleRxReduxBloc {
         dispatch(RefreshListAction(completer))();
         return completer.future;
       },
-      message$: messageSubject,
+      message$: effects.message$,
       retryFirstPage: dispatch(const RetryFirstPageAction()),
     );
-  }
-
-  static PeopleListState _reducer(PeopleListState state, Action action) {
-    if (action is LoadNextPageAction ||
-        action is LoadFirstPageAction ||
-        action is RefreshListAction ||
-        action is RetryNextPageAction ||
-        action is RetryFirstPageAction) {
-      return state;
-    }
-
-    if (action is PageLoadedAction) {
-      if (action.isFirstPage) {
-        return state.rebuild(
-          (b) => b
-            ..isFirstPageLoading = false
-            ..firstPageError = null
-            ..people = action.people.toBuilder()
-            ..getAllPeople = action.people.isEmpty,
-        );
-      } else {
-        return state.rebuild(
-          (b) => b
-            ..isFirstPageLoading = false
-            ..firstPageError = null
-            ..nextPageError = null
-            ..isNextPageLoading = false
-            ..people = (b.people..addAll(action.people))
-            ..getAllPeople = action.people.isEmpty,
-        );
-      }
-    }
-    if (action is PageLoadingAction) {
-      if (action.isFirstPage) {
-        return state.rebuild((b) => b..isFirstPageLoading = true);
-      } else {
-        return state.rebuild((b) => b..isNextPageLoading = true);
-      }
-    }
-    if (action is ErrorLoadingPageAction) {
-      if (action.isFirstPage) {
-        return state.rebuild(
-          (b) => b
-            ..isFirstPageLoading = false
-            ..firstPageError = action.error,
-        );
-      } else {
-        return state.rebuild(
-          (b) => b
-            ..isNextPageLoading = false
-            ..nextPageError = action.error,
-        );
-      }
-    }
-
-    return state;
   }
 }

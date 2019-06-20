@@ -55,7 +55,12 @@ class ErrorMessage implements Message {
 }
 
 @immutable
-abstract class Action {}
+abstract class Action {
+  ///
+  /// Pure function return new view state from current view state and an action
+  ///
+  PeopleListState reducer(PeopleListState state);
+}
 
 ///
 /// User's actions
@@ -63,24 +68,39 @@ abstract class Action {}
 
 class LoadNextPageAction implements Action {
   const LoadNextPageAction();
+
+  @override
+  PeopleListState reducer(PeopleListState state) => state;
 }
 
 class LoadFirstPageAction implements Action {
   const LoadFirstPageAction();
+
+  @override
+  PeopleListState reducer(PeopleListState state) => state;
 }
 
 class RefreshListAction implements Action {
   final Completer<void> completer;
 
   const RefreshListAction(this.completer);
+
+  @override
+  PeopleListState reducer(PeopleListState state) => state;
 }
 
 class RetryNextPageAction implements Action {
   const RetryNextPageAction();
+
+  @override
+  PeopleListState reducer(PeopleListState state) => state;
 }
 
 class RetryFirstPageAction implements Action {
   const RetryFirstPageAction();
+
+  @override
+  PeopleListState reducer(PeopleListState state) => state;
 }
 
 ///
@@ -92,12 +112,44 @@ class PageLoadedAction implements Action {
   final bool isFirstPage;
 
   const PageLoadedAction(this.people, this.isFirstPage);
+
+  @override
+  PeopleListState reducer(PeopleListState state) {
+    if (isFirstPage) {
+      return state.rebuild(
+        (b) => b
+          ..isFirstPageLoading = false
+          ..firstPageError = null
+          ..people = people.toBuilder()
+          ..getAllPeople = people.isEmpty,
+      );
+    } else {
+      return state.rebuild(
+        (b) => b
+          ..isFirstPageLoading = false
+          ..firstPageError = null
+          ..nextPageError = null
+          ..isNextPageLoading = false
+          ..people = (b.people..addAll(people))
+          ..getAllPeople = people.isEmpty,
+      );
+    }
+  }
 }
 
 class PageLoadingAction implements Action {
   final bool isFirstPage;
 
   const PageLoadingAction(this.isFirstPage);
+
+  @override
+  PeopleListState reducer(PeopleListState state) {
+    if (isFirstPage) {
+      return state.rebuild((b) => b..isFirstPageLoading = true);
+    } else {
+      return state.rebuild((b) => b..isNextPageLoading = true);
+    }
+  }
 }
 
 class ErrorLoadingPageAction implements Action {
@@ -105,4 +157,21 @@ class ErrorLoadingPageAction implements Action {
   final bool isFirstPage;
 
   const ErrorLoadingPageAction(this.error, this.isFirstPage);
+
+  @override
+  PeopleListState reducer(PeopleListState state) {
+    if (isFirstPage) {
+      return state.rebuild(
+        (b) => b
+          ..isFirstPageLoading = false
+          ..firstPageError = error,
+      );
+    } else {
+      return state.rebuild(
+        (b) => b
+          ..isNextPageLoading = false
+          ..nextPageError = error,
+      );
+    }
+  }
 }

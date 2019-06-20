@@ -6,16 +6,22 @@ import 'package:load_more_flutter/util.dart';
 import 'package:rx_redux/rx_redux.dart';
 import 'package:rxdart/rxdart.dart';
 
+///
+/// Class hold [SideEffect]s
+/// And expose message stream
+///
 class PeopleEffects {
   static const pageSize = 20;
 
   final PeopleDataSource _peopleDataSource;
-  // ignore: close_sinks
   final _messageSubject = PublishSubject<Message>();
 
   PeopleEffects(this._peopleDataSource);
 
-  Observable<Message> get message$ => _messageSubject;
+  ///
+  /// Expose message stream, emit while execute [SideEffect]
+  ///
+  Stream<Message> get message$ => _messageSubject;
 
   Observable<Action> loadFirstPageEffect(
     Observable<Action> actions,
@@ -101,4 +107,6 @@ class PeopleEffects {
           .where((state) =>
               !state.isFirstPageLoading && state.firstPageError != null)
           .exhaustMap((_) => _nextPage(true));
+
+  Future<void> dispose() => _messageSubject.close();
 }

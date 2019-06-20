@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:load_more_flutter/data/memory_person_data_source.dart';
+import 'package:load_more_flutter/generated/i18n.dart';
 import 'package:load_more_flutter/model/person.dart';
 import 'package:load_more_flutter/rx_redux/people_effects.dart';
 import 'package:load_more_flutter/rx_redux/people_rx_redux_bloc.dart';
@@ -40,11 +41,12 @@ class _RxReduxPageState extends State<RxReduxPage> {
     ///
     _subscription = _rxReduxBloc.message$.listen((message) {
       if (message is LoadAllPeopleMessage) {
-        _showSnackBar('Loaded all people!');
+        _showSnackBar(S.of(context).loaded_all_people);
+        makeAnimation();
       }
       if (message is ErrorMessage) {
         final error = message.error;
-        _showSnackBar('Error occurred $error');
+        _showSnackBar(S.of(context).error_occurred(error.toString()));
       }
     });
     _rxReduxBloc.loadFirstPage();
@@ -109,7 +111,8 @@ class _RxReduxPageState extends State<RxReduxPage> {
                       children: <Widget>[
                         ListTile(
                           title: Text(
-                            'An error occurred while loading data: ${state.firstPageError}',
+                            S.of(context).error_occurred_loading_next_page(
+                                state.firstPageError.toString()),
                             style: Theme.of(context).textTheme.subtitle,
                           ),
                           isThreeLine: false,
@@ -122,7 +125,7 @@ class _RxReduxPageState extends State<RxReduxPage> {
                           ),
                         ),
                         RaisedButton(
-                          child: Text('Retry'),
+                          child: Text(S.of(context).retry),
                           padding: const EdgeInsets.all(16),
                           onPressed: _rxReduxBloc.retryFirstPage,
                           shape: RoundedRectangleBorder(
@@ -170,7 +173,8 @@ class _RxReduxPageState extends State<RxReduxPage> {
                         children: <Widget>[
                           ListTile(
                             title: Text(
-                              'An error occurred while loading data: ${state.nextPageError}',
+                              S.of(context).error_occurred_loading_next_page(
+                                  state.nextPageError.toString()),
                               style: Theme.of(context).textTheme.subtitle,
                             ),
                             isThreeLine: false,
@@ -185,7 +189,7 @@ class _RxReduxPageState extends State<RxReduxPage> {
                           FlatButton.icon(
                             padding: const EdgeInsets.all(16),
                             icon: Icon(Icons.refresh),
-                            label: Text('Retry'),
+                            label: Text(S.of(context).retry),
                             onPressed: _rxReduxBloc.retryNextPage,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(4),
@@ -217,7 +221,7 @@ class _RxReduxPageState extends State<RxReduxPage> {
     final max = _scrollController.position.maxScrollExtent;
 
     await _scrollController.animateTo(
-      max - offsetVisibleThreshold,
+      max - offsetVisibleThreshold * 1.5,
       duration: Duration(milliseconds: 2000),
       curve: Curves.easeOut,
     );

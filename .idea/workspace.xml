@@ -1,7 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="40aeef07-9134-47b3-aa0b-7c00baa573f0" name="Default Changelist" comment="" />
+    <list default="true" id="40aeef07-9134-47b3-aa0b-7c00baa573f0" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/lib/generated/i18n.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/values/strings_vi.arb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/app/outputs/apk/app.apk" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/outputs/apk/app.apk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/home_page/home_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/home_page/home_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/rx_redux/people_effects.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/rx_redux/people_effects.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/rx_redux/people_rx_redux_bloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/rx_redux/people_rx_redux_bloc.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/rx_redux/people_state_action.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/rx_redux/people_state_action.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/rx_redux/rx_redux_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/rx_redux/rx_redux_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/simple/simple_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/simple/simple_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/values/strings_en.arb" beforeDir="false" afterPath="$PROJECT_DIR$/res/values/strings_en.arb" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/.dart_tool/" />
     <ignored path="$PROJECT_DIR$/.idea/" />
     <ignored path="$PROJECT_DIR$/.pub/" />
@@ -13,12 +29,12 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/rx_redux/people_rx_redux_bloc.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="171">
-              <caret line="60" column="23" selection-start-line="60" selection-start-column="23" selection-end-line="60" selection-end-column="23" />
+            <state relative-caret-position="294">
+              <caret line="71" column="11" selection-start-line="71" selection-start-column="11" selection-end-line="71" selection-end-column="11" />
               <folding>
                 <element signature="e#0#20#0" expanded="true" />
               </folding>
@@ -43,11 +59,16 @@
       <find>Tuple2&lt;PeopleListState, bool&gt;</find>
       <find>people[index]</find>
       <find>print</find>
+      <find>localeListResolutionCallback</find>
+      <find>'Retry'</find>
     </findStrings>
     <replaceStrings>
       <replace>&quot;id&quot;: &quot;$1&quot;</replace>
       <replace>widget.item</replace>
     </replaceStrings>
+    <dirStrings>
+      <dir>C:\Users\Admin\Desktop\load_more_flutter_bloc_pattern</dir>
+    </dirStrings>
   </component>
   <component name="Git.Settings">
     <option name="PREVIOUS_COMMIT_AUTHORS">
@@ -83,16 +104,19 @@
         <option value="$PROJECT_DIR$/lib/home_page/people_bloc.dart" />
         <option value="$PROJECT_DIR$/lib/simple/people_state.dart" />
         <option value="$PROJECT_DIR$/lib/data/memory_person_data_source.dart" />
-        <option value="$PROJECT_DIR$/lib/home_page/home_page.dart" />
         <option value="$PROJECT_DIR$/lib/data/people_api.dart" />
         <option value="$PROJECT_DIR$/lib/simple/simple_people_bloc.dart" />
         <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/lib/main.dart" />
-        <option value="$PROJECT_DIR$/lib/simple/simple_page.dart" />
-        <option value="$PROJECT_DIR$/pubspec.yaml" />
-        <option value="$PROJECT_DIR$/lib/rx_redux/rx_redux_page.dart" />
-        <option value="$PROJECT_DIR$/lib/rx_redux/people_rx_redux_bloc.dart" />
+        <option value="$PROJECT_DIR$/lib/rx_redux/people_effects.dart" />
         <option value="$PROJECT_DIR$/lib/rx_redux/people_state_action.dart" />
+        <option value="$PROJECT_DIR$/lib/rx_redux/people_rx_redux_bloc.dart" />
+        <option value="$PROJECT_DIR$/pubspec.yaml" />
+        <option value="$PROJECT_DIR$/lib/home_page/home_page.dart" />
+        <option value="$PROJECT_DIR$/lib/simple/simple_page.dart" />
+        <option value="$PROJECT_DIR$/lib/rx_redux/rx_redux_page.dart" />
+        <option value="$PROJECT_DIR$/lib/main.dart" />
+        <option value="$PROJECT_DIR$/res/values/strings_en.arb" />
+        <option value="$PROJECT_DIR$/res/values/strings_vi.arb" />
       </list>
     </option>
   </component>
@@ -118,11 +142,11 @@
     <option name="STATE" value="1" />
   </component>
   <component name="ProjectView">
-    <navigator currentView="ProjectPane" proportions="" version="1">
+    <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -139,7 +163,7 @@
               <item name="load_more_flutter_bloc_pattern" type="b2602c69:ProjectViewProjectNode" />
               <item name="load_more_flutter_bloc_pattern" type="462c0819:PsiDirectoryNode" />
               <item name="lib" type="462c0819:PsiDirectoryNode" />
-              <item name="data" type="462c0819:PsiDirectoryNode" />
+              <item name="generated" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="load_more_flutter_bloc_pattern" type="b2602c69:ProjectViewProjectNode" />
@@ -167,42 +191,30 @@
             </path>
             <path>
               <item name="load_more_flutter_bloc_pattern" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="load_more_flutter_bloc_pattern" type="462c0819:PsiDirectoryNode" />
+              <item name="res" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="load_more_flutter_bloc_pattern" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Dart Packages" type="3dd79eb:DartTreeStructureProvider$1" />
+              <item name="load_more_flutter_bloc_pattern" type="462c0819:PsiDirectoryNode" />
+              <item name="res" type="462c0819:PsiDirectoryNode" />
+              <item name="values" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="load_more_flutter_bloc_pattern" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Dart Packages" type="3dd79eb:DartTreeStructureProvider$1" />
-              <item name="lib" type="e6ad2126:DartTreeStructureProvider$DartSdkOrLibraryRootNode" />
-            </path>
-            <path>
-              <item name="load_more_flutter_bloc_pattern" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Dart Packages" type="3dd79eb:DartTreeStructureProvider$1" />
-              <item name="lib" type="e6ad2126:DartTreeStructureProvider$DartSdkOrLibraryRootNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="load_more_flutter_bloc_pattern" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Dart Packages" type="3dd79eb:DartTreeStructureProvider$1" />
-              <item name="lib" type="e6ad2126:DartTreeStructureProvider$DartSdkOrLibraryRootNode" />
+              <item name="load_more_flutter_bloc_pattern" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="AndroidView" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553161321887" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1561042356409" />
     <property name="dart.analysis.tool.window.force.activate" value="false" />
     <property name="io.flutter.reload.alreadyRun" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -306,8 +318,7 @@
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Resources Explorer" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18154311" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.27458397" />
       <window_info id="Capture Tool" order="1" />
       <window_info id="Structure" order="2" side_tool="true" />
       <window_info id="Build Variants" order="3" side_tool="true" />
@@ -316,18 +327,19 @@
       <window_info id="Captures" order="6" side_tool="true" />
       <window_info id="UI Designer" order="7" />
       <window_info id="Favorites" order="8" side_tool="true" />
-      <window_info anchor="bottom" id="Find" />
+      <window_info id="Resources Explorer" order="9" />
       <window_info anchor="bottom" id="Logcat" order="0" />
       <window_info anchor="bottom" id="TODO" order="1" />
       <window_info anchor="bottom" id="Android Profiler" order="2" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="3" weight="0.6666667" />
-      <window_info anchor="bottom" id="Event Log" order="4" side_tool="true" />
-      <window_info anchor="bottom" id="Flutter Performance" order="5" sideWeight="0.50075644" side_tool="true" weight="0.43987343" />
-      <window_info anchor="bottom" id="Version Control" order="6" weight="0.28805238" />
-      <window_info anchor="bottom" id="Dart Analysis" order="7" weight="0.47457626" />
-      <window_info anchor="bottom" id="Run" order="8" sideWeight="0.49924356" weight="0.62403697" />
+      <window_info anchor="bottom" id="Terminal" order="3" weight="0.3931624" />
+      <window_info anchor="bottom" id="Event Log" order="4" sideWeight="0.5015129" side_tool="true" weight="0.83931625" />
+      <window_info anchor="bottom" id="Flutter Performance" order="5" sideWeight="0.5015129" side_tool="true" weight="0.71452993" />
+      <window_info anchor="bottom" id="Version Control" order="6" weight="0.8905983" />
+      <window_info anchor="bottom" id="Dart Analysis" order="7" weight="0.46495727" />
+      <window_info anchor="bottom" id="Run" order="8" sideWeight="0.49848714" weight="0.35384616" />
       <window_info anchor="bottom" id="Debug" order="9" />
-      <window_info anchor="bottom" id="Messages" order="10" weight="0.4991453" />
+      <window_info anchor="bottom" id="Messages" order="10" weight="0.44786325" />
+      <window_info anchor="bottom" id="Find" order="11" />
       <window_info anchor="right" id="Palette" order="0" />
       <window_info anchor="right" id="Device File Explorer" order="1" side_tool="true" />
       <window_info anchor="right" id="Capture Analysis" order="2" />
@@ -423,147 +435,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="[UPDATE] format code" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://C:/flutter/flutter/packages/flutter/lib/src/foundation/diagnostics.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1176">
-          <caret line="2130" column="20" selection-start-line="2130" selection-start-column="20" selection-end-line="2130" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/flutter/flutter/packages/flutter/lib/src/material/refresh_indicator.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="122" column="30" selection-start-line="122" selection-start-column="24" selection-end-line="122" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/home_page/people_bloc.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="261">
-          <caret line="179" column="37" selection-start-line="179" selection-start-column="37" selection-end-line="179" selection-end-column="37" />
-          <folding>
-            <element signature="e#0#20#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/simple/people_state.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="8" column="19" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/flutter/flutter/.pub-cache/hosted/pub.dartlang.org/built_value-6.3.0/lib/built_value.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="32" column="15" selection-start-line="32" selection-start-column="15" selection-end-line="32" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/flutter/flutter/bin/cache/pkg/sky_engine/lib/core/errors.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="529" column="6" selection-start-line="529" selection-start-column="6" selection-end-line="529" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/flutter/flutter/bin/cache/pkg/sky_engine/lib/core/object.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="70" column="49" selection-start-line="70" selection-start-column="49" selection-end-line="70" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/flutter/flutter/bin/cache/pkg/sky_engine/lib/core/identical.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="21" column="29" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/flutter/flutter/bin/cache/pkg/sky_engine/lib/async/future_impl.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-340">
-          <caret line="493" column="7" selection-start-line="493" selection-start-column="7" selection-end-line="493" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/flutter/flutter/.pub-cache/hosted/pub.dartlang.org/rxdart-0.20.0/lib/src/observables/observable.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23282">
-          <caret line="2559" selection-start-line="78" selection-end-line="2559" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/flutter/flutter/bin/cache/pkg/sky_engine/lib/async/future.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="901" column="20" selection-start-line="901" selection-start-column="15" selection-end-line="901" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/simple/people_state.g.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="329">
-          <caret line="89" column="15" selection-start-line="89" selection-start-column="9" selection-end-line="89" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/flutter/flutter/.pub-cache/hosted/pub.dartlang.org/cloud_firestore-0.8.2+3/lib/src/query.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="464">
-          <caret line="217" column="13" selection-start-line="217" selection-start-column="8" selection-end-line="217" selection-end-column="13" />
-          <folding>
-            <element signature="e#542#559#0" />
-            <element signature="e#572#760#0" />
-            <element signature="e#573#590#0" />
-            <element signature="e#573#759#1" />
-            <element signature="e#619#634#0" />
-            <element signature="e#647#666#0" />
-            <element signature="e#648#663#0" />
-            <element signature="e#697#712#0" />
-            <element signature="e#725#744#0" />
-            <element signature="e#726#741#0" />
-            <element signature="e#1116#1345#0" />
-            <element signature="e#1226#1243#0" />
-            <element signature="e#1256#1333#0" />
-            <element signature="e#1269#1286#0" />
-            <element signature="e#1291#1304#0" />
-            <element signature="e#1387#1509#0" />
-            <element signature="e#1403#1420#0" />
-            <element signature="e#1425#1438#0" />
-            <element signature="e#1454#1503#1" />
-            <element signature="e#1696#1770#0" />
-            <element signature="e#1951#1966#0" />
-            <element signature="e#2098#2115#0" />
-            <element signature="e#2098#2233#0" />
-            <element signature="e#2249#2254#0" />
-            <element signature="e#2558#2575#0" />
-            <element signature="e#2803#3098#0" />
-            <element signature="e#2922#3041#0" />
-            <element signature="e#3273#3346#0" />
-            <element signature="e#3942#5268#0" />
-            <element signature="e#4005#4014#0" />
-            <element signature="e#4073#4088#0" />
-            <element signature="e#4093#4115#0" />
-            <element signature="e#4186#4502#0" />
-            <element signature="e#5272#5353#0" />
-            <element signature="e#5426#5815#0" />
-            <element signature="e#5479#5494#0" />
-            <element signature="e#5499#5523#0" />
-            <element signature="e#5819#5900#0" />
-            <element signature="e#6126#6333#0" />
-            <element signature="e#6337#6415#0" />
-            <element signature="e#6641#6845#0" />
-            <element signature="e#6849#6929#0" />
-            <element signature="e#7148#7347#0" />
-            <element signature="e#7351#7431#0" />
-            <element signature="e#7654#7857#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/data/people_api.dart">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="191">
@@ -578,13 +449,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="203">
           <caret line="149" column="18" selection-start-line="149" selection-start-column="18" selection-end-line="149" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/flutter/flutter/packages/flutter/lib/src/widgets/framework.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="245">
-          <caret line="61" column="17" lean-forward="true" selection-start-line="61" selection-start-column="17" selection-end-line="61" selection-end-column="17" />
         </state>
       </provider>
     </entry>
@@ -651,35 +515,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/home_page/home_page.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="62" column="24" selection-start-line="62" selection-start-column="24" selection-end-line="62" selection-end-column="24" />
-          <folding>
-            <element signature="e#0#20#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/simple/simple_page.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="87">
-          <caret line="296" column="25" selection-start-line="296" selection-start-column="25" selection-end-line="296" selection-end-column="25" />
-          <folding>
-            <element signature="e#0#20#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pubspec.yaml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="124">
-          <caret line="9" column="22" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="22" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
@@ -688,20 +525,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/analysis_options.yaml">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/rx_redux/rx_redux_page.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="82" column="28" selection-start-line="82" selection-start-column="28" selection-end-line="82" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/main.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="298">
-          <caret line="110" column="55" selection-start-line="110" selection-start-column="55" selection-end-line="110" selection-end-column="55" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/simple/simple_people_bloc.dart">
       <provider selected="true" editor-type-id="text-editor">
@@ -717,30 +540,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="133">
           <caret line="9" column="22" lean-forward="true" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/rx_redux/people_state_action.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="57" column="23" selection-start-line="57" selection-start-column="23" selection-end-line="57" selection-end-column="23" />
-          <folding>
-            <element signature="e#343#964#0" />
-            <element signature="e#729#959#0" />
-            <element signature="e#701#964#0" />
-            <element signature="e#1050#1085#0" />
-            <element signature="e#1125#1185#0" />
-            <element signature="e#1224#1227#0" />
-            <element signature="e#1295#1328#0" />
-            <element signature="e#1374#1408#0" />
-            <element signature="e#1452#1534#0" />
-            <element signature="e#1580#1614#0" />
-            <element signature="e#1661#1696#0" />
-            <element signature="e#1698#1701#0" />
-            <element signature="e#1783#1904#0" />
-            <element signature="e#1948#2023#0" />
-            <element signature="e#2072#2179#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -761,13 +560,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/rx_redux/people_interactor.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="705">
-          <caret line="58" column="28" selection-start-line="58" selection-start-column="28" selection-end-line="58" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/rx_redux/people_interactor.dart" />
     <entry file="file://$PROJECT_DIR$/lib/home_page/people_state.dart">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
@@ -798,20 +591,6 @@
           <folding>
             <element signature="e#0#45#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/flutter/flutter/.pub-cache/hosted/pub.dartlang.org/rxdart-0.22.0/lib/src/observables/connectable_observable.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="251">
-          <caret line="170" column="37" selection-start-line="170" selection-start-column="10" selection-end-line="170" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/flutter/flutter/.pub-cache/hosted/pub.dartlang.org/distinct_value_connectable_observable-2.0.1/lib/src/distinct_value_connectable_observable_base.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="137">
-          <caret line="13" column="60" selection-start-line="13" selection-start-column="60" selection-end-line="13" selection-end-column="60" />
         </state>
       </provider>
     </entry>
@@ -853,10 +632,191 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://C:/flutter/flutter/.pub-cache/hosted/pub.dartlang.org/distinct_value_connectable_observable-2.0.1/lib/src/distinct_value_connectable_observable_base.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="63">
+          <caret line="6" column="25" lean-forward="true" selection-start-line="6" selection-start-column="10" selection-end-line="6" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/flutter/flutter/.pub-cache/hosted/pub.dartlang.org/rxdart-0.22.0/lib/src/observables/connectable_observable.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="12" column="36" selection-start-line="12" selection-start-column="15" selection-end-line="12" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/rx_redux/people_state_action.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-314">
+          <caret line="61" column="24" selection-start-line="61" selection-start-column="18" selection-end-line="61" selection-end-column="25" />
+          <folding>
+            <element signature="n#!!block;n#PeopleListState#0" />
+            <element signature="e#701#964#0" />
+            <element signature="e#729#959#0" />
+            <element signature="n#!!block;n#LoadAllPeopleMessage#0" />
+            <element signature="n#!!block;n#ErrorMessage#0" />
+            <element signature="e#1276#1279#0" />
+            <element signature="n#!!block;n#LoadFirstPageAction#0" />
+            <element signature="n#!!block;n#RefreshListAction#0" />
+            <element signature="n#!!block;n#RetryNextPageAction#0" />
+            <element signature="n#!!block;n#RetryFirstPageAction#0" />
+            <element signature="e#2105#2108#0" />
+            <element signature="e#2371#2917#0" />
+            <element signature="n#!!block;n#PageLoadingAction#0" />
+            <element signature="e#3098#3274#0" />
+            <element signature="n#!!block;n#ErrorLoadingPageAction#0" />
+            <element signature="e#3492#3795#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/flutter/flutter/bin/cache/pkg/sky_engine/lib/ui/window.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="245">
+          <caret line="345" column="15" selection-start-line="345" selection-start-column="15" selection-end-line="345" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/flutter/flutter/packages/flutter/lib/src/material/app.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="172">
+          <caret line="503" column="28" selection-start-line="503" selection-start-column="6" selection-end-line="503" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/flutter/flutter/packages/flutter/lib/src/widgets/app.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="109">
+          <caret line="825" column="50" selection-start-line="825" selection-start-column="22" selection-end-line="825" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pubspec.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="7" column="16" selection-start-line="7" selection-start-column="16" selection-end-line="7" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/home_page/home_page.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="257">
+          <caret line="187" column="67" selection-start-line="187" selection-start-column="67" selection-end-line="187" selection-end-column="67" />
+          <folding>
+            <element signature="e#0#20#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/simple/simple_page.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="253">
+          <caret line="175" column="40" selection-start-line="175" selection-start-column="40" selection-end-line="175" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/widget_test.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#1057#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/util.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="4" selection-start-line="4" selection-end-line="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/flutter/flutter/bin/cache/pkg/sky_engine/lib/core/iterable.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="21">
+          <caret line="514" column="8" selection-start-line="514" selection-start-column="8" selection-end-line="514" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/generated/i18n.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="182">
+          <caret line="56" column="22" selection-start-line="56" selection-start-column="6" selection-end-line="56" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/flutter/flutter/packages/flutter/lib/src/widgets/framework.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="287">
+          <caret line="788" column="54" lean-forward="true" selection-start-line="788" selection-start-column="2" selection-end-line="788" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/flutter/flutter/packages/flutter/lib/src/material/switch.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="182">
+          <caret line="46" column="22" selection-start-line="46" selection-start-column="8" selection-end-line="46" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/flutter/flutter/packages/flutter/lib/src/material/switch_list_tile.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="518">
+          <caret line="88" column="14" selection-start-line="88" selection-start-column="9" selection-end-line="88" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/main.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="142">
+          <caret line="80" column="52" selection-start-line="80" selection-start-column="40" selection-end-line="80" selection-end-column="52" />
+          <folding>
+            <element signature="e#0#59#0" expanded="true" />
+            <element signature="n#!!block;n#CustomIndentingBuiltValueToStringHelper#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/values/strings_vi.arb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="5" column="37" selection-start-line="5" selection-start-column="37" selection-end-line="5" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/values/strings_en.arb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="6" column="1" lean-forward="true" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/rx_redux/rx_redux_page.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="148">
+          <caret line="215" column="24" selection-start-line="215" selection-start-column="24" selection-end-line="215" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/rx_redux/people_effects.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="924">
+          <caret line="50" lean-forward="true" selection-start-line="50" selection-end-line="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/flutter/flutter/.pub-cache/hosted/pub.dartlang.org/rx_redux-1.0.0/lib/src/redux_store_stream_transformer.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2338">
+          <caret line="56" column="2" selection-start-line="56" selection-start-column="2" selection-end-line="56" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/lib/rx_redux/people_rx_redux_bloc.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="60" column="23" selection-start-line="60" selection-start-column="23" selection-end-line="60" selection-end-column="23" />
+        <state relative-caret-position="294">
+          <caret line="71" column="11" selection-start-line="71" selection-start-column="11" selection-end-line="71" selection-end-column="11" />
           <folding>
             <element signature="e#0#20#0" expanded="true" />
           </folding>
