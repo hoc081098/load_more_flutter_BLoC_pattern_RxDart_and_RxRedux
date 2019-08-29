@@ -97,32 +97,44 @@ class PeopleListStateBuilder
   _$PeopleListState _$v;
 
   ListBuilder<Person> _people;
+
   ListBuilder<Person> get people =>
       _$this._people ??= new ListBuilder<Person>();
+
   set people(ListBuilder<Person> people) => _$this._people = people;
 
   bool _isFirstPageLoading;
+
   bool get isFirstPageLoading => _$this._isFirstPageLoading;
+
   set isFirstPageLoading(bool isFirstPageLoading) =>
       _$this._isFirstPageLoading = isFirstPageLoading;
 
   Object _firstPageError;
+
   Object get firstPageError => _$this._firstPageError;
+
   set firstPageError(Object firstPageError) =>
       _$this._firstPageError = firstPageError;
 
   bool _isNextPageLoading;
+
   bool get isNextPageLoading => _$this._isNextPageLoading;
+
   set isNextPageLoading(bool isNextPageLoading) =>
       _$this._isNextPageLoading = isNextPageLoading;
 
   Object _nextPageError;
+
   Object get nextPageError => _$this._nextPageError;
+
   set nextPageError(Object nextPageError) =>
       _$this._nextPageError = nextPageError;
 
   bool _getAllPeople;
+
   bool get getAllPeople => _$this._getAllPeople;
+
   set getAllPeople(bool getAllPeople) => _$this._getAllPeople = getAllPeople;
 
   PeopleListStateBuilder();

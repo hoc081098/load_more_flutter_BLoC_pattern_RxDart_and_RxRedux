@@ -75,20 +75,28 @@ class PeopleListStateBuilder
   _$PeopleListState _$v;
 
   ListBuilder<Person> _people;
+
   ListBuilder<Person> get people =>
       _$this._people ??= new ListBuilder<Person>();
+
   set people(ListBuilder<Person> people) => _$this._people = people;
 
   bool _isLoading;
+
   bool get isLoading => _$this._isLoading;
+
   set isLoading(bool isLoading) => _$this._isLoading = isLoading;
 
   bool _getAllPeople;
+
   bool get getAllPeople => _$this._getAllPeople;
+
   set getAllPeople(bool getAllPeople) => _$this._getAllPeople = getAllPeople;
 
   Object _error;
+
   Object get error => _$this._error;
+
   set error(Object error) => _$this._error = error;
 
   PeopleListStateBuilder();

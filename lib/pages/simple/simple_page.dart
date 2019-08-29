@@ -3,9 +3,9 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:load_more_flutter/data/people/memory_person_data_source.dart';
 import 'package:load_more_flutter/generated/i18n.dart';
-import 'package:load_more_flutter/simple/people_interactor.dart';
-import 'package:load_more_flutter/simple/people_state.dart';
-import 'package:load_more_flutter/simple/simple_people_bloc.dart';
+import 'package:load_more_flutter/pages/simple/people_interactor.dart';
+import 'package:load_more_flutter/pages/simple/people_state.dart';
+import 'package:load_more_flutter/pages/simple/simple_people_bloc.dart';
 import 'package:load_more_flutter/widgets/people_item.dart';
 
 class SimplePage extends StatefulWidget {

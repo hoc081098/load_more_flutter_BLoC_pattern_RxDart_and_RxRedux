@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:distinct_value_connectable_observable/distinct_value_connectable_observable.dart';
-import 'package:load_more_flutter/simple/people_interactor.dart';
-import 'package:load_more_flutter/simple/people_state.dart';
+import 'package:load_more_flutter/pages/simple/people_interactor.dart';
+import 'package:load_more_flutter/pages/simple/people_state.dart';
 import 'package:meta/meta.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:tuple/tuple.dart';

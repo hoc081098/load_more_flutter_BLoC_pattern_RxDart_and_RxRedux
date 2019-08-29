@@ -3,9 +3,9 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:load_more_flutter/data/people/memory_person_data_source.dart';
 import 'package:load_more_flutter/generated/i18n.dart';
-import 'package:load_more_flutter/rx_redux/people_effects.dart';
-import 'package:load_more_flutter/rx_redux/people_rx_redux_bloc.dart';
-import 'package:load_more_flutter/rx_redux/people_state_action.dart';
+import 'package:load_more_flutter/pages/rx_redux/people_effects.dart';
+import 'package:load_more_flutter/pages/rx_redux/people_rx_redux_bloc.dart';
+import 'package:load_more_flutter/pages/rx_redux/people_state_action.dart';
 import 'package:load_more_flutter/widgets/people_item.dart';
 
 class RxReduxPage extends StatefulWidget {

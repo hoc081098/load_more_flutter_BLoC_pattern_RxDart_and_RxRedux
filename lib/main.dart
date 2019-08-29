@@ -3,9 +3,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:load_more_flutter/generated/i18n.dart';
-import 'package:load_more_flutter/home_page/home_page.dart';
-import 'package:load_more_flutter/rx_redux/rx_redux_page.dart';
-import 'package:load_more_flutter/simple/simple_page.dart';
+import 'package:load_more_flutter/pages/home_page/home_page.dart';
+import 'package:load_more_flutter/pages/rx_redux/rx_redux_page.dart';
+import 'package:load_more_flutter/pages/simple/simple_page.dart';
 
 int _indentingBuiltValueToStringHelperIndent = 0;
 

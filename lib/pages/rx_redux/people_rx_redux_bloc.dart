@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:distinct_value_connectable_observable/distinct_value_connectable_observable.dart';
-import 'package:load_more_flutter/rx_redux/people_effects.dart';
-import 'package:load_more_flutter/rx_redux/people_state_action.dart';
+import 'package:load_more_flutter/pages/rx_redux/people_effects.dart';
+import 'package:load_more_flutter/pages/rx_redux/people_state_action.dart';
 import 'package:meta/meta.dart';
 import 'package:rx_redux/rx_redux.dart';
 import 'package:rxdart/rxdart.dart';
@@ -54,7 +54,7 @@ class PeopleRxReduxBloc {
     final actionSubject = PublishSubject<Action>();
 
     ///
-    /// Use package rx_redux to transform actions stream to state stream
+    /// Use package pages.rx_redux to transform actions stream to state stream
     ///
     final initialState = PeopleListState.initial();
 
