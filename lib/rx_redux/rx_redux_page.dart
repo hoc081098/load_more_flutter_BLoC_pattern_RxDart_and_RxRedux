@@ -199,6 +199,8 @@ class _RxReduxPageState extends State<RxReduxPage> {
                       ),
                     );
                   }
+
+                  return Container(width: 0, height: 0);
                 },
               );
             },

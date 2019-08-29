@@ -28,7 +28,7 @@ class PeopleEffects {
     StateAccessor<PeopleListState> state,
   ) =>
       actions
-          .ofType(TypeToken<LoadFirstPageAction>())
+          .whereType<LoadFirstPageAction>()
           .take(1)
           .map((_) => state())
           .where((state) => state.people.isEmpty)
@@ -39,7 +39,7 @@ class PeopleEffects {
     StateAccessor<PeopleListState> state,
   ) =>
       actions
-          .ofType(TypeToken<LoadNextPageAction>())
+          .whereType<LoadNextPageAction>()
           .throttleTime(Duration(milliseconds: 500))
           .map((_) => state())
           .where((state) =>
@@ -83,7 +83,7 @@ class PeopleEffects {
     Observable<Action> actions,
     StateAccessor<PeopleListState> state,
   ) =>
-      actions.ofType(TypeToken<RefreshListAction>()).exhaustMap((action) =>
+      actions.whereType<RefreshListAction>().exhaustMap((action) =>
           _nextPage(true).doOnDone(() => action.completer.complete()));
 
   Observable<Action> retryLoadNextPageEffect(
@@ -91,7 +91,7 @@ class PeopleEffects {
     StateAccessor<PeopleListState> state,
   ) =>
       actions
-          .ofType(TypeToken<RetryNextPageAction>())
+          .whereType<RetryNextPageAction>()
           .map((_) => state())
           .where((state) =>
               !state.isNextPageLoading && state.nextPageError != null)
@@ -102,7 +102,7 @@ class PeopleEffects {
     StateAccessor<PeopleListState> state,
   ) =>
       actions
-          .ofType(TypeToken<RetryFirstPageAction>())
+          .whereType<RetryFirstPageAction>()
           .map((_) => state())
           .where((state) =>
               !state.isFirstPageLoading && state.firstPageError != null)

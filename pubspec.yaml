@@ -8,11 +8,14 @@ dependencies:
     sdk: flutter
   cupertino_icons: ^0.1.2
   cloud_firestore: ^0.8.2+3
-  distinct_value_connectable_observable: ^2.0.1
+
+  distinct_value_connectable_observable: ^2.0.3
+  rxdart: ^0.22.2
+  rx_redux: ^1.0.0
+
   collection: ^1.14.11
   tuple: ^1.0.2
   built_value: ^6.6.0
-  rx_redux: ^1.0.0
 
 #flutter packages pub run build_runner build
 
