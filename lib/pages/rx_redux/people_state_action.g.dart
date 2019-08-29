@@ -20,7 +20,7 @@ class _$PeopleListState extends PeopleListState {
   @override
   final bool getAllPeople;
 
-  factory _$PeopleListState([void updates(PeopleListStateBuilder b)]) =>
+  factory _$PeopleListState([void Function(PeopleListStateBuilder) updates]) =>
       (new PeopleListStateBuilder()..update(updates)).build();
 
   _$PeopleListState._(
@@ -48,7 +48,7 @@ class _$PeopleListState extends PeopleListState {
   }
 
   @override
-  PeopleListState rebuild(void updates(PeopleListStateBuilder b)) =>
+  PeopleListState rebuild(void Function(PeopleListStateBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
@@ -97,44 +97,32 @@ class PeopleListStateBuilder
   _$PeopleListState _$v;
 
   ListBuilder<Person> _people;
-
   ListBuilder<Person> get people =>
       _$this._people ??= new ListBuilder<Person>();
-
   set people(ListBuilder<Person> people) => _$this._people = people;
 
   bool _isFirstPageLoading;
-
   bool get isFirstPageLoading => _$this._isFirstPageLoading;
-
   set isFirstPageLoading(bool isFirstPageLoading) =>
       _$this._isFirstPageLoading = isFirstPageLoading;
 
   Object _firstPageError;
-
   Object get firstPageError => _$this._firstPageError;
-
   set firstPageError(Object firstPageError) =>
       _$this._firstPageError = firstPageError;
 
   bool _isNextPageLoading;
-
   bool get isNextPageLoading => _$this._isNextPageLoading;
-
   set isNextPageLoading(bool isNextPageLoading) =>
       _$this._isNextPageLoading = isNextPageLoading;
 
   Object _nextPageError;
-
   Object get nextPageError => _$this._nextPageError;
-
   set nextPageError(Object nextPageError) =>
       _$this._nextPageError = nextPageError;
 
   bool _getAllPeople;
-
   bool get getAllPeople => _$this._getAllPeople;
-
   set getAllPeople(bool getAllPeople) => _$this._getAllPeople = getAllPeople;
 
   PeopleListStateBuilder();
@@ -161,7 +149,7 @@ class PeopleListStateBuilder
   }
 
   @override
-  void update(void updates(PeopleListStateBuilder b)) {
+  void update(void Function(PeopleListStateBuilder) updates) {
     if (updates != null) updates(this);
   }
 
@@ -193,4 +181,4 @@ class PeopleListStateBuilder
   }
 }
 
-// ignore_for_file: always_put_control_body_on_new_line,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,lines_longer_than_80_chars,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new
+// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,lines_longer_than_80_chars,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new

@@ -366,13 +366,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.3"
-  pages.rx_redux:
+  rx_redux:
     dependency: "direct main"
     description:
-      name: pages.rx_redux
+      name: rx_redux
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.0"
+    version: "1.0.0+1"
   rxdart:
     dependency: "direct main"
     description:

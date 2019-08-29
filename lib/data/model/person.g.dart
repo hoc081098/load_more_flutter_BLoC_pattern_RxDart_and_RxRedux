@@ -76,7 +76,7 @@ class _$Person extends Person {
   @override
   final String bio;
 
-  factory _$Person([void updates(PersonBuilder b)]) =>
+  factory _$Person([void Function(PersonBuilder) updates]) =>
       (new PersonBuilder()..update(updates)).build();
 
   _$Person._({this.id, this.emoji, this.name, this.bio}) : super._() {
@@ -95,7 +95,7 @@ class _$Person extends Person {
   }
 
   @override
-  Person rebuild(void updates(PersonBuilder b)) =>
+  Person rebuild(void Function(PersonBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
@@ -169,7 +169,7 @@ class PersonBuilder implements Builder<Person, PersonBuilder> {
   }
 
   @override
-  void update(void updates(PersonBuilder b)) {
+  void update(void Function(PersonBuilder) updates) {
     if (updates != null) updates(this);
   }
 
@@ -182,4 +182,4 @@ class PersonBuilder implements Builder<Person, PersonBuilder> {
   }
 }
 
-// ignore_for_file: always_put_control_body_on_new_line,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,lines_longer_than_80_chars,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new
+// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,lines_longer_than_80_chars,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new

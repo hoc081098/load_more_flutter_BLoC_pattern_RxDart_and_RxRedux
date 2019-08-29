@@ -376,7 +376,7 @@
         <entry key="rx_redux">
           <value>
             <list>
-              <option value="C:/flutter/flutter/.pub-cache/hosted/pub.dartlang.org/rx_redux-1.0.0/lib" />
+              <option value="C:/flutter/flutter/.pub-cache/hosted/pub.dartlang.org/rx_redux-1.0.0+1/lib" />
             </list>
           </value>
         </entry>
@@ -566,7 +566,7 @@
       <root url="file://C:/flutter/flutter/.pub-cache/hosted/pub.dartlang.org/pub_semver-1.4.2/lib" />
       <root url="file://C:/flutter/flutter/.pub-cache/hosted/pub.dartlang.org/pubspec_parse-0.1.4/lib" />
       <root url="file://C:/flutter/flutter/.pub-cache/hosted/pub.dartlang.org/quiver-2.0.3/lib" />
-      <root url="file://C:/flutter/flutter/.pub-cache/hosted/pub.dartlang.org/rx_redux-1.0.0/lib" />
+      <root url="file://C:/flutter/flutter/.pub-cache/hosted/pub.dartlang.org/rx_redux-1.0.0+1/lib" />
       <root url="file://C:/flutter/flutter/.pub-cache/hosted/pub.dartlang.org/rxdart-0.22.2/lib" />
       <root url="file://C:/flutter/flutter/.pub-cache/hosted/pub.dartlang.org/shelf-0.7.5/lib" />
       <root url="file://C:/flutter/flutter/.pub-cache/hosted/pub.dartlang.org/shelf_web_socket-0.2.3/lib" />
