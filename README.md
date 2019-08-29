@@ -1,8 +1,13 @@
 # load_more_flutter :iphone:
 
-Load more data when scroll to end of list view
-Paging listview flutter
-Infinite scroll listview flutter
+Load more data when scroll to end of list view <br>
+Paging listview flutter <br>
+Infinite scroll listview flutter <br>
+
+## Functionality
+* Load next page (show circular progress indicator while loading, show error when an error occurred)
+* Retry when an error occurred
+* Refresh list (remove all and load first page)
 
 ## Flutter
 
