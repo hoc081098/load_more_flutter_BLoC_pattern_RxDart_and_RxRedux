@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
-import 'package:load_more_flutter/model/person.dart';
+import 'package:load_more_flutter/data/model/person.dart';
 import 'package:meta/meta.dart';
 
 part 'people_state_action.g.dart';

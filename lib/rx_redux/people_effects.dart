@@ -1,5 +1,5 @@
-import 'package:load_more_flutter/data/people_data_source.dart';
-import 'package:load_more_flutter/model/person.dart';
+import 'package:load_more_flutter/data/model/person.dart';
+import 'package:load_more_flutter/data/people/people_data_source.dart';
 import 'package:load_more_flutter/rx_redux/people_rx_redux_bloc.dart';
 import 'package:load_more_flutter/rx_redux/people_state_action.dart';
 import 'package:load_more_flutter/util.dart';

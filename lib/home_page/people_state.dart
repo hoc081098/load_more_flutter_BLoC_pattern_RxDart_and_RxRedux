@@ -1,7 +1,7 @@
 import 'dart:collection' show UnmodifiableListView;
 
 import 'package:collection/collection.dart' show ListEquality;
-import 'package:load_more_flutter/model/person.dart';
+import 'package:load_more_flutter/data/model/person.dart';
 import 'package:meta/meta.dart';
 
 ///

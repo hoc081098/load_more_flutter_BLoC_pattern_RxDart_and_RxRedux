@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:built_collection/built_collection.dart';
-import 'package:load_more_flutter/data/people_data_source.dart';
-import 'package:load_more_flutter/model/person.dart';
+import 'package:load_more_flutter/data/model/person.dart';
+import 'package:load_more_flutter/data/people/people_data_source.dart';
 import 'package:load_more_flutter/simple/people_state.dart';
 import 'package:load_more_flutter/util.dart';
 import 'package:rxdart/rxdart.dart';
