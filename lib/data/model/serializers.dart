@@ -2,6 +2,7 @@ import 'package:built_value/serializer.dart';
 import 'package:built_value/standard_json_plugin.dart';
 import 'package:load_more_flutter/data/model/comic.dart';
 import 'package:load_more_flutter/data/model/person.dart';
+import 'package:built_collection/built_collection.dart';
 
 part 'serializers.g.dart';
 
@@ -9,6 +10,8 @@ part 'serializers.g.dart';
 @SerializersFor([
   Person,
   Comic,
+  LastChapter,
+  ErrorResponse,
 ])
 final Serializers serializers = _$serializers;
 

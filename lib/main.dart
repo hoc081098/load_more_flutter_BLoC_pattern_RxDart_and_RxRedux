@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:load_more_flutter/generated/i18n.dart';
+import 'package:load_more_flutter/pages/comics/comics_page.dart';
 import 'package:load_more_flutter/pages/home_page/home_page.dart';
 import 'package:load_more_flutter/pages/rx_redux/rx_redux_page.dart';
 import 'package:load_more_flutter/pages/simple/simple_page.dart';
@@ -100,55 +101,84 @@ class _MyAppState extends State<MyApp> {
                       },
                       title: Text('Vietnamese / English'),
                     ),
-                    RaisedButton(
-                      padding: const EdgeInsets.all(24),
-                      child: Text('Home page'),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => MyHomePage(),
-                          ),
-                        );
-                      },
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
+                    Container(
+                      margin: const EdgeInsets.symmetric(horizontal: 16),
+                      child: RaisedButton(
+                        padding: const EdgeInsets.all(16),
+                        child: Text('Home page'),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => MyHomePage(),
+                            ),
+                          );
+                        },
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        elevation: 12,
                       ),
-                      elevation: 12,
                     ),
                     SizedBox(height: 8),
-                    RaisedButton(
-                      padding: const EdgeInsets.all(24),
-                      child: Text('Simple page'),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => SimplePage(),
-                          ),
-                        );
-                      },
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
+                    Container(
+                      margin: const EdgeInsets.symmetric(horizontal: 16),
+                      child: RaisedButton(
+                        padding: const EdgeInsets.all(16),
+                        child: Text('Simple page'),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => SimplePage(),
+                            ),
+                          );
+                        },
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        elevation: 12,
                       ),
-                      elevation: 12,
                     ),
                     SizedBox(height: 8),
-                    RaisedButton(
-                      padding: const EdgeInsets.all(24),
-                      child: Text('RxRedux page'),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => RxReduxPage(),
-                          ),
-                        );
-                      },
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
+                    Container(
+                      margin: const EdgeInsets.symmetric(horizontal: 16),
+                      child: RaisedButton(
+                        padding: const EdgeInsets.all(16),
+                        child: Text('RxRedux page'),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => RxReduxPage(),
+                            ),
+                          );
+                        },
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        elevation: 12,
                       ),
-                      elevation: 12,
+                    ),
+                    SizedBox(height: 8),
+                    Container(
+                      margin: const EdgeInsets.symmetric(horizontal: 16),
+                      child: RaisedButton(
+                        padding: const EdgeInsets.all(16),
+                        child: Text('Comics page'),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ComicsPage(),
+                            ),
+                          );
+                        },
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        elevation: 12,
+                      ),
                     ),
                   ],
                 ),

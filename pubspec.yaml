@@ -16,6 +16,7 @@ dependencies:
   collection: ^1.14.11
   tuple: ^1.0.2
   built_value: ^6.6.0
+  cached_network_image: ^1.1.1
 
 #flutter packages pub run build_runner build
 
