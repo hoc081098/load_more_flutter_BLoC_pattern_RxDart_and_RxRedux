@@ -1,10 +1,10 @@
 <component name="libraryTable">
   <library name="Flutter Plugins" type="FlutterPluginsLibraryType">
     <CLASSES>
-      <root url="file://C:/flutter/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core-0.2.5+1" />
-      <root url="file://C:/flutter/flutter/.pub-cache/hosted/pub.dartlang.org/cloud_firestore-0.8.2+3" />
-      <root url="file://C:/flutter/flutter/.pub-cache/hosted/pub.dartlang.org/sqflite-1.1.6+4" />
-      <root url="file://C:/flutter/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider-1.2.0" />
+      <root url="file://$PROJECT_DIR$/../flutter/.pub-cache/hosted/pub.dartlang.org/path_provider-1.2.0" />
+      <root url="file://$PROJECT_DIR$/../flutter/.pub-cache/hosted/pub.dartlang.org/sqflite-1.1.6+4" />
+      <root url="file://$PROJECT_DIR$/../flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core-0.2.5+1" />
+      <root url="file://$PROJECT_DIR$/../flutter/.pub-cache/hosted/pub.dartlang.org/cloud_firestore-0.8.2+3" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
