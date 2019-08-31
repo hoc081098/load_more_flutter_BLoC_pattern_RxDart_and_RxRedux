@@ -20,9 +20,13 @@ Star :star: if it is helpful :thumbsup:
 <br>
 <br>
 
-| Simple BLoC page | Home page  | RxRedux page |  Comics page |
-| ------------- | ------------- | ------------- | ------------- |
-|![Simple page](screenshots/demo_simple_bloc_1.gif) |![Home page](screenshots/demo.gif) |![RxRedux page](screenshots/rx_redux_screen.gif) | ![Comics page](screenshots/comics_page.gif) |
+ Home page  | RxRedux page |  Comics page |
+| ------------- | ------------- | ------------- |
+| <img src="screenshots/demo.gif" height="480" > |<img src="screenshots/rx_redux_screen.gif" height="480" > |<img src="screenshots/comics_page.gif" height="480" > |
+
+| Simple BLoC page |
+| ------------- |
+|<img src="screenshots/demo_simple_bloc_1.gif" height="480">|
 
 ## Develop 👏
 
