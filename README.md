@@ -16,13 +16,13 @@ Star :star: if it is helpful :thumbsup:
 
 ## Demo :camera: :art:
 
-:video_camera: [Video demo](https://www.youtube.com/watch?v=YPlFaYw3CCE) :tv:
+:video_camera: [Video demo 1](https://www.youtube.com/watch?v=YPlFaYw3CCE), [Video demo 2](https://youtu.be/BX8p-v1fffw) :tv:
 <br>
 <br>
 
-| Simple BLoC page | Home page  | RxRedux page |
-| ------------- | ------------- | ------------- |
-<img height="480px" src="screenshots/demo_simple_bloc_1.gif" />  |  <img height="480px" src="screenshots/demo.gif" />  | <img height="480px" src="screenshots/rx_redux_screen.gif" height="480px"/>  |
+| Simple BLoC page | Home page  | RxRedux page |  Comics page |
+| ------------- | ------------- | ------------- | ------------- |
+|![Simple page](screenshots/demo_simple_bloc_1.gif) |![Home page](screenshots/demo.gif) |![RxRedux page](screenshots/rx_redux_screen.gif) | ![Comics page](screenshots/comics_page.gif) |
 
 ## Develop 👏
 
