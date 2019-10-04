@@ -10,7 +10,7 @@ dependencies:
   cloud_firestore: ^0.8.2+3
 
   distinct_value_connectable_observable: ^2.0.3
-  rxdart: ^0.22.2
+  rxdart: ^0.22.3
   rx_redux: ^1.0.0
 
   collection: ^1.14.11
