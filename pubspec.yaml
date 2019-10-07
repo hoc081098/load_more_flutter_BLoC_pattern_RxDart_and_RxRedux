@@ -11,7 +11,7 @@ dependencies:
 
   distinct_value_connectable_observable: ^2.0.3
   rxdart: ^0.22.3
-  rx_redux: ^1.0.0
+  rx_redux: ^1.0.1+1
 
   collection: ^1.14.11
   tuple: ^1.0.2
