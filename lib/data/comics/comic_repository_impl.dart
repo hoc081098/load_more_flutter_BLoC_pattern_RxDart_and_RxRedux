@@ -24,8 +24,6 @@ class ComicsRepositoryImpl implements ComicsRepository {
   Future<BuiltList<Comic>> _getComics(String unencodedPath, int page) async {
     print('[COMICS_REPO] _getComics $unencodedPath, $page');
 
-    await Future.delayed(const Duration(seconds: 1));
-
     final url = Uri.https(
       'comic-app-081098.herokuapp.com',
       unencodedPath,

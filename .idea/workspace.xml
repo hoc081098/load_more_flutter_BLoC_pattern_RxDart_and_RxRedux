@@ -1,12 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AndroidLogFilters">
+    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="40aeef07-9134-47b3-aa0b-7c00baa573f0" name="Default Changelist" comment="" />
+    <list default="true" id="40aeef07-9134-47b3-aa0b-7c00baa573f0" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/ios/Flutter/flutter_export_environment.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/gradle.properties" beforeDir="false" afterPath="$PROJECT_DIR$/android/gradle.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/app/outputs/apk/app.apk" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/outputs/apk/app.apk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/data/comics/comic_repository_impl.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/data/comics/comic_repository_impl.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/generated/i18n.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/generated/i18n.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/load_more_flutter.iml" beforeDir="false" afterPath="$PROJECT_DIR$/load_more_flutter.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="Nexus_One_API_23" />
+  <component name="FileEditorManager">
+    <leaf />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -24,6 +44,19 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/lib/data/comics/comic_repository_impl.dart" />
+        <option value="$PROJECT_DIR$/android/app/build.gradle" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="y" value="23" />
+    <option name="width" value="1280" />
+    <option name="height" value="712" />
+  </component>
   <component name="ProjectId" id="1Q9Tl455Km4F5vp77sRjALJ5jtd" />
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -40,7 +73,193 @@
   <component name="ProjectReloadState">
     <option name="STATE" value="1" />
   </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="AndroidView" />
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="load_more_flutter_BLoC_pattern_RxDart_and_RxRedux" type="b2602c69:ProjectViewProjectNode" />
+              <item name="load_more_flutter_BLoC_pattern_RxDart_and_RxRedux" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="load_more_flutter_BLoC_pattern_RxDart_and_RxRedux" type="b2602c69:ProjectViewProjectNode" />
+              <item name="load_more_flutter_BLoC_pattern_RxDart_and_RxRedux" type="462c0819:PsiDirectoryNode" />
+              <item name="android" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="load_more_flutter_BLoC_pattern_RxDart_and_RxRedux" type="b2602c69:ProjectViewProjectNode" />
+              <item name="load_more_flutter_BLoC_pattern_RxDart_and_RxRedux" type="462c0819:PsiDirectoryNode" />
+              <item name="android" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="load_more_flutter_BLoC_pattern_RxDart_and_RxRedux" type="b2602c69:ProjectViewProjectNode" />
+              <item name="load_more_flutter_BLoC_pattern_RxDart_and_RxRedux" type="462c0819:PsiDirectoryNode" />
+              <item name="android" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="load_more_flutter_BLoC_pattern_RxDart_and_RxRedux" type="b2602c69:ProjectViewProjectNode" />
+              <item name="load_more_flutter_BLoC_pattern_RxDart_and_RxRedux" type="462c0819:PsiDirectoryNode" />
+              <item name="android" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="load_more_flutter_BLoC_pattern_RxDart_and_RxRedux" type="b2602c69:ProjectViewProjectNode" />
+              <item name="load_more_flutter_BLoC_pattern_RxDart_and_RxRedux" type="462c0819:PsiDirectoryNode" />
+              <item name="android" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="load_more_flutter_BLoC_pattern_RxDart_and_RxRedux" type="b2602c69:ProjectViewProjectNode" />
+              <item name="load_more_flutter_BLoC_pattern_RxDart_and_RxRedux" type="462c0819:PsiDirectoryNode" />
+              <item name="android" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="load_more_flutter_BLoC_pattern_RxDart_and_RxRedux" type="b2602c69:ProjectViewProjectNode" />
+              <item name="load_more_flutter_BLoC_pattern_RxDart_and_RxRedux" type="462c0819:PsiDirectoryNode" />
+              <item name="android" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="hoc" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="load_more_flutter_BLoC_pattern_RxDart_and_RxRedux" type="b2602c69:ProjectViewProjectNode" />
+              <item name="load_more_flutter_BLoC_pattern_RxDart_and_RxRedux" type="462c0819:PsiDirectoryNode" />
+              <item name="android" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="hoc" type="462c0819:PsiDirectoryNode" />
+              <item name="loadmoreflutter" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="load_more_flutter_BLoC_pattern_RxDart_and_RxRedux" type="b2602c69:ProjectViewProjectNode" />
+              <item name="load_more_flutter_BLoC_pattern_RxDart_and_RxRedux" type="462c0819:PsiDirectoryNode" />
+              <item name="android" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="io" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="load_more_flutter_BLoC_pattern_RxDart_and_RxRedux" type="b2602c69:ProjectViewProjectNode" />
+              <item name="load_more_flutter_BLoC_pattern_RxDart_and_RxRedux" type="462c0819:PsiDirectoryNode" />
+              <item name="android" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="io" type="462c0819:PsiDirectoryNode" />
+              <item name="flutter" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="load_more_flutter_BLoC_pattern_RxDart_and_RxRedux" type="b2602c69:ProjectViewProjectNode" />
+              <item name="load_more_flutter_BLoC_pattern_RxDart_and_RxRedux" type="462c0819:PsiDirectoryNode" />
+              <item name="android" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="io" type="462c0819:PsiDirectoryNode" />
+              <item name="flutter" type="462c0819:PsiDirectoryNode" />
+              <item name="plugins" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="load_more_flutter_BLoC_pattern_RxDart_and_RxRedux" type="b2602c69:ProjectViewProjectNode" />
+              <item name="load_more_flutter_BLoC_pattern_RxDart_and_RxRedux" type="462c0819:PsiDirectoryNode" />
+              <item name="build" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="load_more_flutter_BLoC_pattern_RxDart_and_RxRedux" type="b2602c69:ProjectViewProjectNode" />
+              <item name="load_more_flutter_BLoC_pattern_RxDart_and_RxRedux" type="462c0819:PsiDirectoryNode" />
+              <item name="build" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="load_more_flutter_BLoC_pattern_RxDart_and_RxRedux" type="b2602c69:ProjectViewProjectNode" />
+              <item name="load_more_flutter_BLoC_pattern_RxDart_and_RxRedux" type="462c0819:PsiDirectoryNode" />
+              <item name="build" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="outputs" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="load_more_flutter_BLoC_pattern_RxDart_and_RxRedux" type="b2602c69:ProjectViewProjectNode" />
+              <item name="load_more_flutter_BLoC_pattern_RxDart_and_RxRedux" type="462c0819:PsiDirectoryNode" />
+              <item name="build" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="outputs" type="462c0819:PsiDirectoryNode" />
+              <item name="apk" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="load_more_flutter_BLoC_pattern_RxDart_and_RxRedux" type="b2602c69:ProjectViewProjectNode" />
+              <item name="load_more_flutter_BLoC_pattern_RxDart_and_RxRedux" type="462c0819:PsiDirectoryNode" />
+              <item name="ios" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="load_more_flutter_BLoC_pattern_RxDart_and_RxRedux" type="b2602c69:ProjectViewProjectNode" />
+              <item name="load_more_flutter_BLoC_pattern_RxDart_and_RxRedux" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="load_more_flutter_BLoC_pattern_RxDart_and_RxRedux" type="b2602c69:ProjectViewProjectNode" />
+              <item name="load_more_flutter_BLoC_pattern_RxDart_and_RxRedux" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+              <item name="data" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="load_more_flutter_BLoC_pattern_RxDart_and_RxRedux" type="b2602c69:ProjectViewProjectNode" />
+              <item name="load_more_flutter_BLoC_pattern_RxDart_and_RxRedux" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+              <item name="data" type="462c0819:PsiDirectoryNode" />
+              <item name="comics" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="load_more_flutter_BLoC_pattern_RxDart_and_RxRedux" type="b2602c69:ProjectViewProjectNode" />
+              <item name="load_more_flutter_BLoC_pattern_RxDart_and_RxRedux" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+              <item name="data" type="462c0819:PsiDirectoryNode" />
+              <item name="model" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="load_more_flutter_BLoC_pattern_RxDart_and_RxRedux" type="b2602c69:ProjectViewProjectNode" />
+              <item name="load_more_flutter_BLoC_pattern_RxDart_and_RxRedux" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+              <item name="data" type="462c0819:PsiDirectoryNode" />
+              <item name="people" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1561042419654" />
     <property name="dart.analysis.tool.window.force.activate" value="false" />
     <property name="io.flutter.reload.alreadyRun" value="true" />
@@ -204,26 +423,6 @@
     <option name="localTasksCounter" value="14" />
     <servers />
   </component>
-  <component name="TestHistory">
-    <history-entry file="Counter_increments_smoke_test - 2018.12.26 at 23h 22m 57s.xml">
-      <configuration name="Counter increments smoke test" configurationId="FlutterTestConfigType" />
-    </history-entry>
-    <history-entry file="tests_in_comics_repository_impl_test_dart - 2019.08.29 at 21h 15m 28s.xml">
-      <configuration name="tests in comics_repository_impl_test.dart" configurationId="FlutterTestConfigType" />
-    </history-entry>
-    <history-entry file="tests_in_comics_repository_impl_test_dart - 2019.08.29 at 21h 16m 18s.xml">
-      <configuration name="tests in comics_repository_impl_test.dart" configurationId="FlutterTestConfigType" />
-    </history-entry>
-    <history-entry file="tests_in_comics_repository_impl_test_dart - 2019.08.29 at 21h 17m 00s.xml">
-      <configuration name="tests in comics_repository_impl_test.dart" configurationId="FlutterTestConfigType" />
-    </history-entry>
-    <history-entry file="tests_in_comics_repository_impl_test_dart - 2019.08.29 at 21h 17m 34s.xml">
-      <configuration name="tests in comics_repository_impl_test.dart" configurationId="FlutterTestConfigType" />
-    </history-entry>
-    <history-entry file="tests_in_comics_repository_impl_test_dart - 2019.08.29 at 21h 17m 55s.xml">
-      <configuration name="tests in comics_repository_impl_test.dart" configurationId="FlutterTestConfigType" />
-    </history-entry>
-  </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
       <is-autoscroll-to-source value="true" />
@@ -233,12 +432,48 @@
       <is-autoscroll-to-source value="true" />
     </todo-panel>
   </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="23" width="1280" height="712" extended-state="0" />
+    <layout>
+      <window_info content_ui="combo" id="Project" visible="true" weight="0.27382874" />
+      <window_info id="Structure" side_tool="true" />
+      <window_info id="Favorites" side_tool="true" />
+      <window_info id="Build Variants" side_tool="true" />
+      <window_info id="Image Layers" />
+      <window_info id="Designer" />
+      <window_info id="Resources Explorer" />
+      <window_info id="Capture Tool" />
+      <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Dart Analysis" />
+      <window_info anchor="bottom" id="Run" weight="0.66129035" />
+      <window_info anchor="bottom" id="Logcat" weight="0.32903227" />
+      <window_info anchor="bottom" id="TODO" />
+      <window_info anchor="bottom" id="Debug" />
+      <window_info anchor="bottom" id="Terminal" weight="0.62741935" />
+      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info anchor="bottom" id="Flutter Performance" side_tool="true" />
+      <window_info active="true" anchor="bottom" id="Version Control" visible="true" weight="0.59032255" />
+      <window_info anchor="bottom" id="Android Profiler" show_stripe_button="false" />
+      <window_info anchor="right" id="Device File Explorer" side_tool="true" />
+      <window_info anchor="right" id="Capture Analysis" />
+      <window_info anchor="right" id="Theme Preview" />
+      <window_info anchor="right" id="Flutter Inspector" />
+      <window_info anchor="right" id="Flutter Outline" />
+      <window_info anchor="right" id="Palette&#9;" />
+    </layout>
+  </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
           <value>
             <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
               <option name="COLUMN_ORDER" />
             </State>
           </value>
@@ -275,5 +510,49 @@
     <MESSAGE value="[UPDATE] Setup firebase iOS" />
     <MESSAGE value="[UPDATE] Test" />
     <option name="LAST_COMMIT_MESSAGE" value="[UPDATE] Test" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/lib/data/comics/comic_repository_impl.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="528">
+          <caret line="24" column="60" selection-start-line="24" selection-start-column="60" selection-end-line="24" selection-end-column="60" />
+          <folding>
+            <element signature="e#0#22#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ios/Podfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1148" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/android/app/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="594">
+          <caret line="27" column="26" selection-start-line="27" selection-start-column="26" selection-end-line="27" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/android/app/src/main/java/io/flutter/plugins/GeneratedPluginRegistrant.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-251">
+          <caret line="2" column="7" lean-forward="true" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/android/app/src/main/java/com/hoc/loadmoreflutter/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="44">
+          <caret line="2" column="7" lean-forward="true" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
   </component>
 </project>
