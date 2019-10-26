@@ -20,13 +20,11 @@ Star :star: if it is helpful :thumbsup:
 <br>
 <br>
 
-| RxRedux page |  Comics page |
-| ------------- | ------------- |
-|<img src="https://github.com/hoc081098/hoc081098.github.io/blob/master/load_more/rx_redux_screen.gif?raw=true" height="480" > |<img src="https://github.com/hoc081098/hoc081098.github.io/blob/master/load_more/comics_page.gif?raw=true" height="480" > |
 
-| Simple BLoC page |  Home page  |
-| ------------- | ------------- |
-|<img src="https://github.com/hoc081098/hoc081098.github.io/blob/master/load_more/demo_simple_bloc_1.gif?raw=true" height="480">|  <img src="https://github.com/hoc081098/hoc081098.github.io/blob/master/load_more/demo.gif?raw=true" height="480" > |
+
+| RxRedux page |  Comics page | Simple BLoC page |  Home page  |
+| ------------- | -------------  | ------------- | ------------- |
+|<img src="https://github.com/hoc081098/hoc081098.github.io/blob/master/load_more/rx_redux_screen.gif?raw=true" width="480" > |<img src="https://github.com/hoc081098/hoc081098.github.io/blob/master/load_more/comics_page.gif?raw=true" width="480" > |<img src="https://github.com/hoc081098/hoc081098.github.io/blob/master/load_more/demo_simple_bloc_1.gif?raw=true" width="480">|  <img src="https://github.com/hoc081098/hoc081098.github.io/blob/master/load_more/demo.gif?raw=true" width="480" > |
 
 ## Develop 👏
 
