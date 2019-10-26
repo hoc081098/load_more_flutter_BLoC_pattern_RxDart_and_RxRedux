@@ -22,11 +22,11 @@ Star :star: if it is helpful :thumbsup:
 
  Home page  | RxRedux page |  Comics page |
 | ------------- | ------------- | ------------- |
-| <img src="screenshots/demo.gif" height="480" > |<img src="screenshots/rx_redux_screen.gif" height="480" > |<img src="screenshots/comics_page.gif" height="480" > |
+| <img src="https://github.com/hoc081098/hoc081098.github.io/blob/master/load_more/demo.gif?raw=true" height="480" > |<img src="https://github.com/hoc081098/hoc081098.github.io/blob/master/load_more/rx_redux_screen.gif?raw=true" height="480" > |<img src="https://github.com/hoc081098/hoc081098.github.io/blob/master/load_more/comics_page.gif?raw=true" height="480" > |
 
 | Simple BLoC page |
 | ------------- |
-|<img src="screenshots/demo_simple_bloc_1.gif" height="480">|
+|<img src="https://github.com/hoc081098/hoc081098.github.io/blob/master/load_more/demo_simple_bloc_1.gif?raw=true" height="480">|
 
 ## Develop 👏
 
