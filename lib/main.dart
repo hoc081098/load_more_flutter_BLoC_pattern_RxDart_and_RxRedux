@@ -42,6 +42,7 @@ class CustomIndentingBuiltValueToStringHelper
 }
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   newBuiltValueToStringHelper =
       (className) => CustomIndentingBuiltValueToStringHelper(className);
   await Firestore.instance.settings(timestampsInSnapshotsEnabled: true);
