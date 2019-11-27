@@ -4,35 +4,9 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="40aeef07-9134-47b3-aa0b-7c00baa573f0" name="Default Changelist" comment="[UPDATE]">
-      <change afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/pages/comics/bloc/comic.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/pages/comics/widgets/comic_horizontal_list.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/pages/comics/widgets/comic_item.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/pages/comics/widgets/error_item.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/pages/comics/widgets/header_item.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/pages/comics/widgets/list_type.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/pages/comics/widgets/widgets.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/pages/rx_redux/bloc/bloc.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
+    <list default="true" id="40aeef07-9134-47b3-aa0b-7c00baa573f0" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Flutter/flutter_export_environment.sh" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Flutter/flutter_export_environment.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/pages/comics/comics_effects.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/comics/bloc/comics_effects.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/pages/comics/comics_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/comics/comics_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/pages/comics/comics_rx_redux_bloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/comics/bloc/comics_bloc.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/pages/comics/comics_state_and_action.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/comics/bloc/comics_state_and_action.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/pages/comics/comics_state_and_action.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/comics/bloc/comics_state_and_action.g.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/pages/comics/comics_usecase.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/comics/bloc/comics_usecase.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/pages/rx_redux/people_effects.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/rx_redux/bloc/people_effects.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/pages/rx_redux/people_rx_redux_bloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/rx_redux/bloc/people_rx_redux_bloc.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/pages/rx_redux/people_state_action.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/rx_redux/bloc/people_state_action.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/pages/rx_redux/people_state_action.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/rx_redux/bloc/people_state_action.g.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/pages/rx_redux/rx_redux_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/rx_redux/rx_redux_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/pages/simple/people_interactor.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/simple/people_interactor.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/util.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/util.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/gradle.properties" beforeDir="false" afterPath="$PROJECT_DIR$/android/gradle.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -239,7 +213,14 @@
       <option name="project" value="LOCAL" />
       <updated>1572100131304</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="[UPDATE]">
+      <created>1574861312395</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1574861312395</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TodoView">
