@@ -1,11 +1,10 @@
-import 'package:load_more_flutter/pages/comics/comics_state_and_action.dart';
-import 'package:load_more_flutter/pages/comics/comics_usecase.dart';
+import 'package:load_more_flutter/pages/comics/bloc/comics_state_and_action.dart';
+import 'package:load_more_flutter/pages/comics/bloc/comics_usecase.dart';
 import 'package:rx_redux/rx_redux.dart';
 import 'package:rxdart/rxdart.dart';
 
 ///
-/// Class hold [SideEffect]s
-/// And expose message stream
+/// This class holds [SideEffect]s and exposes message stream
 ///
 class ComicsEffects {
   final GetComicsUseCase _getComicsUseCase;

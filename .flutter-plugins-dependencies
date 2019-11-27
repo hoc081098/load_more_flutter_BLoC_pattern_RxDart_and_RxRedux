@@ -1,0 +1,1 @@
+{"dependencyGraph":[{"name":"cloud_firestore","dependencies":["firebase_core"]},{"name":"firebase_core","dependencies":[]},{"name":"path_provider","dependencies":[]},{"name":"sqflite","dependencies":[]}]}

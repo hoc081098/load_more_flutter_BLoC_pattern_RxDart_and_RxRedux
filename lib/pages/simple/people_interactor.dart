@@ -32,7 +32,7 @@ class PeopleInteractor {
     final getPeople = _peopleDataSource.getPeople(
       field: 'name',
       limit: pageSize,
-      startAfter: refreshList ? null : lastOrNull(currentState.people),
+      startAfter: refreshList ? null : currentState.people.lastOrNull,
     );
 
     ///

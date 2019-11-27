@@ -3,9 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:load_more_flutter/data/people/memory_person_data_source.dart';
 import 'package:load_more_flutter/generated/i18n.dart';
-import 'package:load_more_flutter/pages/rx_redux/people_effects.dart';
-import 'package:load_more_flutter/pages/rx_redux/people_rx_redux_bloc.dart';
-import 'package:load_more_flutter/pages/rx_redux/people_state_action.dart';
+import 'package:load_more_flutter/pages/rx_redux/bloc/bloc.dart';
 import 'package:load_more_flutter/widgets/people_item.dart';
 
 class RxReduxPage extends StatefulWidget {
@@ -102,40 +100,7 @@ class _RxReduxPageState extends State<RxReduxPage> {
               }
 
               if (state.firstPageError != null) {
-                return Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 8),
-                  child: Center(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      mainAxisSize: MainAxisSize.min,
-                      children: <Widget>[
-                        ListTile(
-                          title: Text(
-                            S.of(context).error_occurred_loading_next_page(
-                                state.firstPageError.toString()),
-                            style: Theme.of(context).textTheme.subtitle,
-                          ),
-                          isThreeLine: false,
-                          leading: CircleAvatar(
-                            child: Icon(
-                              Icons.mood_bad,
-                              color: Colors.white,
-                            ),
-                            backgroundColor: Colors.redAccent,
-                          ),
-                        ),
-                        RaisedButton(
-                          child: Text(S.of(context).retry),
-                          padding: const EdgeInsets.all(16),
-                          onPressed: _rxReduxBloc.retryFirstPage,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(4),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                );
+                return _buildFirstPageError(state);
               }
 
               final people = state.people;
@@ -165,39 +130,7 @@ class _RxReduxPageState extends State<RxReduxPage> {
                   }
 
                   if (state.nextPageError != null) {
-                    return Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        mainAxisSize: MainAxisSize.min,
-                        children: <Widget>[
-                          ListTile(
-                            title: Text(
-                              S.of(context).error_occurred_loading_next_page(
-                                  state.nextPageError.toString()),
-                              style: Theme.of(context).textTheme.subtitle,
-                            ),
-                            isThreeLine: false,
-                            leading: CircleAvatar(
-                              child: Icon(
-                                Icons.mood_bad,
-                                color: Colors.white,
-                              ),
-                              backgroundColor: Colors.redAccent,
-                            ),
-                          ),
-                          FlatButton.icon(
-                            padding: const EdgeInsets.all(16),
-                            icon: Icon(Icons.refresh),
-                            label: Text(S.of(context).retry),
-                            onPressed: _rxReduxBloc.retryNextPage,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(4),
-                            ),
-                          ),
-                        ],
-                      ),
-                    );
+                    return _buildNextPageError(state);
                   }
 
                   return Container(width: 0, height: 0);
@@ -206,6 +139,79 @@ class _RxReduxPageState extends State<RxReduxPage> {
             },
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _buildFirstPageError(PeopleListState state) {
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 8),
+      child: Center(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            ListTile(
+              title: Text(
+                S.of(context).error_occurred_loading_next_page(
+                    state.firstPageError.toString()),
+                style: Theme.of(context).textTheme.subtitle,
+              ),
+              isThreeLine: false,
+              leading: CircleAvatar(
+                child: Icon(
+                  Icons.mood_bad,
+                  color: Colors.white,
+                ),
+                backgroundColor: Colors.redAccent,
+              ),
+            ),
+            RaisedButton(
+              child: Text(S.of(context).retry),
+              padding: const EdgeInsets.all(16),
+              onPressed: _rxReduxBloc.retryFirstPage,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(4),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildNextPageError(PeopleListState state) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          ListTile(
+            title: Text(
+              S.of(context).error_occurred_loading_next_page(
+                  state.nextPageError.toString()),
+              style: Theme.of(context).textTheme.subtitle,
+            ),
+            isThreeLine: false,
+            leading: CircleAvatar(
+              child: Icon(
+                Icons.mood_bad,
+                color: Colors.white,
+              ),
+              backgroundColor: Colors.redAccent,
+            ),
+          ),
+          FlatButton.icon(
+            padding: const EdgeInsets.all(16),
+            icon: Icon(Icons.refresh),
+            label: Text(S.of(context).retry),
+            onPressed: _rxReduxBloc.retryNextPage,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(4),
+            ),
+          ),
+        ],
       ),
     );
   }
