@@ -12,9 +12,10 @@ dependencies:
   cupertino_icons: ^0.1.2
   cloud_firestore: ^0.12.10+2
 
-  distinct_value_connectable_observable: ^2.0.3+1
-  rxdart: ^0.22.6
-  rx_redux: ^1.0.1+1
+  distinct_value_connectable_stream: ^1.0.3
+  rxdart: ^0.23.1
+  rx_redux: ^1.1.0
+  disposebag: ^1.0.0+1
 
   collection: ^1.14.11
   tuple: ^1.0.2

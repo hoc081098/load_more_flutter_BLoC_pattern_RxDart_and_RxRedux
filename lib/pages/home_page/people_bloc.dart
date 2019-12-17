@@ -24,7 +24,7 @@ class PeopleBloc {
   /// BehaviorSubject of errors, emit null when have no error
   ///
   final _errorController = BehaviorSubject<Object>.seeded(null, sync: true);
-  ValueObservable<Object> _errorNullable$;
+  ValueStream<Object> _errorNullable$;
   Stream<Object> _errorNotNull$; // stream of errors exposed to UI
 
   ///
@@ -32,7 +32,7 @@ class PeopleBloc {
   ///
   final _isLoadingFirstPageController =
       BehaviorSubject<bool>.seeded(false, sync: true);
-  ValueObservable<bool> _isLoadingFirstPage$;
+  ValueStream<bool> _isLoadingFirstPage$;
 
   ///
   /// PublishSubject handle load first page intent
@@ -47,7 +47,7 @@ class PeopleBloc {
   ///
   /// Stream of states
   ///
-  ValueConnectableObservable<PeopleListState> _peopleList$;
+  ValueConnectableStream<PeopleListState> _peopleList$;
   StreamSubscription<PeopleListState> _streamSubscription;
 
   ///
@@ -71,7 +71,7 @@ class PeopleBloc {
     _errorNotNull$ = _errorController.where((error) => error != null);
     _isLoadingFirstPage$ = _isLoadingFirstPageController.stream;
 
-    final Observable<PeopleListState> loadMore = _loadMoreController
+    final Stream<PeopleListState> loadMore = _loadMoreController
         .throttleTime(Duration(milliseconds: 500))
         .doOnData((_) => print('_loadMoreController emitted...'))
         .where((_) {
@@ -86,19 +86,19 @@ class PeopleBloc {
           (data) => print('after exhaustMap onNext = $data'),
         ); // use exhaustMap operator, to ignore all value source emit, while loading data from api,
 
-    final Observable<PeopleListState> loadFirstPage = _loadFirstPageController
+    final Stream<PeopleListState> loadFirstPage = _loadFirstPageController
         .doOnData((_) => print('Load first page emitted...'))
         .map((_) => true)
         .flatMap(_loadMoreData)
         .doOnData((data) => print('after flatMap onNext = $data'));
 
-    final Observable<Observable<PeopleListState>> streams = Observable.merge([
+    final Stream<Stream<PeopleListState>> streams = Rx.merge([
       loadFirstPage,
       loadMore,
-    ]).map((state) => Observable.just(state));
+    ]).map((state) => Stream.value(state));
     // merger to one stream, and map each state to Observable
 
-    _peopleList$ = Observable.switchLatest(streams)
+    _peopleList$ = Rx.switchLatest(streams)
         .distinct()
         .doOnData((state) => print('state = $state'))
         .publishValueSeeded(PeopleListState.initial());

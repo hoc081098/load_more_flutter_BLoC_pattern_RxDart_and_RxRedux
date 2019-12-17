@@ -16,7 +16,7 @@ class PeopleInteractor {
   const PeopleInteractor(this._peopleDataSource)
       : assert(_peopleDataSource != null);
 
-  Observable<PeopleListState> fetchData(
+  Stream<PeopleListState> fetchData(
       Tuple3<PeopleListState, bool, Completer<void>> tuple,
       Sink<Message> messageSink) {
     ///
@@ -84,7 +84,7 @@ class PeopleInteractor {
     ///
     /// Return state [Stream]
     ///
-    return Observable.fromFuture(getPeople)
+    return Stream.fromFuture(getPeople)
         .map(toListState)
         .doOnData(addLoadAllPeopleMessageIfLoadedAll)
         .doOnError(addErrorMessage)

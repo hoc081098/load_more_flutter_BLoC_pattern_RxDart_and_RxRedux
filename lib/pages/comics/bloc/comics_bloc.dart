@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:distinct_value_connectable_observable/distinct_value_connectable_observable.dart';
+import 'package:distinct_value_connectable_stream/distinct_value_connectable_stream.dart';
 import 'package:load_more_flutter/pages/comics/bloc/comics_effects.dart';
 import 'package:load_more_flutter/pages/comics/bloc/comics_state_and_action.dart';
 import 'package:meta/meta.dart';
@@ -18,7 +18,7 @@ class ComicsBloc {
   final void Function() retryNextPage;
 
   /// Output [Stream]s
-  final ValueObservable<ComicsListState> comicsList$;
+  final ValueStream<ComicsListState> comicsList$;
   final Stream<Message> message$;
 
   /// Clean up: close controller, cancel subscription
@@ -42,33 +42,26 @@ class ComicsBloc {
     /// Use package rx_redux to transform actions stream to state stream
     final initialState = ComicsListState.initial();
 
-    final state$ = actionSubject
-        .doOnData((action) => print('$tag [INPUT_ACTION] = $action'))
-        .transform(
-          ReduxStoreStreamTransformer<Action, ComicsListState>(
-            reducer: (state, action) => action.reducer(state),
-            initialStateSupplier: () => initialState,
-            sideEffects: [
-              effects.loadFirstPageEffect,
-              effects.loadNextPageEffect,
-              effects.refreshListEffect,
-              effects.retryLoadFirstPageEffect,
-              effects.retryLoadNextPageEffect,
-            ],
-          ),
-        );
-
     /// Broadcast, distinct until changed, value observable
-    final stateDistinct$ =
-        publishValueSeededDistinct(state$, seedValue: initialState);
+    final state$ = actionSubject.reduxStore<ComicsListState>(
+      reducer: (state, action) => action.reducer(state),
+      initialStateSupplier: () => initialState,
+      sideEffects: [
+        effects.loadFirstPageEffect,
+        effects.loadNextPageEffect,
+        effects.refreshListEffect,
+        effects.retryLoadFirstPageEffect,
+        effects.retryLoadNextPageEffect,
+      ],
+    ).publishValueSeededDistinct(seedValue: initialState);
 
     final subscriptions = <StreamSubscription>[
       /// Listen streams
-      stateDistinct$.listen((state) => print('$tag [FINAL_STATE] = $state')),
+      state$.listen((state) => print('$tag [STATE] = $state')),
       effects.message$.listen((message) => print('$tag [MESSAGE] = $message')),
 
       /// Connect [ConnectableObservable]
-      stateDistinct$.connect(),
+      state$.connect(),
     ];
 
     /// Dispatch an [action]
@@ -84,7 +77,7 @@ class ComicsBloc {
       loadFirstPage: dispatch(const LoadFirstPageAction()),
       loadNextPage: dispatch(const LoadNextPageAction()),
       retryNextPage: dispatch(const RetryNextPageAction()),
-      comicsList$: stateDistinct$,
+      comicsList$: state$,
       refresh: () {
         final completer = Completer<void>();
         dispatch(RefreshListAction(completer))();

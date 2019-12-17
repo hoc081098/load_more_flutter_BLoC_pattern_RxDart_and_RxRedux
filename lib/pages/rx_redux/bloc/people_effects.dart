@@ -22,8 +22,8 @@ class PeopleEffects {
   ///
   Stream<Message> get message$ => _messageSubject;
 
-  Observable<Action> loadFirstPageEffect(
-    Observable<Action> actions,
+  Stream<Action> loadFirstPageEffect(
+    Stream<Action> actions,
     StateAccessor<PeopleListState> state,
   ) =>
       actions
@@ -33,8 +33,8 @@ class PeopleEffects {
           .where((state) => state.people.isEmpty)
           .flatMap((_) => _nextPage(true));
 
-  Observable<Action> loadNextPageEffect(
-    Observable<Action> actions,
+  Stream<Action> loadNextPageEffect(
+    Stream<Action> actions,
     StateAccessor<PeopleListState> state,
   ) =>
       actions
@@ -48,8 +48,8 @@ class PeopleEffects {
               !state.isNextPageLoading)
           .exhaustMap((state) => _nextPage(false, state.people.lastOrNull));
 
-  Observable<Action> _nextPage(bool isFirstPage, [Person startAfter]) =>
-      Observable.defer(() => Stream.fromFuture(
+  Stream<Action> _nextPage(bool isFirstPage, [Person startAfter]) =>
+      Rx.defer(() => Stream.fromFuture(
                 _peopleDataSource.getPeople(
                   field: 'name',
                   limit: pageSize,
@@ -78,15 +78,15 @@ class PeopleEffects {
             }
           });
 
-  Observable<Action> refreshListEffect(
-    Observable<Action> actions,
+  Stream<Action> refreshListEffect(
+    Stream<Action> actions,
     StateAccessor<PeopleListState> state,
   ) =>
       actions.whereType<RefreshListAction>().exhaustMap((action) =>
           _nextPage(true).doOnDone(() => action.completer.complete()));
 
-  Observable<Action> retryLoadNextPageEffect(
-    Observable<Action> actions,
+  Stream<Action> retryLoadNextPageEffect(
+    Stream<Action> actions,
     StateAccessor<PeopleListState> state,
   ) =>
       actions
@@ -96,8 +96,8 @@ class PeopleEffects {
               !state.isNextPageLoading && state.nextPageError != null)
           .exhaustMap((state) => _nextPage(false, state.people.lastOrNull));
 
-  Observable<Action> retryLoadFirstPageEffect(
-    Observable<Action> actions,
+  Stream<Action> retryLoadFirstPageEffect(
+    Stream<Action> actions,
     StateAccessor<PeopleListState> state,
   ) =>
       actions

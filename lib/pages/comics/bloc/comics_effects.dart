@@ -17,8 +17,8 @@ class ComicsEffects {
   ///
   Stream<Message> get message$ => _messageSubject;
 
-  Observable<Action> loadFirstPageEffect(
-    Observable<Action> actions,
+  Stream<Action> loadFirstPageEffect(
+    Stream<Action> actions,
     StateAccessor<ComicsListState> state,
   ) =>
       actions
@@ -28,8 +28,8 @@ class ComicsEffects {
           .where((state) => state.comics.isEmpty)
           .flatMap((_) => _nextPage(true));
 
-  Observable<Action> loadNextPageEffect(
-    Observable<Action> actions,
+  Stream<Action> loadNextPageEffect(
+    Stream<Action> actions,
     StateAccessor<ComicsListState> state,
   ) =>
       actions
@@ -43,8 +43,8 @@ class ComicsEffects {
               !state.isNextPageLoading)
           .exhaustMap((state) => _nextPage(false, state.page + 1));
 
-  Observable<Action> _nextPage(bool isFirstPage, [int page = 1]) =>
-      Observable.defer(() => Stream.fromFuture(
+  Stream<Action> _nextPage(bool isFirstPage, [int page = 1]) =>
+      Rx.defer(() => Stream.fromFuture(
                 _getComicsUseCase.getComics(page),
               ))
           .map<Action>((comics) {
@@ -67,15 +67,15 @@ class ComicsEffects {
             }
           });
 
-  Observable<Action> refreshListEffect(
-    Observable<Action> actions,
+  Stream<Action> refreshListEffect(
+    Stream<Action> actions,
     StateAccessor<ComicsListState> state,
   ) =>
       actions.whereType<RefreshListAction>().exhaustMap((action) =>
           _nextPage(true).doOnDone(() => action.completer.complete()));
 
-  Observable<Action> retryLoadNextPageEffect(
-    Observable<Action> actions,
+  Stream<Action> retryLoadNextPageEffect(
+    Stream<Action> actions,
     StateAccessor<ComicsListState> state,
   ) =>
       actions
@@ -85,8 +85,8 @@ class ComicsEffects {
               !state.isNextPageLoading && state.nextPageError != null)
           .exhaustMap((state) => _nextPage(false, state.page + 1));
 
-  Observable<Action> retryLoadFirstPageEffect(
-    Observable<Action> actions,
+  Stream<Action> retryLoadFirstPageEffect(
+    Stream<Action> actions,
     StateAccessor<ComicsListState> state,
   ) =>
       actions

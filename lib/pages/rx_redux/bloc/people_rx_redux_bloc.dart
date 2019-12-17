@@ -1,6 +1,7 @@
 import 'dart:async';
 
-import 'package:distinct_value_connectable_observable/distinct_value_connectable_observable.dart';
+import 'package:disposebag/disposebag.dart';
+import 'package:distinct_value_connectable_stream/distinct_value_connectable_stream.dart';
 import 'package:load_more_flutter/pages/rx_redux/bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:rx_redux/rx_redux.dart';
@@ -8,31 +9,23 @@ import 'package:rxdart/rxdart.dart';
 
 // ignore_for_file: close_sinks
 
-///
-/// BLoC + RxRedux => ❤️
+/// BLoC + RxRedux = ❤️
 /// pagination list BLoC, using rx_redux package
-///
 class PeopleRxReduxBloc {
   static const tag = '[PEOPLE_RX_REDUX_BLOC]';
 
-  ///
   /// Input [Function]s
-  ///
   final Future<void> Function() refresh;
   final void Function() loadFirstPage;
   final void Function() loadNextPage;
   final void Function() retryFirstPage;
   final void Function() retryNextPage;
 
-  ///
   /// Output [Stream]s
-  ///
-  final ValueObservable<PeopleListState> peopleList$;
+  final ValueStream<PeopleListState> peopleList$;
   final Stream<Message> message$;
 
-  ///
   /// Clean up: close controller, cancel subscription
-  ///
   final void Function() dispose;
 
   PeopleRxReduxBloc._({
@@ -47,64 +40,47 @@ class PeopleRxReduxBloc {
   });
 
   factory PeopleRxReduxBloc(PeopleEffects effects) {
-    ///
     /// Subjects
-    ///
-    final actionSubject = PublishSubject<Action>();
+    final actionS = PublishSubject<Action>();
 
-    ///
     /// Use package pages.rx_redux to transform actions stream to state stream
-    ///
     final initialState = PeopleListState.initial();
 
-    final state$ = actionSubject
-        .doOnData((action) => print('$tag [INPUT_ACTION] = $action'))
-        .transform(
-          ReduxStoreStreamTransformer<Action, PeopleListState>(
-            reducer: (state, action) => action.reducer(state),
-            initialStateSupplier: () => initialState,
-            sideEffects: [
-              effects.loadFirstPageEffect,
-              effects.loadNextPageEffect,
-              effects.refreshListEffect,
-              effects.retryLoadFirstPageEffect,
-              effects.retryLoadNextPageEffect,
-            ],
-          ),
-        )
-        .doOnData((state) => print('$tag [REDUX_STORE_STATE] = $state'));
-
-    ///
     /// Broadcast, distinct until changed, value observable
-    ///
-    final stateDistinct$ =
-        publishValueSeededDistinct(state$, seedValue: initialState);
+    final state$ = actionS.reduxStore<PeopleListState>(
+      reducer: (state, action) => action.reducer(state),
+      initialStateSupplier: () => initialState,
+      sideEffects: [
+        effects.loadFirstPageEffect,
+        effects.loadNextPageEffect,
+        effects.refreshListEffect,
+        effects.retryLoadFirstPageEffect,
+        effects.retryLoadNextPageEffect,
+      ],
+    ).publishValueSeededDistinct(seedValue: initialState);
 
-    final subscriptions = <StreamSubscription>[
+    final subscriptions = [
       /// Listen streams
-      stateDistinct$.listen((state) => print('$tag [FINAL_STATE] = $state')),
+      state$.listen((state) => print('$tag [STATE] = $state')),
       effects.message$.listen((message) => print('$tag [MESSAGE] = $message')),
 
       /// Connect [ConnectableObservable]
-      stateDistinct$.connect(),
+      state$.connect(),
     ];
 
-    ///
     /// Dispatch an [action]
-    ///
-    dispatch(Action action) => () => actionSubject.add(action);
+    dispatch(Action action) => () => actionS.add(action);
 
     return PeopleRxReduxBloc._(
       dispose: () async {
-        await Future.wait(subscriptions.map((s) => s.cancel()));
-        await actionSubject.close();
+        await DisposeBag([...subscriptions, actionS]).dispose();
         await effects.dispose();
         print('$tag [DISPOSED]');
       },
       loadFirstPage: dispatch(const LoadFirstPageAction()),
       loadNextPage: dispatch(const LoadNextPageAction()),
       retryNextPage: dispatch(const RetryNextPageAction()),
-      peopleList$: stateDistinct$,
+      peopleList$: state$,
       refresh: () {
         final completer = Completer<void>();
         dispatch(RefreshListAction(completer))();
