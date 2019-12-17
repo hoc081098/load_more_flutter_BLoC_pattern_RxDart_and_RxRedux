@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:disposebag/disposebag.dart';
 import 'package:distinct_value_connectable_stream/distinct_value_connectable_stream.dart';
 import 'package:load_more_flutter/pages/comics/bloc/comics_effects.dart';
 import 'package:load_more_flutter/pages/comics/bloc/comics_state_and_action.dart';
@@ -37,13 +38,13 @@ class ComicsBloc {
 
   factory ComicsBloc(final ComicsEffects effects, final String tag) {
     /// Subjects
-    final actionSubject = PublishSubject<Action>();
+    final actionS = PublishSubject<Action>();
 
     /// Use package rx_redux to transform actions stream to state stream
     final initialState = ComicsListState.initial();
 
     /// Broadcast, distinct until changed, value observable
-    final state$ = actionSubject.reduxStore<ComicsListState>(
+    final state$ = actionS.reduxStore<ComicsListState>(
       reducer: (state, action) => action.reducer(state),
       initialStateSupplier: () => initialState,
       sideEffects: [
@@ -65,12 +66,11 @@ class ComicsBloc {
     ];
 
     /// Dispatch an [action]
-    dispatch(Action action) => () => actionSubject.add(action);
+    dispatch(Action action) => () => actionS.add(action);
 
     return ComicsBloc._(
       dispose: () async {
-        await Future.wait(subscriptions.map((s) => s.cancel()));
-        await actionSubject.close();
+        await DisposeBag([...subscriptions, actionS]).dispose();
         await effects.dispose();
         print('$tag [DISPOSED]');
       },

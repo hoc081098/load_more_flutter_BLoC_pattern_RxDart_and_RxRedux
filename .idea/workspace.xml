@@ -5,17 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="40aeef07-9134-47b3-aa0b-7c00baa573f0" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/pages/comics/bloc/comics_bloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/comics/bloc/comics_bloc.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/pages/comics/bloc/comics_effects.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/comics/bloc/comics_effects.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/pages/home_page/people_bloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/home_page/people_bloc.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/pages/rx_redux/bloc/people_effects.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/rx_redux/bloc/people_effects.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/pages/rx_redux/bloc/people_rx_redux_bloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/rx_redux/bloc/people_rx_redux_bloc.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/pages/simple/people_interactor.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/simple/people_interactor.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/pages/simple/simple_people_bloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/simple/simple_people_bloc.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -249,7 +240,14 @@
       <option name="project" value="LOCAL" />
       <updated>1574863024712</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Update: rxdart, re_redux, distinct_value_connectable_stream, using extension methods">
+      <created>1576549497573</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1576549497573</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TodoView">
@@ -308,6 +306,7 @@
     <MESSAGE value="Fix comment" />
     <MESSAGE value="Fix" />
     <MESSAGE value="Refactor" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor" />
+    <MESSAGE value="Update: rxdart, re_redux, distinct_value_connectable_stream, using extension methods" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update: rxdart, re_redux, distinct_value_connectable_stream, using extension methods" />
   </component>
 </project>
