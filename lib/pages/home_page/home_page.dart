@@ -3,9 +3,10 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:load_more_flutter/data/people/memory_person_data_source.dart';
 import 'package:load_more_flutter/data/people/people_api.dart';
-import 'package:load_more_flutter/generated/i18n.dart';
+import 'package:load_more_flutter/generated/l10n.dart';
 import 'package:load_more_flutter/pages/home_page/people_bloc.dart';
 import 'package:load_more_flutter/pages/home_page/people_state.dart';
+import 'package:load_more_flutter/util.dart';
 
 class MyHomePage extends StatefulWidget {
   @override
@@ -172,22 +173,10 @@ class _MyHomePageState extends State<MyHomePage> {
   void _onReachMaxItem(void _) async {
     // show animation when loaded all data
     await makeAnimation();
-    await (_scaffoldKey.currentState
-        ?.showSnackBar(
-          SnackBar(
-            content: Text(S.of(context).loaded_all_people),
-          ),
-        )
-        ?.closed);
+    _scaffoldKey.showSnackBar(S.of(context).loaded_all_people);
   }
 
-  void _onError(Object error) async {
-    await (_scaffoldKey.currentState
-        ?.showSnackBar(
-          SnackBar(
-            content: Text(S.of(context).error_occurred(error.toString())),
-          ),
-        )
-        ?.closed);
+  void _onError(Object error) {
+    _scaffoldKey.showSnackBar(S.of(context).error_occurred(error.toString()));
   }
 }

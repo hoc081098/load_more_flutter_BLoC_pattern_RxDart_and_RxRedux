@@ -1,6 +1,6 @@
 import 'package:load_more_flutter/data/comics/comic_repository_impl.dart';
 
-main() async {
+void main() async {
   final comicsRepo = ComicsRepositoryImpl();
   final list = await Future.wait([
     comicsRepo.getMostViewedComics(),

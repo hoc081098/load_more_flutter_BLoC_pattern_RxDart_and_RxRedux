@@ -69,7 +69,7 @@ class PeopleRxReduxBloc {
     ];
 
     /// Dispatch an [action]
-    dispatch(Action action) => () => actionS.add(action);
+    void Function() dispatch(Action action) => () => actionS.add(action);
 
     return PeopleRxReduxBloc._(
       dispose: () async {

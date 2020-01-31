@@ -17,7 +17,7 @@ abstract class ErrorResponse
 
   ErrorResponse._();
 
-  factory ErrorResponse([updates(ErrorResponseBuilder b)]) = _$ErrorResponse;
+  factory ErrorResponse([Function(ErrorResponseBuilder b) updates]) = _$ErrorResponse;
 
   factory ErrorResponse.fromJson(Map<String, dynamic> json) {
     return standardSerializers.deserializeWith<ErrorResponse>(
@@ -40,7 +40,7 @@ abstract class LastChapter implements Built<LastChapter, LastChapterBuilder> {
 
   LastChapter._();
 
-  factory LastChapter([updates(LastChapterBuilder b)]) = _$LastChapter;
+  factory LastChapter([Function(LastChapterBuilder b) updates]) = _$LastChapter;
 
   factory LastChapter.fromJson(Map<String, dynamic> json) {
     return standardSerializers.deserializeWith<LastChapter>(
@@ -69,7 +69,7 @@ abstract class Comic implements Built<Comic, ComicBuilder> {
 
   Comic._();
 
-  factory Comic([updates(ComicBuilder b)]) = _$Comic;
+  factory Comic([Function(ComicBuilder b) updates]) = _$Comic;
 
   factory Comic.fromJson(Map<String, dynamic> json) {
     return standardSerializers.deserializeWith<Comic>(Comic.serializer, json);

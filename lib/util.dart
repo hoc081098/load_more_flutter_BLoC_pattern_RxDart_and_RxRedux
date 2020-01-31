@@ -1,4 +1,5 @@
 import 'package:built_value/built_value.dart';
+import 'package:flutter/material.dart';
 
 extension LastOrNullExt<T> on Iterable<T> {
   ///
@@ -7,12 +8,40 @@ extension LastOrNullExt<T> on Iterable<T> {
   T get lastOrNull => isNotEmpty ? last : null;
 }
 
+extension ShowSnackbarGlobalKeyScaffoldStateExtension
+    on GlobalKey<ScaffoldState> {
+  void showSnackBar(
+    String message, [
+    Duration duration = const Duration(seconds: 2),
+  ]) {
+    currentState?.showSnackBar(
+      SnackBar(
+        content: Text(message),
+        duration: duration,
+      ),
+    );
+  }
+}
+
+extension ShowSnackBarBuildContextExtension on BuildContext {
+  void showSnackBar(
+    String message, [
+    Duration duration = const Duration(seconds: 2),
+  ]) {
+    Scaffold.of(this).showSnackBar(
+      SnackBar(
+        content: Text(message),
+        duration: duration,
+      ),
+    );
+  }
+}
 
 int _indentingBuiltValueToStringHelperIndent = 0;
 
 class CustomIndentingBuiltValueToStringHelper
     implements BuiltValueToStringHelper {
-  StringBuffer _result = new StringBuffer();
+  StringBuffer _result = StringBuffer();
 
   CustomIndentingBuiltValueToStringHelper(String className) {
     _result..write(className)..write(' {\n');

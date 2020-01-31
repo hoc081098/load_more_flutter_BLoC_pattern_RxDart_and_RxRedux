@@ -1,4 +1,4 @@
-# Copyright (c) 2018, the Dart project authors.  Please see the AUTHORS file
+# Copyright (c) 2019, the Dart project authors.  Please see the AUTHORS file
 # for details. All rights reserved. Use of this source code is governed by a
 # BSD-style license that can be found in the LICENSE file.
 #
@@ -7,73 +7,54 @@
 
 linter:
   rules:
+    - always_declare_return_types
+    - always_require_non_null_named_parameters
+    - annotate_overrides
     - avoid_empty_else
     - avoid_init_to_null
+    - avoid_null_checks_in_equality_operators
     - avoid_relative_lib_imports
     - avoid_return_types_on_setters
+    - avoid_shadowing_type_parameters
     - avoid_types_as_parameter_names
+    - camel_case_extensions
+    - curly_braces_in_flow_control_structures
+    - empty_catches
+    - empty_constructor_bodies
+    - library_names
+    - library_prefixes
     - no_duplicate_case_values
     - null_closures
+    - omit_local_variable_types
+    - prefer_adjacent_string_concatenation
+    - prefer_collection_literals
+    - prefer_conditional_assignment
     - prefer_contains
     - prefer_equal_for_default_values
+    - prefer_final_fields
+    - prefer_for_elements_to_map_fromIterable
+    - prefer_generic_function_type_aliases
+    - prefer_if_null_operators
     - prefer_is_empty
     - prefer_is_not_empty
-    - recursive_getters
-    - unrelated_type_equality_checks
-    - use_rethrow_when_possible
-    - unawaited_futures
-    - valid_regexps
-
-    # these rules are documented on and in the same order as
-    # the Dart Lint rules page to make maintenance easier
-    # https://github.com/dart-lang/linter/blob/master/example/all.yaml
-    # - always_declare_return_types
-    # - always_specify_types
-    # - annotate_overrides
-    # - avoid_as
-    - await_only_futures
-    - camel_case_types
-    - cancel_subscriptions
-    - close_sinks
-    # - comment_references # we do not presume as to what people want to reference in their dartdocs
-    # - constant_identifier_names # https://github.com/dart-lang/linter/issues/204
-    - control_flow_in_finally
-    - empty_constructor_bodies
-    - empty_statements
-    - hash_and_equals
-    - implementation_imports
-    # - invariant_booleans
-    # - iterable_contains_unrelated_type
-    - library_names
-    # - library_prefixes
-    # - list_remove_unrelated_type
-    # - literal_only_boolean_expressions
-    - non_constant_identifier_names
-    # - one_member_abstracts
-    # - only_throw_errors
-    # - overridden_fields
-    - package_api_docs
-    - package_names
-    - package_prefixed_library_names
-    # - prefer_mixin # https://github.com/dart-lang/language/issues/32
-    # - public_member_api_docs
-    - slash_for_doc_comments
-    # - sort_constructors_first
-    # - sort_unnamed_constructors_first
-    - test_types_in_equals
-    - throw_in_finally
-    # - type_annotate_public_apis # subset of always_specify_types
-    - type_init_formals
-    # - unawaited_futures
-    - unnecessary_brace_in_string_interps
-    - unnecessary_getters_setters
-    - unnecessary_statements
-
-    - prefer_const_constructors_in_immutables
-    - prefer_const_declarations
-    - prefer_const_literals_to_create_immutables
-    - prefer_constructors_over_static_methods
-    - prefer_final_fields
-    - prefer_final_locals
-    - prefer_foreach
+    - prefer_iterable_whereType
     - prefer_single_quotes
+    - prefer_spread_collections
+    - recursive_getters
+    - slash_for_doc_comments
+    - type_init_formals
+    - unawaited_futures
+    - unnecessary_const
+    - unnecessary_new
+    - unnecessary_null_in_if_null_operators
+    - unnecessary_this
+    - unrelated_type_equality_checks
+    - use_function_type_syntax_for_parameters
+    - use_rethrow_when_possible
+    - valid_regexps
+analyzer:
+  exclude:
+    # Ignore generated files
+    - '**/*.g.dart'
+    - 'lib/generated/**/*.dart'
+    - 'lib/generated/l10n.dart'

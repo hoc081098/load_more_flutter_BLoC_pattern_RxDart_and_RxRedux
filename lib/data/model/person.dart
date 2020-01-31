@@ -17,7 +17,7 @@ abstract class Person implements Built<Person, PersonBuilder> {
 
   Person._();
 
-  factory Person([updates(PersonBuilder b)]) = _$Person;
+  factory Person([Function(PersonBuilder b) updates]) = _$Person;
 
   factory Person.fromJson(Map<String, dynamic> json) {
     return standardSerializers.deserializeWith<Person>(Person.serializer, json);

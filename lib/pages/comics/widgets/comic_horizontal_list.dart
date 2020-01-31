@@ -2,12 +2,13 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:load_more_flutter/data/comics/comic_repository_impl.dart';
-import 'package:load_more_flutter/generated/i18n.dart';
+import 'package:load_more_flutter/generated/l10n.dart';
 import 'package:load_more_flutter/pages/comics/bloc/comics_bloc.dart';
 import 'package:load_more_flutter/pages/comics/bloc/comics_effects.dart';
 import 'package:load_more_flutter/pages/comics/bloc/comics_state_and_action.dart';
 import 'package:load_more_flutter/pages/comics/bloc/comics_usecase.dart';
 import 'package:load_more_flutter/pages/comics/widgets/widgets.dart';
+import 'package:load_more_flutter/util.dart';
 
 class ComicsHorizontalListView extends StatefulWidget {
   final ComicsListType listType;
@@ -56,12 +57,12 @@ class _ComicsHorizontalListViewState extends State<ComicsHorizontalListView> {
 
     _subscription = _comicsBloc.message$.listen((message) {
       if (message is LoadAllComicsMessage) {
-        _showSnackBar(S.of(context).loaded_all_people);
+        context.showSnackBar(S.of(context).loaded_all_people);
         makeAnimation();
       }
       if (message is ErrorMessage) {
         final error = message.error;
-        _showSnackBar(S.of(context).error_occurred(error.toString()));
+        context.showSnackBar(S.of(context).error_occurred(error.toString()));
       }
     });
     _comicsBloc.loadFirstPage();
@@ -83,17 +84,6 @@ class _ComicsHorizontalListViewState extends State<ComicsHorizontalListView> {
       max - offsetVisibleThreshold * 1.5,
       duration: Duration(milliseconds: 2000),
       curve: Curves.easeOut,
-    );
-  }
-
-  _showSnackBar(String message) {
-    Scaffold.of(context).showSnackBar(
-      SnackBar(
-        content: Text(message),
-        duration: const Duration(
-          seconds: 2,
-        ),
-      ),
     );
   }
 

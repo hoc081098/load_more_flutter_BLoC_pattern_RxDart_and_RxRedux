@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:load_more_flutter/generated/i18n.dart';
+import 'package:load_more_flutter/generated/l10n.dart';
 import 'package:load_more_flutter/pages/comics/comics_page.dart';
 import 'package:load_more_flutter/pages/home_page/home_page.dart';
 import 'package:load_more_flutter/pages/rx_redux/rx_redux_page.dart';
@@ -18,7 +18,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    const localeEn = const Locale('en', '');
+    const localeEn = Locale('en', '');
 
     return MaterialApp(
       title: 'Flutter Demo',
@@ -26,8 +26,6 @@ class _MyAppState extends State<MyApp> {
       locale: _locale,
       debugShowCheckedModeBanner: false,
       supportedLocales: S.delegate.supportedLocales,
-      localeListResolutionCallback:
-          S.delegate.listResolution(fallback: localeEn),
       localizationsDelegates: const [
         S.delegate,
         GlobalMaterialLocalizations.delegate,

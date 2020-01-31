@@ -27,7 +27,7 @@ abstract class ComicsListState
 
   ComicsListState._();
 
-  factory ComicsListState([updates(ComicsListStateBuilder b)]) =
+  factory ComicsListState([Function(ComicsListStateBuilder b) updates]) =
       _$ComicsListState;
 
   factory ComicsListState.initial() {
@@ -129,7 +129,7 @@ class PageLoadedAction implements Action {
       );
     } else {
       final added = <String>{};
-      predicate(Comic comic) => added.add(comic.link);
+      bool predicate(Comic comic) => added.add(comic.link);
 
       final newComics = [
         ...state.comics.where(predicate),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:load_more_flutter/generated/i18n.dart';
+import 'package:load_more_flutter/generated/l10n.dart';
 
 class ErrorItemWidget extends StatelessWidget {
   final String errorText;

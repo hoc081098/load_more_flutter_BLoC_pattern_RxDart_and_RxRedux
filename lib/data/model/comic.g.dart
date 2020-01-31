@@ -18,7 +18,7 @@ class _$ErrorResponseSerializer implements StructuredSerializer<ErrorResponse> {
   final String wireName = 'ErrorResponse';
 
   @override
-  Iterable serialize(Serializers serializers, ErrorResponse object,
+  Iterable<Object> serialize(Serializers serializers, ErrorResponse object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object>[
       'message',
@@ -33,7 +33,8 @@ class _$ErrorResponseSerializer implements StructuredSerializer<ErrorResponse> {
   }
 
   @override
-  ErrorResponse deserialize(Serializers serializers, Iterable serialized,
+  ErrorResponse deserialize(
+      Serializers serializers, Iterable<Object> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     final result = new ErrorResponseBuilder();
 
@@ -65,7 +66,7 @@ class _$LastChapterSerializer implements StructuredSerializer<LastChapter> {
   final String wireName = 'LastChapter';
 
   @override
-  Iterable serialize(Serializers serializers, LastChapter object,
+  Iterable<Object> serialize(Serializers serializers, LastChapter object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object>[
       'chapter_link',
@@ -82,7 +83,7 @@ class _$LastChapterSerializer implements StructuredSerializer<LastChapter> {
   }
 
   @override
-  LastChapter deserialize(Serializers serializers, Iterable serialized,
+  LastChapter deserialize(Serializers serializers, Iterable<Object> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     final result = new LastChapterBuilder();
 
@@ -118,7 +119,7 @@ class _$ComicSerializer implements StructuredSerializer<Comic> {
   final String wireName = 'Comic';
 
   @override
-  Iterable serialize(Serializers serializers, Comic object,
+  Iterable<Object> serialize(Serializers serializers, Comic object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object>[
       'last_chapters',
@@ -141,7 +142,7 @@ class _$ComicSerializer implements StructuredSerializer<Comic> {
   }
 
   @override
-  Comic deserialize(Serializers serializers, Iterable serialized,
+  Comic deserialize(Serializers serializers, Iterable<Object> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     final result = new ComicBuilder();
 
@@ -155,7 +156,7 @@ class _$ComicSerializer implements StructuredSerializer<Comic> {
           result.lastChapters.replace(serializers.deserialize(value,
                   specifiedType: const FullType(
                       BuiltList, const [const FullType(LastChapter)]))
-              as BuiltList);
+              as BuiltList<Object>);
           break;
         case 'link':
           result.link = serializers.deserialize(value,

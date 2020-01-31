@@ -2,9 +2,10 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:load_more_flutter/data/comics/comic_repository_impl.dart';
-import 'package:load_more_flutter/generated/i18n.dart';
+import 'package:load_more_flutter/generated/l10n.dart';
 import 'package:load_more_flutter/pages/comics/bloc/comic.dart';
 import 'package:load_more_flutter/pages/comics/widgets/widgets.dart';
+import 'package:load_more_flutter/util.dart';
 
 class ComicsPage extends StatefulWidget {
   @override
@@ -40,12 +41,13 @@ class _ComicsPageState extends State<ComicsPage> {
 
     _subscription = _comicsBloc.message$.listen((message) {
       if (message is LoadAllComicsMessage) {
-        _showSnackBar(S.of(context).loaded_all_people);
+        _scaffoldKey.showSnackBar(S.of(context).loaded_all_people);
         makeAnimation();
       }
       if (message is ErrorMessage) {
         final error = message.error;
-        _showSnackBar(S.of(context).error_occurred(error.toString()));
+        _scaffoldKey
+            .showSnackBar(S.of(context).error_occurred(error.toString()));
       }
     });
     _comicsBloc.loadFirstPage();
@@ -67,17 +69,6 @@ class _ComicsPageState extends State<ComicsPage> {
       max - offsetVisibleThreshold * 1.5,
       duration: Duration(milliseconds: 2000),
       curve: Curves.easeOut,
-    );
-  }
-
-  _showSnackBar(String message) {
-    _scaffoldKey.currentState?.showSnackBar(
-      SnackBar(
-        content: Text(message),
-        duration: const Duration(
-          seconds: 2,
-        ),
-      ),
     );
   }
 

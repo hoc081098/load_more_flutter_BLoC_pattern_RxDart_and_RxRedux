@@ -25,7 +25,7 @@ abstract class PeopleListState
 
   PeopleListState._();
 
-  factory PeopleListState([updates(PeopleListStateBuilder b)]) =
+  factory PeopleListState([Function(PeopleListStateBuilder b) updates]) =
       _$PeopleListState;
 
   factory PeopleListState.initial() {

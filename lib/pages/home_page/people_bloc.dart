@@ -71,7 +71,7 @@ class PeopleBloc {
     _errorNotNull$ = _errorController.where((error) => error != null);
     _isLoadingFirstPage$ = _isLoadingFirstPageController.stream;
 
-    final Stream<PeopleListState> loadMore = _loadMoreController
+    final loadMore = _loadMoreController
         .throttleTime(Duration(milliseconds: 500))
         .doOnData((_) => print('_loadMoreController emitted...'))
         .where((_) {
@@ -86,13 +86,13 @@ class PeopleBloc {
           (data) => print('after exhaustMap onNext = $data'),
         ); // use exhaustMap operator, to ignore all value source emit, while loading data from api,
 
-    final Stream<PeopleListState> loadFirstPage = _loadFirstPageController
+    final loadFirstPage = _loadFirstPageController
         .doOnData((_) => print('Load first page emitted...'))
         .map((_) => true)
         .flatMap(_loadMoreData)
         .doOnData((data) => print('after flatMap onNext = $data'));
 
-    final Stream<Stream<PeopleListState>> streams = Rx.merge([
+    final streams = Rx.merge([
       loadFirstPage,
       loadMore,
     ]).map((state) => Stream.value(state));
@@ -177,7 +177,7 @@ class PeopleBloc {
     }
   }
 
-  dispose() async {
+  void dispose() async {
     await _streamSubscription.cancel();
     await Future.wait([
       _loadAllController.close(),

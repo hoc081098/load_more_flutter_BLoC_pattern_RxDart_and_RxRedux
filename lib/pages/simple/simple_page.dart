@@ -2,10 +2,11 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:load_more_flutter/data/people/memory_person_data_source.dart';
-import 'package:load_more_flutter/generated/i18n.dart';
+import 'package:load_more_flutter/generated/l10n.dart';
 import 'package:load_more_flutter/pages/simple/people_interactor.dart';
 import 'package:load_more_flutter/pages/simple/people_state.dart';
 import 'package:load_more_flutter/pages/simple/simple_people_bloc.dart';
+import 'package:load_more_flutter/util.dart';
 import 'package:load_more_flutter/widgets/people_item.dart';
 
 class SimplePage extends StatefulWidget {
@@ -41,12 +42,13 @@ class _SimplePageState extends State<SimplePage> {
     ///
     _subscription = _simplePeopleBloc.message$.listen((message) {
       if (message is LoadAllPeopleMessage) {
-        _showSnackBar(S.of(context).loaded_all_people);
+        _scaffoldKey.showSnackBar(S.of(context).loaded_all_people);
         makeAnimation();
       }
       if (message is ErrorMessage) {
         final error = message.error;
-        _showSnackBar(S.of(context).error_occurred(error.toString()));
+        _scaffoldKey
+            .showSnackBar(S.of(context).error_occurred(error.toString()));
       }
     });
     _simplePeopleBloc.load();
@@ -55,17 +57,6 @@ class _SimplePageState extends State<SimplePage> {
     ///
     ///
     _scrollController = ScrollController()..addListener(_onScroll);
-  }
-
-  _showSnackBar(String message) {
-    _scaffoldKey.currentState?.showSnackBar(
-      SnackBar(
-        content: Text(message),
-        duration: const Duration(
-          seconds: 2,
-        ),
-      ),
-    );
   }
 
   @override

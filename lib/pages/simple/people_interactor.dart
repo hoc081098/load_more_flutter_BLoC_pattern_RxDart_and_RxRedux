@@ -38,7 +38,8 @@ class PeopleInteractor {
     ///
     ///
     ///
-    toListState(BuiltList<Person> people) => PeopleListState((b) {
+    PeopleListState toListState(BuiltList<Person> people) =>
+        PeopleListState((b) {
           final listBuilder = currentState.people.toBuilder()
             ..update((b) {
               if (refreshList) {
@@ -54,7 +55,7 @@ class PeopleInteractor {
             ..getAllPeople = people.isEmpty;
         });
 
-    toErrorState(dynamic e) => currentState.rebuild((b) => b
+    PeopleListState toErrorState(dynamic e) => currentState.rebuild((b) => b
       ..error = e
       ..getAllPeople = false
       ..isLoading = false);
@@ -70,16 +71,16 @@ class PeopleInteractor {
     /// - Add [LoadAllPeopleMessage] or [ErrorMessage] to [messageSink]
     /// - Complete [completer] if [completer] is not null
     ///
-    addLoadAllPeopleMessageIfLoadedAll(PeopleListState state) {
+    void addLoadAllPeopleMessageIfLoadedAll(PeopleListState state) {
       if (state.getAllPeople) {
         messageSink.add(const LoadAllPeopleMessage());
       }
     }
 
-    addErrorMessage(dynamic error, StackTrace _) =>
+    void addErrorMessage(dynamic error, StackTrace _) =>
         messageSink.add(ErrorMessage(error));
 
-    completeCompleter() => completer?.complete();
+    void completeCompleter() => completer?.complete();
 
     ///
     /// Return state [Stream]
