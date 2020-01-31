@@ -3,7 +3,7 @@ import 'package:load_more_flutter/data/comics/comics_repository.dart';
 import 'package:load_more_flutter/data/model/comic.dart';
 
 abstract class GetComicsUseCase {
-  Future<BuiltList<Comic>> getComics(int page);
+  Stream<BuiltList<Comic>> call(int page);
 }
 
 class GetNewestComicsUseCase implements GetComicsUseCase {
@@ -12,8 +12,9 @@ class GetNewestComicsUseCase implements GetComicsUseCase {
   GetNewestComicsUseCase(this._comicRepo);
 
   @override
-  Future<BuiltList<Comic>> getComics(int page) =>
-      _comicRepo.getNewestComics(page: page);
+  Stream<BuiltList<Comic>> call(int page) async* {
+    yield await _comicRepo.getNewestComics(page: page);
+  }
 }
 
 class GetMostViewedComicsUseCase implements GetComicsUseCase {
@@ -22,8 +23,9 @@ class GetMostViewedComicsUseCase implements GetComicsUseCase {
   GetMostViewedComicsUseCase(this._comicRepo);
 
   @override
-  Future<BuiltList<Comic>> getComics(int page) =>
-      _comicRepo.getMostViewedComics(page: page);
+  Stream<BuiltList<Comic>> call(int page) async* {
+    yield await _comicRepo.getMostViewedComics(page: page);
+  }
 }
 
 class GetUpdatedComicsUseCase implements GetComicsUseCase {
@@ -32,6 +34,7 @@ class GetUpdatedComicsUseCase implements GetComicsUseCase {
   GetUpdatedComicsUseCase(this._comicRepo);
 
   @override
-  Future<BuiltList<Comic>> getComics(int page) =>
-      _comicRepo.getUpdatedComics(page: page);
+  Stream<BuiltList<Comic>> call(int page) async* {
+    yield await _comicRepo.getUpdatedComics(page: page);
+  }
 }

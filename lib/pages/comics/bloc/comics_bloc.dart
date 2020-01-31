@@ -22,7 +22,7 @@ class ComicsBloc {
   final ValueStream<ComicsListState> comicsList$;
   final Stream<Message> message$;
 
-  /// Clean up: close controller, cancel subscription
+  /// Clean up: close controllers, cancel subscriptions
   final void Function() dispose;
 
   ComicsBloc._({
@@ -37,10 +37,11 @@ class ComicsBloc {
   });
 
   factory ComicsBloc(final ComicsEffects effects, final String tag) {
-    /// Subjects
+    /// Action subject
     final actionS = PublishSubject<Action>();
 
-    /// Use package rx_redux to transform actions stream to state stream
+    /// Use package [rx_redux](https://pub.dev/packages/rx_redux) to transform
+    /// actions stream to state stream
     final initialState = ComicsListState.initial();
 
     /// Broadcast, distinct until changed, value observable

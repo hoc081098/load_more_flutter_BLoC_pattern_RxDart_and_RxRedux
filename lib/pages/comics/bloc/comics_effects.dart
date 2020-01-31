@@ -7,10 +7,10 @@ import 'package:rxdart/rxdart.dart';
 /// This class holds [SideEffect]s and exposes message stream
 ///
 class ComicsEffects {
-  final GetComicsUseCase _getComicsUseCase;
+  final GetComicsUseCase _getComics;
   final _messageSubject = PublishSubject<Message>();
 
-  ComicsEffects(this._getComicsUseCase);
+  ComicsEffects(this._getComics);
 
   ///
   /// Expose message stream, emit while execute [SideEffect]
@@ -43,29 +43,25 @@ class ComicsEffects {
               !state.isNextPageLoading)
           .exhaustMap((state) => _nextPage(false, state.page + 1));
 
-  Stream<Action> _nextPage(bool isFirstPage, [int page = 1]) =>
-      Rx.defer(() => Stream.fromFuture(
-                _getComicsUseCase.getComics(page),
-              ))
-          .map<Action>((comics) {
-            return PageLoadedAction(
-              comics,
-              isFirstPage,
-            );
-          })
-          .onErrorReturnWith(
-              (error) => ErrorLoadingPageAction(error, isFirstPage))
-          .startWith(PageLoadingAction(isFirstPage))
-          .doOnData((action) {
-            if (action is PageLoadedAction) {
-              if (action.comics.isEmpty) {
-                _messageSubject?.add(const LoadAllComicsMessage());
-              }
-            }
-            if (action is ErrorLoadingPageAction) {
-              _messageSubject?.add(ErrorMessage(action.error));
-            }
-          });
+  Stream<Action> _nextPage(bool isFirstPage, [int page = 1]) => _getComics(page)
+      .map<Action>((comics) {
+        return PageLoadedAction(
+          comics,
+          isFirstPage,
+        );
+      })
+      .onErrorReturnWith((error) => ErrorLoadingPageAction(error, isFirstPage))
+      .startWith(PageLoadingAction(isFirstPage))
+      .doOnData((action) {
+        if (action is PageLoadedAction) {
+          if (action.comics.isEmpty) {
+            _messageSubject?.add(const LoadAllComicsMessage());
+          }
+        }
+        if (action is ErrorLoadingPageAction) {
+          _messageSubject?.add(ErrorMessage(action.error));
+        }
+      });
 
   Stream<Action> refreshListEffect(
     Stream<Action> actions,

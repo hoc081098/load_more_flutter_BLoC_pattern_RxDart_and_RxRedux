@@ -33,7 +33,6 @@ abstract class ComicsListState
   factory ComicsListState.initial() {
     return ComicsListState(
       (b) => b
-        ..comics = ListBuilder<Comic>()
         ..isFirstPageLoading = true
         ..firstPageError = null
         ..isNextPageLoading = false
@@ -142,7 +141,7 @@ class PageLoadedAction implements Action {
           ..firstPageError = null
           ..nextPageError = null
           ..isNextPageLoading = false
-          ..comics = ListBuilder<Comic>(newComics)
+          ..comics.replace(newComics)
           ..getAllComics = comics.isEmpty
           ..page = b.page + 1,
       );

@@ -6,8 +6,12 @@ class PersonListItem extends StatefulWidget {
   final int length;
   final Person item;
 
-  const PersonListItem({Key key, this.index, this.length, this.item})
-      : super(key: key);
+  const PersonListItem({
+    Key key,
+    @required this.index,
+    @required this.length,
+    @required this.item,
+  }) : super(key: key);
 
   @override
   _PersonListItemState createState() => _PersonListItemState();
