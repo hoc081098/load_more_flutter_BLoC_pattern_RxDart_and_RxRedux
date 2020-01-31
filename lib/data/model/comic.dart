@@ -17,7 +17,8 @@ abstract class ErrorResponse
 
   ErrorResponse._();
 
-  factory ErrorResponse([Function(ErrorResponseBuilder b) updates]) = _$ErrorResponse;
+  factory ErrorResponse([Function(ErrorResponseBuilder b) updates]) =
+      _$ErrorResponse;
 
   factory ErrorResponse.fromJson(Map<String, dynamic> json) {
     return standardSerializers.deserializeWith<ErrorResponse>(
