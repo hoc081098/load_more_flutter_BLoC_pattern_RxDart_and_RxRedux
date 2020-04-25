@@ -121,7 +121,7 @@ class _MyHomePageState extends State<MyHomePage> {
           return ListTile(
             title: Text(
               S.of(context).error_occurred_loading_next_page(error.toString()),
-              style: Theme.of(context).textTheme.body1.copyWith(fontSize: 16.0),
+              style: Theme.of(context).textTheme.bodyText2.copyWith(fontSize: 16.0),
             ),
             isThreeLine: false,
             leading: CircleAvatar(

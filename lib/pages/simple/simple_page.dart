@@ -112,7 +112,7 @@ class _SimplePageState extends State<SimplePage> {
                             title: Text(
                               S.of(context).error_occurred_loading_next_page(
                                   error.toString()),
-                              style: Theme.of(context).textTheme.subtitle,
+                              style: Theme.of(context).textTheme.subtitle2,
                             ),
                             isThreeLine: false,
                             leading: CircleAvatar(

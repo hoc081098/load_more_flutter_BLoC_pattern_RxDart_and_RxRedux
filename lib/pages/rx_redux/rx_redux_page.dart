@@ -146,7 +146,7 @@ class _RxReduxPageState extends State<RxReduxPage> {
               title: Text(
                 S.of(context).error_occurred_loading_next_page(
                     state.firstPageError.toString()),
-                style: Theme.of(context).textTheme.subtitle,
+                style: Theme.of(context).textTheme.subtitle2,
               ),
               isThreeLine: false,
               leading: CircleAvatar(
@@ -182,7 +182,7 @@ class _RxReduxPageState extends State<RxReduxPage> {
             title: Text(
               S.of(context).error_occurred_loading_next_page(
                   state.nextPageError.toString()),
-              style: Theme.of(context).textTheme.subtitle,
+              style: Theme.of(context).textTheme.subtitle2,
             ),
             isThreeLine: false,
             leading: CircleAvatar(

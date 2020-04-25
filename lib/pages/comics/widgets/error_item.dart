@@ -20,7 +20,7 @@ class ErrorItemWidget extends StatelessWidget {
       children: <Widget>[
         Text(
           errorText,
-          style: Theme.of(context).textTheme.subtitle,
+          style: Theme.of(context).textTheme.subtitle2,
           textAlign: TextAlign.center,
           maxLines: 2,
           overflow: TextOverflow.ellipsis,

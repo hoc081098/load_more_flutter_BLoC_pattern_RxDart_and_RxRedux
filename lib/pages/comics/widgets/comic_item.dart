@@ -42,7 +42,7 @@ class ComicItemWidget extends StatelessWidget {
                         'Load image error',
                         style: Theme.of(context)
                             .textTheme
-                            .subtitle
+                            .subtitle2
                             .copyWith(fontSize: 12),
                       ),
                     ],
@@ -61,7 +61,7 @@ class ComicItemWidget extends StatelessWidget {
                   children: <Widget>[
                     Text(
                       comic.title,
-                      style: Theme.of(context).textTheme.title.copyWith(
+                      style: Theme.of(context).textTheme.headline6.copyWith(
                             fontSize: 14,
                           ),
                       textAlign: TextAlign.center,
@@ -81,7 +81,7 @@ class ComicItemWidget extends StatelessWidget {
                         Flexible(
                           child: Text(
                             comic.view,
-                            style: Theme.of(context).textTheme.title.copyWith(
+                            style: Theme.of(context).textTheme.headline6.copyWith(
                                   fontSize: 13,
                                 ),
                             textAlign: TextAlign.center,
@@ -101,7 +101,7 @@ class ComicItemWidget extends StatelessWidget {
                               child: Text(
                                 chapter.chapterName,
                                 style:
-                                    Theme.of(context).textTheme.title.copyWith(
+                                    Theme.of(context).textTheme.headline6.copyWith(
                                           fontSize: 12,
                                         ),
                                 textAlign: TextAlign.start,
@@ -116,7 +116,7 @@ class ComicItemWidget extends StatelessWidget {
                               child: Text(
                                 chapter.time,
                                 style:
-                                    Theme.of(context).textTheme.title.copyWith(
+                                    Theme.of(context).textTheme.headline6.copyWith(
                                           fontSize: 12,
                                         ),
                                 textAlign: TextAlign.end,

@@ -28,7 +28,7 @@ class HeaderItem extends StatelessWidget {
           ),
           child: Text(
             headerText,
-            style: Theme.of(context).textTheme.subtitle.copyWith(
+            style: Theme.of(context).textTheme.subtitle2.copyWith(
                   color: const Color(0xffFFAB00),
                 ),
           ),

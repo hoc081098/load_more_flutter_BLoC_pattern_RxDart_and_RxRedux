@@ -9,25 +9,23 @@ import 'intl/messages_all.dart';
 // **************************************************************************
 
 class S {
-  S(this.localeName);
+  S();
   
   static const AppLocalizationDelegate delegate =
     AppLocalizationDelegate();
 
   static Future<S> load(Locale locale) {
-    final String name = locale.countryCode.isEmpty ? locale.languageCode : locale.toString();
+    final String name = (locale.countryCode?.isEmpty ?? false) ? locale.languageCode : locale.toString();
     final String localeName = Intl.canonicalizedLocale(name);
     return initializeMessages(localeName).then((_) {
       Intl.defaultLocale = localeName;
-      return S(localeName);
+      return S();
     });
   } 
 
   static S of(BuildContext context) {
     return Localizations.of<S>(context, S);
   }
-
-  final String localeName;
 
   String get loaded_all_people {
     return Intl.message(
@@ -38,7 +36,7 @@ class S {
     );
   }
 
-  String error_occurred(dynamic error) {
+  String error_occurred(Object error) {
     return Intl.message(
       'Error occurred: $error',
       name: 'error_occurred',
@@ -47,7 +45,7 @@ class S {
     );
   }
 
-  String error_occurred_loading_next_page(dynamic error) {
+  String error_occurred_loading_next_page(Object error) {
     return Intl.message(
       'An error occurred while loading data: $error',
       name: 'error_occurred_loading_next_page',
@@ -80,7 +78,8 @@ class AppLocalizationDelegate extends LocalizationsDelegate<S> {
 
   List<Locale> get supportedLocales {
     return const <Locale>[
-      Locale('en', ''), Locale('vi', ''),
+      Locale.fromSubtags(languageCode: 'en'),
+      Locale.fromSubtags(languageCode: 'vi'),
     ];
   }
 
