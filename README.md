@@ -11,15 +11,16 @@
 
 ## Flutter
 
-Using `BLoC` :clap: pattern with `rxdart` :muscle: library <br/>
+Using `BLoC` :clap: pattern with `rxdart` library <br/>
 Star :star: if it is helpful :thumbsup:
+
+### Download apk [here](https://github.com/hoc081098/hoc081098.github.io/blob/master/load_more/app-release.apk)
 
 ## Demo :camera: :art:
 
 :video_camera: [Video demo 1](https://www.youtube.com/watch?v=YPlFaYw3CCE), [Video demo 2](https://youtu.be/BX8p-v1fffw) :tv:
 <br>
 <br>
-
 
 
 | RxRedux page |  Comics page | Simple BLoC page |  Home page  |
