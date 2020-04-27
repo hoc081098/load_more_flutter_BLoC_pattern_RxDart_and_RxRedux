@@ -9,10 +9,9 @@
 * Retry when an error occurred
 * Refresh list (remove all and load first page)
 
-## Flutter
+## Flutter reactive stream
 
-Using `BLoC` :clap: pattern with `rxdart` library <br/>
-Star :star: if it is helpful :thumbsup:
+Using `BLoC` pattern with `rxdart` library. Star :star: if it is helpful. Thanks
 
 ### Download apk [here](https://github.com/hoc081098/hoc081098.github.io/blob/master/load_more/app-release.apk)
 
