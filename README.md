@@ -1,9 +1,5 @@
 # load_more_flutter_BLoC_pattern_RxDart_and_RxRedux 📱
-
-- Load more Flutter BLoC pattern RxDart and RxRedux.
-- Load more data when scroll to end of list view.
-- Paging `ListView Flutter`.
-- Infinite scroll `ListView Flutter`.
+Load more Flutter BLoC pattern RxDart and RxRedux. Load more data when scrolling to end of list view. Paging `ListView Flutter`. Infinite scroll `ListView Flutter`.
 
 ## Find this repository useful? ❤️
 
@@ -18,7 +14,6 @@ Star this repository 🌟🌟 and follow me for next creations! 😍. Thanks �
 ## Demo 🎨
 
 -   📀 [Video demo 1](https://www.youtube.com/watch?v=YPlFaYw3CCE) and 📹 [Video demo 2](https://youtu.be/BX8p-v1fffw)
--   Screenshots:
 
 | RxRedux page |  Comics page | Simple BLoC page |  Home page  |
 | ------------- | -------------  | ------------- | ------------- |
@@ -37,11 +32,6 @@ Make sure finish [install Flutter](https://flutter.io/get-started/install/) succ
 2.  Install all the packages by: `flutter packages get`.
 3.  Run command `flutter packages pub run build_runner build` to generate build_value classes (optional because I pushed *.g.dart files).
 4.  Run app on your simulator or device by: `flutter run`.
-
-## Getting started 🔥
-
-For help getting started with Flutter, view our online
-[documentation](https://flutter.io/).
 
 ## License
 
