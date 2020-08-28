@@ -15,20 +15,19 @@ Star this repository 🌟🌟 and follow me for next creations! 😍. Thanks �
 -   Refresh list (remove all and load first page)
 -   Flutter **reactive stream**: using **`BLoC` pattern** with **[`rxdart`](https://pub.dev/packages/rxdart)** library and **[`rx_redux`](https://pub.dev/packages/rx_redux)** library.
 
-## Download apk
-
-You can download [apk here](https://github.com/hoc081098/hoc081098.github.io/blob/master/load_more/app-release.apk)
-for trying functionalities.
-
 ## Demo 🎨
 
--   📀 [Video demo 1](https://www.youtube.com/watch?v=YPlFaYw3CCE)
--   📹 [Video demo 2](https://youtu.be/BX8p-v1fffw)
+-   📀 [Video demo 1](https://www.youtube.com/watch?v=YPlFaYw3CCE) and 📹 [Video demo 2](https://youtu.be/BX8p-v1fffw)
 -   Screenshots:
 
 | RxRedux page |  Comics page | Simple BLoC page |  Home page  |
 | ------------- | -------------  | ------------- | ------------- |
 |<img src="https://github.com/hoc081098/hoc081098.github.io/blob/master/load_more/rx_redux_screen.gif?raw=true" width="480" > |<img src="https://github.com/hoc081098/hoc081098.github.io/blob/master/load_more/comics_page.gif?raw=true" width="480" > |<img src="https://github.com/hoc081098/hoc081098.github.io/blob/master/load_more/demo_simple_bloc_1.gif?raw=true" width="480">|  <img src="https://github.com/hoc081098/hoc081098.github.io/blob/master/load_more/demo.gif?raw=true" width="480" > |
+
+## Download apk
+
+You can download [apk here](https://github.com/hoc081098/hoc081098.github.io/blob/master/load_more/app-release.apk)
+for trying functionalities.
 
 ## Develop 👏
 
