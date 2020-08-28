@@ -22,8 +22,8 @@ for trying functionalities.
 
 ## Demo 🎨
 
--   🎨 [Video demo 1](https://www.youtube.com/watch?v=YPlFaYw3CCE)
--   🎨 [Video demo 2](https://youtu.be/BX8p-v1fffw)
+-   📀 [Video demo 1](https://www.youtube.com/watch?v=YPlFaYw3CCE)
+-   📹 [Video demo 2](https://youtu.be/BX8p-v1fffw)
 -   Screenshots:
 
 | RxRedux page |  Comics page | Simple BLoC page |  Home page  |
