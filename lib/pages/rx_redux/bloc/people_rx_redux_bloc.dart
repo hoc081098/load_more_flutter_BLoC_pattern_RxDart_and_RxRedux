@@ -1,11 +1,10 @@
 import 'dart:async';
 
 import 'package:disposebag/disposebag.dart';
-import 'package:distinct_value_connectable_stream/distinct_value_connectable_stream.dart';
 import 'package:load_more_flutter/pages/rx_redux/bloc/bloc.dart';
+import 'package:load_more_flutter/util.dart';
 import 'package:meta/meta.dart';
 import 'package:rx_redux/rx_redux.dart';
-import 'package:rxdart/rxdart.dart';
 
 // ignore_for_file: close_sinks
 
@@ -22,7 +21,8 @@ class PeopleRxReduxBloc {
   final void Function() retryNextPage;
 
   /// Output [Stream]s
-  final ValueStream<PeopleListState> peopleList$;
+  final Stream<PeopleListState> peopleList$;
+  final GetState<PeopleListState> getPeopleList;
   final Stream<Message> message$;
 
   /// Clean up: close controller, cancel subscription
@@ -33,6 +33,7 @@ class PeopleRxReduxBloc {
     @required this.loadFirstPage,
     @required this.loadNextPage,
     @required this.peopleList$,
+    @required this.getPeopleList,
     @required this.message$,
     @required this.dispose,
     @required this.retryFirstPage,
@@ -40,16 +41,12 @@ class PeopleRxReduxBloc {
   });
 
   factory PeopleRxReduxBloc(PeopleEffects effects) {
-    /// Subjects
-    final actionS = PublishSubject<Action>();
-
-    /// Use package pages.rx_redux to transform actions stream to state stream
     final initialState = PeopleListState.initial();
 
-    /// Broadcast, distinct until changed, value observable
-    final state$ = actionS.reduxStore<PeopleListState>(
+    // Reactive redux store
+    final store = RxReduxStore<Action, PeopleListState>(
+      initialState: initialState,
       reducer: (state, action) => action.reducer(state),
-      initialStateSupplier: () => initialState,
       sideEffects: [
         effects.loadFirstPageEffect,
         effects.loadNextPageEffect,
@@ -57,37 +54,46 @@ class PeopleRxReduxBloc {
         effects.retryLoadFirstPageEffect,
         effects.retryLoadNextPageEffect,
       ],
-    ).publishValueSeededDistinct(seedValue: initialState);
+      logger: rxReduxDefaultLogger,
+      errorHandler: (error, st) => print('$tag [ERROR] = $error'),
+    );
 
-    final subscriptions = [
-      /// Listen streams
-      state$.listen((state) => print('$tag [STATE] = $state')),
-      effects.message$.listen((message) => print('$tag [MESSAGE] = $message')),
+    final message$ = store.actionStream.mapNotNull((action) {
+      if (action is PageLoadedAction && action.people.isEmpty) {
+        return const LoadAllPeopleMessage();
+      }
+      if (action is ErrorLoadingPageAction) {
+        return ErrorMessage(action.error);
+      }
+      return null;
+    });
 
-      /// Connect [ConnectableObservable]
-      state$.connect(),
-    ];
+    final bag = DisposeBag([
+      store.stateStream.listen((state) => print('$tag [STATE] = $state')),
+      message$.listen((message) => print('$tag [MESSAGE] = $message')),
+    ]);
 
-    /// Dispatch an [action]
-    void Function() dispatch(Action action) => () => actionS.add(action);
+    // Dispatch an action
+    void Function() dispatch(Action action) => () => store.dispatch(action);
 
     return PeopleRxReduxBloc._(
       dispose: () async {
-        await DisposeBag([...subscriptions, actionS]).dispose();
-        await effects.dispose();
+        await store.dispose();
+        await bag.dispose();
         print('$tag [DISPOSED]');
       },
       loadFirstPage: dispatch(const LoadFirstPageAction()),
       loadNextPage: dispatch(const LoadNextPageAction()),
       retryNextPage: dispatch(const RetryNextPageAction()),
-      peopleList$: state$,
+      peopleList$: store.stateStream,
       refresh: () {
         final completer = Completer<void>();
         dispatch(RefreshListAction(completer))();
         return completer.future;
       },
-      message$: effects.message$,
+      message$: message$,
       retryFirstPage: dispatch(const RetryFirstPageAction()),
+      getPeopleList: () => store.state,
     );
   }
 }

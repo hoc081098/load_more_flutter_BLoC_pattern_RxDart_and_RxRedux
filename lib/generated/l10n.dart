@@ -8,25 +8,33 @@ import 'intl/messages_all.dart';
 // Made by Localizely
 // **************************************************************************
 
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars
+
 class S {
   S();
-  
-  static const AppLocalizationDelegate delegate =
-    AppLocalizationDelegate();
+
+  static S current;
+
+  static const AppLocalizationDelegate delegate = AppLocalizationDelegate();
 
   static Future<S> load(Locale locale) {
-    final String name = (locale.countryCode?.isEmpty ?? false) ? locale.languageCode : locale.toString();
-    final String localeName = Intl.canonicalizedLocale(name);
+    final name = (locale.countryCode?.isEmpty ?? false)
+        ? locale.languageCode
+        : locale.toString();
+    final localeName = Intl.canonicalizedLocale(name);
     return initializeMessages(localeName).then((_) {
       Intl.defaultLocale = localeName;
-      return S();
+      S.current = S();
+
+      return S.current;
     });
-  } 
+  }
 
   static S of(BuildContext context) {
     return Localizations.of<S>(context, S);
   }
 
+  /// `Loaded all people!`
   String get loaded_all_people {
     return Intl.message(
       'Loaded all people!',
@@ -36,6 +44,7 @@ class S {
     );
   }
 
+  /// `Error occurred: {error}`
   String error_occurred(Object error) {
     return Intl.message(
       'Error occurred: $error',
@@ -45,6 +54,7 @@ class S {
     );
   }
 
+  /// `An error occurred while loading data: {error}`
   String error_occurred_loading_next_page(Object error) {
     return Intl.message(
       'An error occurred while loading data: $error',
@@ -54,6 +64,7 @@ class S {
     );
   }
 
+  /// `Retry`
   String get retry {
     return Intl.message(
       'Retry',
@@ -63,6 +74,7 @@ class S {
     );
   }
 
+  /// `Load more / pagination list / endless scroll`
   String get flutter_demo {
     return Intl.message(
       'Load more / pagination list / endless scroll',
@@ -85,14 +97,16 @@ class AppLocalizationDelegate extends LocalizationsDelegate<S> {
 
   @override
   bool isSupported(Locale locale) => _isSupported(locale);
+
   @override
   Future<S> load(Locale locale) => S.load(locale);
+
   @override
   bool shouldReload(AppLocalizationDelegate old) => false;
 
   bool _isSupported(Locale locale) {
     if (locale != null) {
-      for (Locale supportedLocale in supportedLocales) {
+      for (var supportedLocale in supportedLocales) {
         if (supportedLocale.languageCode == locale.languageCode) {
           return true;
         }

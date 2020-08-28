@@ -5,26 +5,17 @@ import 'package:load_more_flutter/util.dart';
 import 'package:rx_redux/rx_redux.dart';
 import 'package:rxdart/rxdart.dart';
 
-///
-/// Class hold [SideEffect]s
-/// And expose message stream
-///
+/// Class that holds [SideEffect]s.
 class PeopleEffects {
   static const pageSize = 20;
 
   final PeopleDataSource _peopleDataSource;
-  final _messageSubject = PublishSubject<Message>();
 
   PeopleEffects(this._peopleDataSource);
 
-  ///
-  /// Expose message stream, emit while execute [SideEffect]
-  ///
-  Stream<Message> get message$ => _messageSubject;
-
   Stream<Action> loadFirstPageEffect(
     Stream<Action> actions,
-    StateAccessor<PeopleListState> state,
+    GetState<PeopleListState> state,
   ) =>
       actions
           .whereType<LoadFirstPageAction>()
@@ -35,7 +26,7 @@ class PeopleEffects {
 
   Stream<Action> loadNextPageEffect(
     Stream<Action> actions,
-    StateAccessor<PeopleListState> state,
+    GetState<PeopleListState> state,
   ) =>
       actions
           .whereType<LoadNextPageAction>()
@@ -64,30 +55,18 @@ class PeopleEffects {
           })
           .onErrorReturnWith(
               (error) => ErrorLoadingPageAction(error, isFirstPage))
-          .startWith(PageLoadingAction(isFirstPage))
-          .doOnData((action) {
-            print('${PeopleRxReduxBloc.tag} Side effect: action = $action');
-
-            if (action is PageLoadedAction) {
-              if (action.people.isEmpty) {
-                _messageSubject?.add(const LoadAllPeopleMessage());
-              }
-            }
-            if (action is ErrorLoadingPageAction) {
-              _messageSubject?.add(ErrorMessage(action.error));
-            }
-          });
+          .startWith(PageLoadingAction(isFirstPage));
 
   Stream<Action> refreshListEffect(
     Stream<Action> actions,
-    StateAccessor<PeopleListState> state,
+    GetState<PeopleListState> state,
   ) =>
       actions.whereType<RefreshListAction>().exhaustMap((action) =>
           _nextPage(true).doOnDone(() => action.completer.complete()));
 
   Stream<Action> retryLoadNextPageEffect(
     Stream<Action> actions,
-    StateAccessor<PeopleListState> state,
+    GetState<PeopleListState> state,
   ) =>
       actions
           .whereType<RetryNextPageAction>()
@@ -98,7 +77,7 @@ class PeopleEffects {
 
   Stream<Action> retryLoadFirstPageEffect(
     Stream<Action> actions,
-    StateAccessor<PeopleListState> state,
+    GetState<PeopleListState> state,
   ) =>
       actions
           .whereType<RetryFirstPageAction>()
@@ -106,6 +85,4 @@ class PeopleEffects {
           .where((state) =>
               !state.isFirstPageLoading && state.firstPageError != null)
           .exhaustMap((_) => _nextPage(true));
-
-  Future<void> dispose() => _messageSubject.close();
 }

@@ -1,12 +1,11 @@
 import 'dart:async';
 
 import 'package:disposebag/disposebag.dart';
-import 'package:distinct_value_connectable_stream/distinct_value_connectable_stream.dart';
 import 'package:load_more_flutter/pages/comics/bloc/comics_effects.dart';
 import 'package:load_more_flutter/pages/comics/bloc/comics_state_and_action.dart';
+import 'package:load_more_flutter/util.dart';
 import 'package:meta/meta.dart';
 import 'package:rx_redux/rx_redux.dart';
-import 'package:rxdart/rxdart.dart';
 
 // ignore_for_file: close_sinks
 
@@ -19,7 +18,8 @@ class ComicsBloc {
   final void Function() retryNextPage;
 
   /// Output [Stream]s
-  final ValueStream<ComicsListState> comicsList$;
+  final Stream<ComicsListState> comicsList$;
+  final GetState<ComicsListState> getComicsList;
   final Stream<Message> message$;
 
   /// Clean up: close controllers, cancel subscriptions
@@ -30,6 +30,7 @@ class ComicsBloc {
     @required this.loadFirstPage,
     @required this.loadNextPage,
     @required this.comicsList$,
+    @required this.getComicsList,
     @required this.message$,
     @required this.dispose,
     @required this.retryFirstPage,
@@ -37,17 +38,12 @@ class ComicsBloc {
   });
 
   factory ComicsBloc(final ComicsEffects effects, final String tag) {
-    /// Action subject
-    final actionS = PublishSubject<Action>();
-
-    /// Use package [rx_redux](https://pub.dev/packages/rx_redux) to transform
-    /// actions stream to state stream
     final initialState = ComicsListState.initial();
 
-    /// Broadcast, distinct until changed, value observable
-    final state$ = actionS.reduxStore<ComicsListState>(
+    // Reactive redux store.
+    final store = RxReduxStore<Action, ComicsListState>(
+      initialState: initialState,
       reducer: (state, action) => action.reducer(state),
-      initialStateSupplier: () => initialState,
       sideEffects: [
         effects.loadFirstPageEffect,
         effects.loadNextPageEffect,
@@ -55,37 +51,46 @@ class ComicsBloc {
         effects.retryLoadFirstPageEffect,
         effects.retryLoadNextPageEffect,
       ],
-    ).publishValueSeededDistinct(seedValue: initialState);
+      logger: rxReduxDefaultLogger,
+      errorHandler: (error, st) => print('$tag [ERROR] = $error'),
+    );
 
-    final subscriptions = <StreamSubscription>[
-      /// Listen streams
-      state$.listen((state) => print('$tag [STATE] = $state')),
-      effects.message$.listen((message) => print('$tag [MESSAGE] = $message')),
+    final message$ = store.actionStream.mapNotNull((action) {
+      if (action is PageLoadedAction && action.comics.isEmpty) {
+        return const LoadAllComicsMessage();
+      }
+      if (action is ErrorLoadingPageAction) {
+        return ErrorMessage(action.error);
+      }
+      return null;
+    });
 
-      /// Connect [ConnectableObservable]
-      state$.connect(),
-    ];
+    final bag = DisposeBag([
+      store.stateStream.listen((state) => print('$tag [STATE] = $state')),
+      message$.listen((message) => print('$tag [MESSAGE] = $message')),
+    ]);
 
-    /// Dispatch an [action]
-    void Function() dispatch(Action action) => () => actionS.add(action);
+    // Dispatch an action
+    void Function() dispatch(Action action) => () => store.dispatch(action);
 
     return ComicsBloc._(
       dispose: () async {
-        await DisposeBag([...subscriptions, actionS]).dispose();
-        await effects.dispose();
+        await store.dispose();
+        await bag.dispose();
         print('$tag [DISPOSED]');
       },
       loadFirstPage: dispatch(const LoadFirstPageAction()),
       loadNextPage: dispatch(const LoadNextPageAction()),
       retryNextPage: dispatch(const RetryNextPageAction()),
-      comicsList$: state$,
+      comicsList$: store.stateStream,
       refresh: () {
         final completer = Completer<void>();
         dispatch(RefreshListAction(completer))();
         return completer.future;
       },
-      message$: effects.message$,
+      message$: message$,
       retryFirstPage: dispatch(const RetryFirstPageAction()),
+      getComicsList: () => store.state,
     );
   }
 }

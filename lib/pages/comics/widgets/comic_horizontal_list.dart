@@ -102,7 +102,7 @@ class _ComicsHorizontalListViewState extends State<ComicsHorizontalListView> {
       constraints: BoxConstraints.expand(),
       child: StreamBuilder<ComicsListState>(
         stream: _comicsBloc.comicsList$,
-        initialData: _comicsBloc.comicsList$.value,
+        initialData: _comicsBloc.getComicsList(),
         builder: (context, snapshot) {
           final state = snapshot.data;
           if (state.isFirstPageLoading) {

@@ -3,23 +3,15 @@ import 'package:load_more_flutter/pages/comics/bloc/comics_usecase.dart';
 import 'package:rx_redux/rx_redux.dart';
 import 'package:rxdart/rxdart.dart';
 
-///
-/// This class holds [SideEffect]s and exposes message stream
-///
+/// This class that holds [SideEffect]s.
 class ComicsEffects {
   final GetComicsUseCase _getComics;
-  final _messageSubject = PublishSubject<Message>();
 
   ComicsEffects(this._getComics);
 
-  ///
-  /// Expose message stream, emit while execute [SideEffect]
-  ///
-  Stream<Message> get message$ => _messageSubject;
-
   Stream<Action> loadFirstPageEffect(
     Stream<Action> actions,
-    StateAccessor<ComicsListState> state,
+    GetState<ComicsListState> state,
   ) =>
       actions
           .whereType<LoadFirstPageAction>()
@@ -30,7 +22,7 @@ class ComicsEffects {
 
   Stream<Action> loadNextPageEffect(
     Stream<Action> actions,
-    StateAccessor<ComicsListState> state,
+    GetState<ComicsListState> state,
   ) =>
       actions
           .whereType<LoadNextPageAction>()
@@ -51,28 +43,18 @@ class ComicsEffects {
         );
       })
       .onErrorReturnWith((error) => ErrorLoadingPageAction(error, isFirstPage))
-      .startWith(PageLoadingAction(isFirstPage))
-      .doOnData((action) {
-        if (action is PageLoadedAction) {
-          if (action.comics.isEmpty) {
-            _messageSubject?.add(const LoadAllComicsMessage());
-          }
-        }
-        if (action is ErrorLoadingPageAction) {
-          _messageSubject?.add(ErrorMessage(action.error));
-        }
-      });
+      .startWith(PageLoadingAction(isFirstPage));
 
   Stream<Action> refreshListEffect(
     Stream<Action> actions,
-    StateAccessor<ComicsListState> state,
+    GetState<ComicsListState> state,
   ) =>
       actions.whereType<RefreshListAction>().exhaustMap((action) =>
           _nextPage(true).doOnDone(() => action.completer.complete()));
 
   Stream<Action> retryLoadNextPageEffect(
     Stream<Action> actions,
-    StateAccessor<ComicsListState> state,
+    GetState<ComicsListState> state,
   ) =>
       actions
           .whereType<RetryNextPageAction>()
@@ -83,7 +65,7 @@ class ComicsEffects {
 
   Stream<Action> retryLoadFirstPageEffect(
     Stream<Action> actions,
-    StateAccessor<ComicsListState> state,
+    GetState<ComicsListState> state,
   ) =>
       actions
           .whereType<RetryFirstPageAction>()
@@ -91,6 +73,4 @@ class ComicsEffects {
           .where((state) =>
               !state.isFirstPageLoading && state.firstPageError != null)
           .exhaustMap((_) => _nextPage(true));
-
-  Future<void> dispose() => _messageSubject.close();
 }

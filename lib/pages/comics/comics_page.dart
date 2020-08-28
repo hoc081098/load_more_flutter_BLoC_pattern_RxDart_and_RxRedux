@@ -130,7 +130,7 @@ class _ComicsPageState extends State<ComicsPage> {
             SliverPadding(
               sliver: StreamBuilder<ComicsListState>(
                 stream: _comicsBloc.comicsList$,
-                initialData: _comicsBloc.comicsList$.value,
+                initialData: _comicsBloc.getComicsList(),
                 builder: (context, snapshot) => _buildGridView(snapshot.data),
               ),
               padding: const EdgeInsets.symmetric(horizontal: 4),
@@ -138,7 +138,7 @@ class _ComicsPageState extends State<ComicsPage> {
             SliverToBoxAdapter(
               child: StreamBuilder<ComicsListState>(
                 stream: _comicsBloc.comicsList$,
-                initialData: _comicsBloc.comicsList$.value,
+                initialData: _comicsBloc.getComicsList(),
                 builder: (context, snapshot) => _buildBottomItem(snapshot.data),
               ),
             )

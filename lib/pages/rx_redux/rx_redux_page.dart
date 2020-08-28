@@ -79,7 +79,7 @@ class _RxReduxPageState extends State<RxReduxPage> {
           constraints: BoxConstraints.expand(),
           child: StreamBuilder<PeopleListState>(
             stream: _rxReduxBloc.peopleList$,
-            initialData: _rxReduxBloc.peopleList$.value,
+            initialData: _rxReduxBloc.getPeopleList(),
             builder: (context, snapshot) {
               final state = snapshot.data;
               if (state.isFirstPageLoading) {
