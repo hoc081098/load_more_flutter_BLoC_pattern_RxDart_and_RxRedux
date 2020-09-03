@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:load_more_flutter/app.dart';
 import 'package:load_more_flutter/util.dart';
 
-void main() {
+void main() async {
   newBuiltValueToStringHelper =
       (className) => CustomIndentingBuiltValueToStringHelper(className);
 
   WidgetsFlutterBinding.ensureInitialized();
-  Firebase.initializeApp();
+  await Firebase.initializeApp();
 
   runApp(const MyApp());
 }
