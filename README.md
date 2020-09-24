@@ -34,8 +34,8 @@ Make sure finish [install Flutter](https://flutter.io/get-started/install/) succ
 
 1.  Clone this repo by: `git clone https://github.com/hoc081098/load_more_flutter_BLoC_pattern_RxDart_and_RxRedux.git`.
 2.  Install all the packages by: `flutter packages get`.
-3.  Run command `flutter packages pub run build_runner build` to generate build_value classes (optional because I pushed *.g.dart files).
-4.  Run app on your simulator or device by: `flutter run`.
+3.  Run command `flutter packages pub run build_runner build --delete-conflicting-outputs` to generate build_value classes (optional because I pushed *.g.dart files).
+4.  Run app on your simulator or device by: `flutter run` or run in `Visual Studio Code`, `Android Studio`, `Intellij IDEA`, ...
 
 ## License
 
