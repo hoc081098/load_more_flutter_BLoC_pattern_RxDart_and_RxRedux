@@ -13,7 +13,7 @@ dependencies:
   cloud_firestore: ^0.14.0+2
 
   distinct_value_connectable_stream: ^1.1.1
-  rxdart: ^0.24.1
+  rxdart: ^0.27.0
   rx_redux: ^2.1.0
   disposebag: ^1.2.0
 
