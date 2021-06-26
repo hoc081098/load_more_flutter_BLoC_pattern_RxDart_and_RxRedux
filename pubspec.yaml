@@ -18,7 +18,7 @@ dependencies:
   disposebag: ^1.2.0
 
   collection: ^1.14.13
-  tuple: ^1.0.3
+  tuple: ^2.0.0
   built_value: ^7.1.0
   built_collection: ^4.3.2
   cached_network_image: ^2.3.1
