@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:built_value/built_value.dart';
 import 'package:flutter/material.dart';
+import 'package:rxdart/rxdart.dart';
 
 extension LastOrNullExt<T> on Iterable<T> {
   ///
@@ -10,27 +11,12 @@ extension LastOrNullExt<T> on Iterable<T> {
   T get lastOrNull => isNotEmpty ? last : null;
 }
 
-extension ShowSnackbarGlobalKeyScaffoldStateExtension
-    on GlobalKey<ScaffoldState> {
-  void showSnackBar(
-    String message, [
-    Duration duration = const Duration(seconds: 2),
-  ]) {
-    currentState?.showSnackBar(
-      SnackBar(
-        content: Text(message),
-        duration: duration,
-      ),
-    );
-  }
-}
-
 extension ShowSnackBarBuildContextExtension on BuildContext {
   void showSnackBar(
     String message, [
     Duration duration = const Duration(seconds: 2),
   ]) {
-    Scaffold.of(this).showSnackBar(
+    ScaffoldMessenger.of(this).showSnackBar(
       SnackBar(
         content: Text(message),
         duration: duration,
@@ -41,17 +27,45 @@ extension ShowSnackBarBuildContextExtension on BuildContext {
 
 extension MapNotNullStreamExt<T> on Stream<T> {
   Stream<R> mapNotNull<R>(R Function(T) mapper) {
-    return transform(StreamTransformer<T, R>.fromHandlers(
-      handleData: (data, sink) {
-        final mapped = mapper(data);
-        if (mapped != null) {
-          sink.add(mapped);
-        }
-      },
-      handleError: (e, st, sink) => sink.addError(e, st),
-      handleDone: (sink) => sink.close(),
-    ));
+    return transform(
+      StreamTransformer<T, R>.fromHandlers(
+        handleData: (data, sink) {
+          final mapped = mapper(data);
+          if (mapped != null) {
+            sink.add(mapped);
+          }
+        },
+        handleError: (e, st, sink) => sink.addError(e, st),
+        handleDone: (sink) => sink.close(),
+      ),
+    );
   }
+}
+
+extension ScrollPositionStreamExt on ScrollController {
+  Stream<ScrollController> scroll$() {
+    StreamController<ScrollController> controller;
+    VoidCallback listener;
+
+    controller = StreamController<ScrollController>(
+      sync: true,
+      onListen: () => addListener(listener = () => controller.add(this)),
+      onCancel: () {
+        try {
+          removeListener(listener);
+          listener = null;
+        } catch (_) {}
+      },
+    );
+
+    return controller.stream;
+  }
+
+  Stream<void> nearBottomEdge$(num offsetVisibleThreshold) => scroll$()
+      .debounceTime(const Duration(milliseconds: 100))
+      .mapNotNull((sc) => sc.hasClients
+          ? sc.offset + offsetVisibleThreshold >= sc.position.maxScrollExtent
+          : null);
 }
 
 int _indentingBuiltValueToStringHelperIndent = 0;

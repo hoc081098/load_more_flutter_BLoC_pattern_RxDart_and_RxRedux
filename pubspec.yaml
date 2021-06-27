@@ -1,5 +1,5 @@
 name: load_more_flutter
-description: Load more data when scroll to end of ListView Flutter.
+description: Load more data when scroll to end of ListView Flutter, GridView Flutter, CustomScrollView Flutter.
 
 environment:
   sdk: '>=2.7.0 <3.0.0'
@@ -9,22 +9,33 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
-  cupertino_icons: ^0.1.3
-  cloud_firestore: ^0.14.0+2
+  cupertino_icons: ^1.0.1
+  cloud_firestore: ^0.14.3
 
   distinct_value_connectable_stream: ^1.1.1
   rxdart: ^0.24.1
-  rx_redux: ^2.1.0
-  disposebag: ^1.2.0
+  rx_redux: ^2.1.1
+  disposebag: ^1.3.2
+  flutter_disposebag: ^1.0.0
 
   collection: ^1.14.13
   tuple: ^1.0.3
   built_value: ^7.1.0
   built_collection: ^4.3.2
-  cached_network_image: ^2.3.1
+  cached_network_image: ^2.3.3
   http: ^0.12.2
 
 #flutter packages pub run build_runner build
+
+dependency_overrides:
+  rxdart:
+    git:
+      url: https://github.com/ReactiveX/rxdart.git
+      ref: master
+  distinct_value_connectable_stream:
+    git:
+      url: https://github.com/hoc081098/distinct_value_connectable_stream.git
+      ref: master
 
 dev_dependencies:
   pedantic: ^1.9.0

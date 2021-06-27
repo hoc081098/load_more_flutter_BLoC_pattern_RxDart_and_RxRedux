@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_disposebag/flutter_disposebag.dart';
 import 'package:load_more_flutter/data/people/memory_person_data_source.dart';
 import 'package:load_more_flutter/generated/l10n.dart';
 import 'package:load_more_flutter/pages/rx_redux/bloc/bloc.dart';
@@ -12,64 +13,56 @@ class RxReduxPage extends StatefulWidget {
   _RxReduxPageState createState() => _RxReduxPageState();
 }
 
-class _RxReduxPageState extends State<RxReduxPage> {
+class _RxReduxPageState extends State<RxReduxPage> with DisposeBagMixin {
   static const offsetVisibleThreshold = 50.0;
 
+  Object listenToken;
   PeopleRxReduxBloc _rxReduxBloc;
-  StreamSubscription<Message> _subscription;
-
   ScrollController _scrollController;
-  GlobalKey<ScaffoldState> _scaffoldKey;
 
   @override
   void initState() {
     super.initState();
 
-    _scaffoldKey = GlobalKey();
-
-    ///
-    /// Setup [SimplePeopleBloc]
-    ///
+    /// Setup [PeopleRxReduxBloc]
     final dataSource = MemoryPersonDataSource(context: context);
     final effects = PeopleEffects(dataSource);
     _rxReduxBloc = PeopleRxReduxBloc(effects);
 
-    ///
-    /// Listen [_simplePeopleBloc.message$]
     /// And load first page
-    ///
-    _subscription = _rxReduxBloc.message$.listen((message) {
-      if (message is LoadAllPeopleMessage) {
-        _scaffoldKey.showSnackBar(S.of(context).loaded_all_people);
-        makeAnimation();
-      }
-      if (message is ErrorMessage) {
-        final error = message.error;
-        _scaffoldKey
-            .showSnackBar(S.of(context).error_occurred(error.toString()));
-      }
-    });
     _rxReduxBloc.loadFirstPage();
 
-    ///
-    ///
     ///
     _scrollController = ScrollController()..addListener(_onScroll);
   }
 
   @override
-  void dispose() {
-    _scrollController.dispose();
-    _subscription.cancel();
-    _rxReduxBloc.dispose();
+  void didChangeDependencies() {
+    super.didChangeDependencies();
 
+    /// Listen [_rxReduxBloc.message$] only once
+    listenToken ??= _rxReduxBloc.message$.listen((message) {
+      if (message is LoadAllPeopleMessage) {
+        context.showSnackBar(S.of(context).loaded_all_people);
+        makeAnimation();
+      }
+      if (message is ErrorMessage) {
+        final error = message.error;
+        context.showSnackBar(S.of(context).error_occurred(error.toString()));
+      }
+    });
+  }
+
+  @override
+  void dispose() {
     super.dispose();
+    _scrollController.dispose();
+    _rxReduxBloc.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: _scaffoldKey,
       appBar: AppBar(
         title: Text('RxRedux page'),
       ),
