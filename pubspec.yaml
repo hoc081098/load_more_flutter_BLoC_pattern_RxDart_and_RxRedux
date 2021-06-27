@@ -19,7 +19,7 @@ dependencies:
 
   collection: ^1.14.13
   tuple: ^2.0.0
-  built_value: ^7.1.0
+  built_value: ^8.0.0
   built_collection: ^5.0.0
   cached_network_image: ^3.0.0
   http: ^0.13.0
