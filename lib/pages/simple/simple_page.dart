@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_disposebag/flutter_disposebag.dart';
 import 'package:load_more_flutter/data/people/memory_person_data_source.dart';
 import 'package:load_more_flutter/generated/l10n.dart';
 import 'package:load_more_flutter/pages/simple/people_interactor.dart';
@@ -14,64 +15,59 @@ class SimplePage extends StatefulWidget {
   _SimplePageState createState() => _SimplePageState();
 }
 
-class _SimplePageState extends State<SimplePage> {
+class _SimplePageState extends State<SimplePage> with DisposeBagMixin {
   static const offsetVisibleThreshold = 50.0;
 
   SimplePeopleBloc _simplePeopleBloc;
-  StreamSubscription<Message> _subscription;
-
-  ScrollController _scrollController;
-  GlobalKey<ScaffoldState> _scaffoldKey;
+  final _scrollController = ScrollController();
+  Object listenToken;
 
   @override
   void initState() {
     super.initState();
 
-    _scaffoldKey = GlobalKey();
-
-    ///
-    /// Setup [SimplePeopleBloc]
-    ///
+    /// Setup [SimplePeopleBloc].
     final dataSource = MemoryPersonDataSource(context: context);
     final interactor = PeopleInteractor(dataSource);
     _simplePeopleBloc = SimplePeopleBloc(interactor);
 
-    ///
-    /// Listen [_simplePeopleBloc.message$]
-    /// And load first page
-    ///
-    _subscription = _simplePeopleBloc.message$.listen((message) {
+    /// Load first page.
+    _simplePeopleBloc.load();
+
+    /// Load next page when reaching bottom edge.
+    _scrollController
+        .nearBottomEdge$(offsetVisibleThreshold)
+        .listen((_) => _simplePeopleBloc.load())
+        .disposedBy(bag);
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
+    /// Listen [_simplePeopleBloc.message$] only once.
+    listenToken ??= _simplePeopleBloc.message$.listen((message) {
       if (message is LoadAllPeopleMessage) {
-        _scaffoldKey.showSnackBar(S.of(context).loaded_all_people);
+        context.showSnackBar(S.of(context).loaded_all_people);
         makeAnimation();
       }
       if (message is ErrorMessage) {
         final error = message.error;
-        _scaffoldKey
-            .showSnackBar(S.of(context).error_occurred(error.toString()));
+        context.showSnackBar(S.of(context).error_occurred(error.toString()));
       }
-    });
-    _simplePeopleBloc.load();
-
-    ///
-    ///
-    ///
-    _scrollController = ScrollController()..addListener(_onScroll);
+    }).disposedBy(bag);
   }
 
   @override
   void dispose() {
-    _scrollController.dispose();
-    _subscription.cancel();
-    _simplePeopleBloc.dispose();
-
     super.dispose();
+    _scrollController.dispose();
+    _simplePeopleBloc.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: _scaffoldKey,
       appBar: AppBar(
         title: Text('Simple page'),
       ),
@@ -149,15 +145,6 @@ class _SimplePageState extends State<SimplePage> {
         ),
       ),
     );
-  }
-
-  void _onScroll() {
-    final max = _scrollController.position.maxScrollExtent;
-    final offset = _scrollController.offset;
-
-    if (offset + offsetVisibleThreshold >= max) {
-      _simplePeopleBloc.load();
-    }
   }
 
   Future<void> makeAnimation() async {

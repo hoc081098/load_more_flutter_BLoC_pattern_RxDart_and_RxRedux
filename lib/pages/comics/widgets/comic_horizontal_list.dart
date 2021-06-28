@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_disposebag/flutter_disposebag.dart';
 import 'package:load_more_flutter/data/comics/comic_repository_impl.dart';
 import 'package:load_more_flutter/generated/l10n.dart';
 import 'package:load_more_flutter/pages/comics/bloc/comics_bloc.dart';
@@ -20,12 +21,12 @@ class ComicsHorizontalListView extends StatefulWidget {
       _ComicsHorizontalListViewState();
 }
 
-class _ComicsHorizontalListViewState extends State<ComicsHorizontalListView> {
+class _ComicsHorizontalListViewState extends State<ComicsHorizontalListView>
+    with DisposeBagMixin {
   static const offsetVisibleThreshold = 50.0;
 
   ComicsBloc _comicsBloc;
-  StreamSubscription<Message> _subscription;
-
+  Object token;
   ScrollController _scrollController;
 
   @override
@@ -55,16 +56,6 @@ class _ComicsHorizontalListViewState extends State<ComicsHorizontalListView> {
       widget.listType.toString(),
     );
 
-    _subscription = _comicsBloc.message$.listen((message) {
-      if (message is LoadAllComicsMessage) {
-        context.showSnackBar(S.of(context).loaded_all_people);
-        makeAnimation();
-      }
-      if (message is ErrorMessage) {
-        final error = message.error;
-        context.showSnackBar(S.of(context).error_occurred(error.toString()));
-      }
-    });
     _comicsBloc.loadFirstPage();
   }
 
@@ -88,12 +79,26 @@ class _ComicsHorizontalListViewState extends State<ComicsHorizontalListView> {
   }
 
   @override
-  void dispose() {
-    _scrollController.dispose();
-    _subscription.cancel();
-    _comicsBloc.dispose();
+  void didChangeDependencies() {
+    super.didChangeDependencies();
 
+    token ??= _comicsBloc.message$.listen((message) {
+      if (message is LoadAllComicsMessage) {
+        context.showSnackBar(S.of(context).loaded_all_people);
+        makeAnimation();
+      }
+      if (message is ErrorMessage) {
+        final error = message.error;
+        context.showSnackBar(S.of(context).error_occurred(error.toString()));
+      }
+    }).disposedBy(bag);
+  }
+
+  @override
+  void dispose() {
     super.dispose();
+    _scrollController.dispose();
+    _comicsBloc.dispose();
   }
 
   @override

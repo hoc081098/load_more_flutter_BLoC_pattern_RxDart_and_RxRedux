@@ -18,7 +18,7 @@ class SimplePeopleBloc {
   final void Function() retry;
 
   /// Output [Stream]s
-  final ValueStream<PeopleListState> peopleList$;
+  final DistinctValueStream<PeopleListState> peopleList$;
   final Stream<Message> message$;
 
   /// Clean up: close controller, cancel subscription
@@ -71,7 +71,7 @@ class SimplePeopleBloc {
     /// Transform actions stream to state stream
     state$ = allActions$
         .switchMap((tuple) => peopleInteractor.fetchData(tuple, messageS))
-        .publishValueSeededDistinct(seedValue: PeopleListState.initial());
+        .publishValueDistinct(PeopleListState.initial());
 
     /// Keep subscriptions to cancel later
     final subscriptions = [

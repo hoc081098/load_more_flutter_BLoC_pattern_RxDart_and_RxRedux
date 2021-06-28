@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_disposebag/flutter_disposebag.dart';
 import 'package:load_more_flutter/data/people/memory_person_data_source.dart';
 import 'package:load_more_flutter/data/people/people_api.dart';
 import 'package:load_more_flutter/generated/l10n.dart';
@@ -13,26 +14,19 @@ class MyHomePage extends StatefulWidget {
   _MyHomePageState createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MyHomePageState extends State<MyHomePage> with DisposeBagMixin {
   final _scrollController = ScrollController();
-  final _scaffoldKey = GlobalKey<ScaffoldState>();
   static const offsetVisibleThreshold = 50;
 
-  ///
   /// pass [PeopleApi] or [MemoryPersonDataSource] to [PeopleBloc]'s constructor
-  ///
   PeopleBloc _bloc;
-  StreamSubscription<void> _subscriptionReachMaxItems;
-  StreamSubscription<Object> _subscriptionError;
+  Object token;
 
   @override
   void initState() {
     super.initState();
 
     _bloc = PeopleBloc(PeopleApi());
-    // listen error, reach max items
-    _subscriptionReachMaxItems = _bloc.loadedAllPeople.listen(_onReachMaxItem);
-    _subscriptionError = _bloc.error.listen(_onError);
 
     // add listener to scroll controller
     _scrollController.addListener(_onScroll);
@@ -42,20 +36,25 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    // listen error, reach max items
+    token ??= [
+      _bloc.loadedAllPeople.listen(_onReachMaxItem),
+      _bloc.error.listen(_onError),
+    ].disposedBy(bag);
+  }
+
+  @override
   void dispose() {
-    _scrollController.dispose();
-
-    _subscriptionError.cancel();
-    _subscriptionReachMaxItems.cancel();
-    _bloc.dispose();
-
     super.dispose();
+    _scrollController.dispose();
+    _bloc.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: _scaffoldKey,
       appBar: AppBar(
         title: Text('Load more flutter'),
       ),
@@ -121,7 +120,10 @@ class _MyHomePageState extends State<MyHomePage> {
           return ListTile(
             title: Text(
               S.of(context).error_occurred_loading_next_page(error.toString()),
-              style: Theme.of(context).textTheme.bodyText2.copyWith(fontSize: 16.0),
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyText2
+                  .copyWith(fontSize: 16.0),
             ),
             isThreeLine: false,
             leading: CircleAvatar(
@@ -173,10 +175,10 @@ class _MyHomePageState extends State<MyHomePage> {
   void _onReachMaxItem(void _) async {
     // show animation when loaded all data
     await makeAnimation();
-    _scaffoldKey.showSnackBar(S.of(context).loaded_all_people);
+    context.showSnackBar(S.of(context).loaded_all_people);
   }
 
   void _onError(Object error) {
-    _scaffoldKey.showSnackBar(S.of(context).error_occurred(error.toString()));
+    context.showSnackBar(S.of(context).error_occurred(error.toString()));
   }
 }

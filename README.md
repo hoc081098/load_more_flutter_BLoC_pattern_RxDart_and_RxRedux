@@ -1,8 +1,8 @@
 # load_more_flutter_BLoC_pattern_RxDart_and_RxRedux 📱
 -   Load more Flutter BLoC pattern RxDart and RxRedux.
--   Load more data when scrolling to end of list view.
--   Paging `ListView Flutter`.
--   Infinite scroll `ListView Flutter`.
+-   Load more data when scrolling to end of ListView, GridView, CustomScrollView.
+-   Paging `ListView, GridView, CustomScrollView Flutter`.
+-   Infinite scroll `ListView, GridView, CustomScrollView Flutter`.
 
 ## Find this repository useful? ❤️
 

@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_disposebag/flutter_disposebag.dart';
 import 'package:load_more_flutter/data/comics/comic_repository_impl.dart';
 import 'package:load_more_flutter/generated/l10n.dart';
 import 'package:load_more_flutter/pages/comics/bloc/comic.dart';
@@ -12,14 +13,12 @@ class ComicsPage extends StatefulWidget {
   _ComicsPageState createState() => _ComicsPageState();
 }
 
-class _ComicsPageState extends State<ComicsPage> {
+class _ComicsPageState extends State<ComicsPage> with DisposeBagMixin {
   static const offsetVisibleThreshold = 200;
 
   ComicsBloc _comicsBloc;
-  StreamSubscription<Message> _subscription;
-
+  Object token;
   ScrollController _scrollController;
-  final _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
@@ -39,17 +38,6 @@ class _ComicsPageState extends State<ComicsPage> {
       ComicsListType.updated.toString(),
     );
 
-    _subscription = _comicsBloc.message$.listen((message) {
-      if (message is LoadAllComicsMessage) {
-        _scaffoldKey.showSnackBar(S.of(context).loaded_all_people);
-        makeAnimation();
-      }
-      if (message is ErrorMessage) {
-        final error = message.error;
-        _scaffoldKey
-            .showSnackBar(S.of(context).error_occurred(error.toString()));
-      }
-    });
     _comicsBloc.loadFirstPage();
   }
 
@@ -73,18 +61,31 @@ class _ComicsPageState extends State<ComicsPage> {
   }
 
   @override
-  void dispose() {
-    _scrollController.dispose();
-    _subscription.cancel();
-    _comicsBloc.dispose();
+  void didChangeDependencies() {
+    super.didChangeDependencies();
 
+    token ??= _comicsBloc.message$.listen((message) {
+      if (message is LoadAllComicsMessage) {
+        context.showSnackBar(S.of(context).loaded_all_people);
+        makeAnimation();
+      }
+      if (message is ErrorMessage) {
+        final error = message.error;
+        context.showSnackBar(S.of(context).error_occurred(error.toString()));
+      }
+    }).disposedBy(bag);
+  }
+
+  @override
+  void dispose() {
     super.dispose();
+    _scrollController.dispose();
+    _comicsBloc.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: _scaffoldKey,
       appBar: AppBar(
         title: Text('Comics page'),
       ),
