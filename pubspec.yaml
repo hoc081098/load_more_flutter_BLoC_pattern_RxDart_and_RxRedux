@@ -10,7 +10,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   cupertino_icons: ^1.0.0
-  cloud_firestore: ^2.0.0
+  cloud_firestore: ^4.0.0
 
   distinct_value_connectable_stream: ^1.1.1
   rxdart: ^0.27.0
