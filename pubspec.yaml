@@ -21,7 +21,7 @@ dependencies:
   tuple: ^2.0.0
   built_value: ^8.0.0
   built_collection: ^5.0.0
-  cached_network_image: ^3.0.0
+  cached_network_image: ^4.0.0
   http: ^0.13.0
 
 #flutter packages pub run build_runner build
